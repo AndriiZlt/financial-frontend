@@ -1,0 +1,102 @@
+<section class="content-header">
+  <h1>
+    My Assets
+    <small>list of your stocks</small>
+  </h1>
+  <!-- <h1>
+    Uploading Assets
+    <small>list of your stocks</small>
+  </h1> -->
+  <!-- <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Examples</a></li>
+    <li class="active">My Assets</li>
+  </ol> -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <!-- Default box -->
+  <div class="box">
+    <!-- <div class="box-header with-border">
+      <h3 class="box-title">Title</h3>
+
+      <div class="box-tools pull-right">
+        <button
+          class="btn btn-box-tool"
+          data-toggle="tooltip"
+          data-widget="collapse"
+          title="Collapse"
+          type="button"
+        >
+          <i class="fa fa-minus"></i>
+        </button>
+        <button
+          class="btn btn-box-tool"
+          data-toggle="tooltip"
+          data-widget="remove"
+          title="Remove"
+          type="button"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+    </div> -->
+    <div class="box-body">Start creating your amazing application!</div>
+    <!-- <div class="box-footer">Footer</div> -->
+    <!-- /.box-footer-->
+  </div>
+  <div class="asset-card">
+    <div class="number">{{ index + 1 }}</div>
+    <div class="symbol">{{ position["symbol"] }}</div>
+
+    <div class="name" *ngIf="!nameIsLoading">{{ positionName }}</div>
+    <div class="spinner" *ngIf="nameIsLoading">
+      <app-spinner></app-spinner>
+    </div>
+    <div class="quantity">
+      <div class="col-inner">
+        <p class="title">QTY</p>
+        <p class="figures">{{ position.qty }}</p>
+      </div>
+    </div>
+
+    <div class="prices">
+      <div class="col-inner">
+        <p class="title">START</p>
+        <p class="figures">${{ position.cost_Basis }}</p>
+      </div>
+      <div class="col-arrow">
+        <img
+          [src]="
+            position.cost_Basis < currentPrice
+              ? '../../../../assets/UP_trend.png'
+              : '../../../../assets/Down_trend.png'
+          "
+          alt="trend_direction"
+        />
+      </div>
+      <div class="col-inner">
+        <p class="title">CURRENT</p>
+        <p class="figures" *ngIf="!priceIsLoading">${{ currentPrice }}</p>
+        <div
+          class="figures spinner"
+          *ngIf="priceIsLoading"
+          style="justify-content: center"
+        >
+          <app-spinner></app-spinner>
+        </div>
+      </div>
+    </div>
+
+    <div class="info__close" (click)="sellPosition()">
+      <svg height="20" viewBox="0 0 20 20" width="20">
+        <path
+          d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z "
+        ></path>
+      </svg>
+    </div>
+  </div>
+  <!-- /.box -->
+</section>
+<!-- /.content -->
