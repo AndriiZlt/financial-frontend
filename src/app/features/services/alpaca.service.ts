@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Asset } from '../models/Asset.model';
 import { ApiService } from 'src/app/core/services/api.service';
 import { environment } from 'src/environments/environment';
-import { Position } from '../models/Stock.model';
+import { Stock } from '../models/Stock.model';
 import { Transaction } from '../models/Transaction.model';
 import { Bar } from '../models/Bar.model';
 import { Account } from '../models/Account.model';
@@ -35,14 +35,14 @@ export class AlpacaService extends ApiService {
     });
   }
 
-  getPositions(): Observable<Position[]> {
-    return this.get<Position[]>(`positions`, {
+  getPositions(): Observable<Stock[]> {
+    return this.get<Stock[]>(`positions`, {
       headers: this.headers,
     });
   }
 
-  closePosition(asset_id: string): Observable<Position> {
-    return this.delete<Position>(`position/${asset_id}`, {
+  closePosition(asset_id: string): Observable<Stock> {
+    return this.delete<Stock>(`position/${asset_id}`, {
       headers: this.headers,
     });
   }
@@ -88,15 +88,6 @@ export class AlpacaService extends ApiService {
       headers: this.headers,
     });
   }
-
-  // getLastTrades(symbol: string) {
-  //   return this.http.get(`https://data.alpaca.markets/v2/stocks/${symbol}/trades/latest`, {
-  //     headers: new HttpHeaders({
-  //       'APCA-API-KEY-ID': environment.API_KEY_ID,
-  //       'APCA-API-SECRET-KEY': environment.API_SECRET_KEY,
-  //     })
-  //   });
-  // }
 
   getLastBar(symbol: string): Observable<any> {
     return this.get<any>(`lastbar/${symbol}`, {

@@ -1,6 +1,6 @@
 <div class="box">
   <div class="number">{{ index + 1 }}</div>
-  <div class="symbol">{{ stock["symbol"] }}</div>
+  <div class="symbol">{{ stock.symbol }}</div>
 
   <div class="name" *ngIf="!nameIsLoading">{{ positionName }}</div>
   <div class="spinner" *ngIf="nameIsLoading">

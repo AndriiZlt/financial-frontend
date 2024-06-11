@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { AlpacaService } from "../../services/alpaca.service";
 import { Stock } from "../../models/Stock.model";
+import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 
 @Component({
   selector: "app-asset-card",
   templateUrl: "./asset-card.component.html",
   styleUrls: ["./asset-card.component.scss"],
 })
-export class AssetCardComponent implements OnInit {
+export class AssetCardComponent extends SpinnerComponent implements OnInit {
   @Input() stock: Stock;
   @Input() index: number;
   @Output() sellAsset: EventEmitter<any> = new EventEmitter<any>();
@@ -16,7 +17,9 @@ export class AssetCardComponent implements OnInit {
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
 
-  constructor(private alpacaService: AlpacaService) {}
+  constructor(private alpacaService: AlpacaService) {
+    super();
+  }
 
   ngOnInit(): void {
     // Getting full name of the order
