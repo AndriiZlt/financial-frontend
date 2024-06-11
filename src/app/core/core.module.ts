@@ -5,6 +5,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { SideNavComponent } from "./components/side-nav/side-nav.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { AuthModule } from "./auth/auth.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { AuthModule } from "./auth/auth.module";
     SideNavComponent,
     SettingsComponent,
   ],
-  imports: [CommonModule, AuthModule],
+  imports: [CommonModule, AuthModule, HttpClientModule],
   exports: [
     HeaderComponent,
     FooterComponent,

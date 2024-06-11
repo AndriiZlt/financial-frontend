@@ -8,7 +8,32 @@ import { AlpacaService } from "../services/alpaca.service";
   styleUrls: ["./my-assets.component.scss"],
 })
 export class MyAssetsComponent implements OnInit {
-  stocks: Stock[] = [];
+  stocks: Stock[] = [
+    {
+      asset_Id: "1",
+      name: "stock_1",
+      cost_Basis: "123.45",
+      exchange: "asasas",
+      qty: "1",
+      symbol: "AAA",
+    },
+    {
+      asset_Id: "2",
+      name: "stock_2",
+      cost_Basis: "123.45",
+      exchange: "asasas",
+      qty: "1",
+      symbol: "BBB",
+    },
+    {
+      asset_Id: "3",
+      name: "stock_3",
+      cost_Basis: "123.45",
+      exchange: "asasas",
+      qty: "1",
+      symbol: "CCC",
+    },
+  ];
   stock: Stock;
   isLoading: boolean = true;
 
