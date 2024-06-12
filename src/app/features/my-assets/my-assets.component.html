@@ -16,7 +16,13 @@
 
 <!-- Main content -->
 <section class="content">
-
+  <div class="messeger">
+    <span>ID:</span>
+    <input type="text" [(ngModel)]="idInput" />
+    <span>Message:</span>
+    <input type="text" [(ngModel)]="messageInput" />
+    <button (click)="sendMessage()">Send Message</button>
+  </div>
   <div class="stocks-list-container">
     <app-card
       *ngFor="let stock of stocks"

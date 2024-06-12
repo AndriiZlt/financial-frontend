@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Stock } from "../models/Stock.model";
 import { AlpacaService } from "../services/alpaca.service";
+import { HubConnectionService } from "src/app/core/services/hub-connection.service";
 
 @Component({
   selector: "app-my-assets",
@@ -92,17 +93,37 @@ export class MyAssetsComponent implements OnInit {
   ];
   stock: Stock;
   isLoading: boolean = true;
+  messageInput: string = "";
+  idInput: string = "";
 
-  constructor(private alpacaService: AlpacaService) {}
+  constructor(
+    private alpacaService: AlpacaService,
+    private signalrService: HubConnectionService
+  ) {}
 
   ngOnInit() {
-    this.updatePage();
+    // this.updatePage();
   }
+
+  sendMessage() {
+    console.log("Id:", this.idInput, "Message:", this.messageInput);
+    this.signalrService.sendMessage(this.idInput, this.messageInput);
+  }
+
+  // changeMessage(value: string) {
+  //   console.log("Message change event:", value);
+  //   this.messageInput = value;
+  // }
+
+  // changeId(value: string) {
+  //   console.log("id change event:", value);
+  //   this.idInput = value;
+  // }
 
   updatePage(): void {
     this.isLoading = true;
     let sub = this.alpacaService.getPositions().subscribe((res) => {
-      console.log("STOCKS:", res);
+      // console.log("STOCKS:", res);
       for (const item in res) {
         this.stocks.push(res[item]);
       }

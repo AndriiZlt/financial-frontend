@@ -22,24 +22,23 @@ export class CardComponent extends SpinnerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Stock:", this.stock);
+    // console.log("Stock:", this.stock);
     // Getting full name of the order
-    let sub = this.alpacaService
-      .getAssetById(this.stock.symbol)
-      .subscribe((res) => {
-        this.positionName = res.name;
-        this.nameIsLoading = false;
-        sub.unsubscribe();
-      });
-
+    // let sub = this.alpacaService
+    //   .getAssetById(this.stock.symbol)
+    //   .subscribe((res) => {
+    //     this.positionName = res.name;
+    //     this.nameIsLoading = false;
+    //     sub.unsubscribe();
+    //   });
     // Getting current price of the asset
-    let sub2 = this.alpacaService
-      .getLastTrades(this.stock.symbol)
-      .subscribe((res) => {
-        this.currentPrice = res["trade"].p;
-        this.priceIsLoading = false;
-        sub2.unsubscribe();
-      });
+    // let sub2 = this.alpacaService
+    //   .getLastTrades(this.stock.symbol)
+    //   .subscribe((res) => {
+    //     this.currentPrice = res["trade"].p;
+    //     this.priceIsLoading = false;
+    //     sub2.unsubscribe();
+    //   });
   }
 
   sellPosition() {
