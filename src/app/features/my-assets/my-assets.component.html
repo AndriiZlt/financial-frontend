@@ -16,17 +16,15 @@
 
 <!-- Main content -->
 <section class="content">
-  <!-- <app-asset-card
-    *ngFor="let stock of stocks"
-    [stock]="stock"
-    [index]="stocks.indexOf(stock)"
-    (sellAsset)="sellAsset($event)"
-  ></app-asset-card> -->
 
-  <app-card-list
-    [stocks]="stocks"
-    (sellAsset)="sellAsset($event)"
-  ></app-card-list>
+  <div class="stocks-list-container">
+    <app-card
+      *ngFor="let stock of stocks"
+      [stock]="stock"
+      [index]="stocks.indexOf(stock)"
+      (sellAsset)="sellAsset($event)"
+    ></app-card>
+  </div>
 </section>
 <!-- /.content -->
 

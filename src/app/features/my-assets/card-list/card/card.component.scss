@@ -1,33 +1,44 @@
-.ag-courses_item {
-  //   -ms-flex-preferred-size: calc(33.33333% - 30px);
-  //   flex-basis: calc(33.33333% - 30px);
-  //   max-width: calc(33.33333% - 30px);
-  //   margin: 0 15px 30px;
-  margin-bottom: 20px;
+.card {
+  position: relative;
+  display: block;
   overflow: hidden;
-
-  border-radius: 28px;
+  border-radius: 4px;
+  width: 100%;
 }
-.ag-courses-item_link {
+
+.link {
   display: block;
   padding: 30px 20px;
-  background-color: #344c64;
+  background-color: #3c5772;
 
   overflow: hidden;
 
   position: relative;
 }
-.ag-courses-item_link:hover,
-.ag-courses-item_link:hover .ag-courses-item_date {
+.link:hover,
+.link:hover .date {
+  text-decoration: none;
+  // color: #fff;
+  color: #f9b234;
+}
+.link:hover .item_bg {
+  // -webkit-transform: scale(10);
+  // -ms-transform: scale(10);
+  // transform: scale(10);
+}
+
+.sell-button:hover .date {
   text-decoration: none;
   color: #fff;
 }
-.ag-courses-item_link:hover .ag-courses-item_bg {
-  -webkit-transform: scale(10);
-  -ms-transform: scale(10);
-  transform: scale(10);
-}
-.ag-courses-item_title {
+
+// .sell-button:hover .date.item_bg {
+//   -webkit-transform: scale(10);
+//   -ms-transform: scale(10);
+//   transform: scale(10);
+// }
+
+.title {
   min-height: 87px;
   margin: 0 0 25px;
 
@@ -40,25 +51,26 @@
   z-index: 2;
   position: relative;
 }
-.ag-courses-item_date-box {
+.date-box {
   font-size: 18px;
   color: #fff;
 
   z-index: 2;
   position: relative;
 }
-.ag-courses-item_date {
+.date {
   font-weight: bold;
-  color: #f9b234;
+  // color: #f9b234;
+  color: #fff;
 
   -webkit-transition: color 0.5s ease;
   -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
-.ag-courses-item_bg {
+.item_bg {
   height: 128px;
   width: 128px;
-  background-color: #b3c8cf;
+  background-color: #344c64;
 
   z-index: 1;
   position: absolute;
@@ -71,52 +83,199 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
-  background-color: #3ecd5e;
-}
-.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
-  background-color: #e44002;
-}
-.ag-courses_item:nth-child(4n) .ag-courses-item_bg {
-  background-color: #952aff;
-}
-.ag-courses_item:nth-child(5n) .ag-courses-item_bg {
-  background-color: #cd3e94;
-}
-.ag-courses_item:nth-child(6n) .ag-courses-item_bg {
-  background-color: #4c49ea;
-}
 
 @media only screen and (max-width: 979px) {
-  .ag-courses_item {
+  .item {
     -ms-flex-preferred-size: calc(50% - 30px);
     flex-basis: calc(50% - 30px);
   }
-  .ag-courses-item_title {
+  .title {
     font-size: 24px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .ag-format-container {
+  .stock-list-container {
     width: 96%;
   }
 }
 @media only screen and (max-width: 639px) {
-  .ag-courses_item {
+  .item {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
   }
-  .ag-courses-item_title {
+  .title {
     min-height: 72px;
     line-height: 1;
 
     font-size: 24px;
   }
-  .ag-courses-item_link {
+  .link {
     padding: 22px 40px;
   }
-  .ag-courses-item_date-box {
+  .date-box {
     font-size: 16px;
   }
 }
+
+.sell-button {
+  z-index: 999;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  display: block;
+  width: fit-content;
+  .button {
+    height: 50px;
+    width: 150px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #3c5772;
+    overflow: hidden;
+    border-radius: 30px;
+    color: #3c5772;
+    // color: white;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .btn-txt {
+    z-index: 1;
+    font-weight: 800;
+    letter-spacing: 4px;
+    font-size: 16px;
+  }
+
+  .type1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    background-color: #333;
+    border-radius: 30px;
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+  }
+
+  .button:hover {
+    box-shadow: 1px 1px 200px #252525;
+    color: #fff;
+    border: none;
+  }
+
+  .type1:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
+    color: #fff;
+  }
+}
+
+.card:hover .button {
+  box-shadow: 1px 1px 200px #252525;
+  color: #fff;
+  border: none;
+}
+
+// old css
+// .box {
+//   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+//     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+//   width: 730px;
+//   padding: 8px 20px;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: flex-start;
+//   gap: 12px;
+//   background: #97e7e1;
+//   border-radius: 2px;
+//   box-shadow: 0px 0px 0px -8px #111;
+//   color: #141414;
+//   font-weight: 500;
+// }
+
+// .number {
+//   width: 4%;
+// }
+
+// .symbol {
+//   width: 8%;
+// }
+
+// .name {
+//   font-size: 16px;
+//   width: 65%;
+// }
+
+// .quantity {
+//   width: 8%;
+// }
+
+// .prices {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 30%;
+//   height: 30px;
+// }
+
+// .col-inner {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   .title {
+//     margin: 0;
+//     // color: white;
+//     font-size: 12px;
+//   }
+
+//   .figures {
+//     margin: 0;
+//     // color: white;
+//     font-size: 13px;
+//   }
+// }
+
+// .info__close {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 21px;
+//   height: 21px;
+//   cursor: pointer;
+//   margin-left: auto;
+// }
+
+// .info__close path {
+//   fill: #181717;
+// }
+
+// .spinner {
+//   display: flex;
+//   width: 100%;
+//   height: 20px;
+//   align-items: center;
+//   justify-content: flex-start;
+// }
+
+// .col-arrow {
+//   width: 10px;
+//   height: 10px;
+//   display: flex;
+// }
+
+// .col-arrow img {
+//   height: 100%;
+//   width: 100%;
+//   .container img {
+//     object-fit: contain;
+//   }
+// }

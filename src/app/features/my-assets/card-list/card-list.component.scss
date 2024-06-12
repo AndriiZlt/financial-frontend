@@ -1,24 +1,26 @@
-.ag-format-container {
+.app-container {
   width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-}
-
-// body {
-//   background-color: #000;
-// }
-.ag-courses_box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-
   padding: 50px 0;
+  > * {
+    width: 100%;
+    display: block;
+  }
 }
+
+// .ag-courses_box {
+//   display: -webkit-box;
+//   display: -ms-flexbox;
+//   display: flex;
+//   -webkit-box-align: start;
+//   -ms-flex-align: start;
+//   align-items: flex-start;
+//   -ms-flex-wrap: wrap;
+//   flex-wrap: wrap;
+
+//   padding: 50px 0;
+// }
