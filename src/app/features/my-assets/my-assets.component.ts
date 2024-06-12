@@ -40,7 +40,8 @@ export class MyAssetsComponent implements OnInit {
   constructor(private alpacaService: AlpacaService) {}
 
   ngOnInit() {
-    this.updatePage();
+    console.log("stocks:", this.stocks);
+    // this.updatePage();
   }
 
   updatePage(): void {

@@ -1,0 +1,10 @@
+<div class="ag-format-container">
+  <!-- <div class="ag-courses_box"> -->
+  <app-card
+    *ngFor="let stock of stocks"
+    [stock]="stock"
+    [index]="stocks.indexOf(stock)"
+    (sellAsset)="sellAsset($event)"
+  ></app-card>
+  <!-- </div> -->
+</div>
