@@ -1,14 +1,24 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent } from "./pages/pages.component";
-import { MyAssetsComponent } from "src/app/features/my-assets/my-assets.component";
+import { PortfolioComponent } from "src/app/features/my-assets/portfolio.component";
 
 const routes: Routes = [
   {
-    path: "",
-    component: PagesComponent,
-    children: [{ path: "", component: MyAssetsComponent }],
+    path: "portfolio",
+    component: PortfolioComponent,
   },
+  {
+    path: "board",
+    component: PortfolioComponent,
+  },
+  {
+    path: "alpaca",
+    component: PortfolioComponent,
+  },
+  { path: "", redirectTo: "portfolio", pathMatch: "full" },
+  { path: " ", redirectTo: "portfolio", pathMatch: "full" },
+  { path: "**", redirectTo: "portfolio" },
 ];
 
 @NgModule({

@@ -1,5 +1,4 @@
-export interface Stock {
-  id: string;
+export interface StockToAdd {
   alpaca_Asset_Id: string;
   name: string;
   cost_Basis: string;

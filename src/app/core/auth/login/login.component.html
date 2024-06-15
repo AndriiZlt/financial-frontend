@@ -1,17 +1,27 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Finance - </b>App</a>
+    <a href="#"><b>Fin</b>App</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
     <div class="form-group has-feedback">
-      <input class="form-control" placeholder="Email" type="email" />
+      <input
+        class="form-control"
+        placeholder="Username"
+        type="text"
+        [(ngModel)]="loginInput"
+      />
       <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
     </div>
     <div class="form-group has-feedback">
-      <input class="form-control" placeholder="Password" type="password" />
+      <input
+        class="form-control"
+        placeholder="Password"
+        type="password"
+        [(ngModel)]="passwordInput"
+      />
       <span class="glyphicon glyphicon-lock form-control-feedback"></span>
     </div>
     <div class="row">
@@ -22,10 +32,7 @@
       </div>
       <!-- /.col -->
       <div class="col-xs-4">
-        <button
-          [routerLink]="'/finance'"
-          class="btn btn-primary btn-block btn-flat"
-        >
+        <button class="btn btn-primary btn-block btn-flat" (click)="onSubmit()">
           Sign In
         </button>
       </div>

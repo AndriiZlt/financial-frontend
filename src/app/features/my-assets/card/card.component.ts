@@ -42,6 +42,6 @@ export class CardComponent extends SpinnerComponent implements OnInit {
   }
 
   sellPosition() {
-    this.sellAsset.emit(this.stock.asset_Id);
+    this.sellAsset.emit(this.stock.id);
   }
 }

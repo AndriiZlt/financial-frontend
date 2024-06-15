@@ -3,6 +3,5 @@ export interface Asset {
   symbol: string;
   id: string;
   name: string;
-  status: string;
   tradable: boolean;
 }
