@@ -11,7 +11,7 @@ import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.comp
 export class CardComponent extends SpinnerComponent implements OnInit {
   @Input() stock: Stock;
   @Input() index: number;
-  @Output() sellAsset: EventEmitter<any> = new EventEmitter<any>();
+  @Output() sellStock: EventEmitter<any> = new EventEmitter<any>();
   positionName: string;
   currentPrice: string;
   nameIsLoading: boolean = true;
@@ -41,7 +41,7 @@ export class CardComponent extends SpinnerComponent implements OnInit {
     //   });
   }
 
-  sellPosition() {
-    this.sellAsset.emit(this.stock.id);
+  sendToBoard() {
+    this.sellStock.emit(this.stock);
   }
 }

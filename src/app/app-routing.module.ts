@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./core/layout/pages.module").then((m) => m.PagesModule),
   },
-  // { path: "**", redirectTo: "finapp" },
+  { path: "**", redirectTo: "finapp" },
   { path: "", pathMatch: "full", redirectTo: "finapp" },
 ];
 

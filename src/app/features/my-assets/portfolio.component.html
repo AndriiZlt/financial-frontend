@@ -12,6 +12,7 @@
     <li><a href="#">Examples</a></li>
     <li class="active">My Assets</li>
   </ol> -->
+  <button (click)="addStock()">Add stocks</button>
 </section>
 
 <!-- Main content -->
@@ -21,7 +22,7 @@
       *ngFor="let stock of stocks"
       [stock]="stock"
       [index]="stocks.indexOf(stock)"
-      (sellAsset)="sellAsset($event)"
+      (sellStock)="sellStock($event)"
     ></app-card>
   </div>
 </section>
