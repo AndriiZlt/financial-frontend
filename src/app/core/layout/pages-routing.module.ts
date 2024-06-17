@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PagesComponent } from "./pages/pages.component";
-import { PortfolioComponent } from "src/app/features/my-assets/portfolio.component";
+import { PortfolioComponent } from "src/app/features/portfolio/portfolio.component";
+import { BoardComponent } from "src/app/features/board/board.component";
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: "board",
-    component: PortfolioComponent,
+    component: BoardComponent,
   },
   {
     path: "alpaca",

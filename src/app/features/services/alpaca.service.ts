@@ -1,26 +1,26 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { AssetToBuy } from '../models/AssetToBuy.model';
-import { Observable } from 'rxjs';
-import { Asset } from '../models/Asset.model';
-import { ApiService } from 'src/app/core/services/api.service';
-import { environment } from 'src/environments/environment';
-import { Stock } from '../models/Stock.model';
-import { Transaction } from '../models/Transaction.model';
-import { Bar } from '../models/Bar.model';
-import { Account } from '../models/Account.model';
-import { Order } from '../models/Order.model';
+import { HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { AssetToBuy } from "../board/models/AssetToBuy.model";
+import { Observable } from "rxjs";
+import { Asset } from "../board/models/Asset.model";
+import { ApiService } from "src/app/core/services/api.service";
+import { environment } from "src/environments/environment";
+import { Stock } from "../board/models/Stock.model";
+import { Transaction } from "../board/models/Transaction.model";
+import { Bar } from "../board/models/Bar.model";
+import { Account } from "../board/models/Account.model";
+import { Order } from "../board/models/Order.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AlpacaService extends ApiService {
   headers = new HttpHeaders({
-    'APCA-API-KEY-ID': environment.API_KEY_ID,
-    'APCA-API-SECRET-KEY': environment.API_SECRET_KEY,
+    "APCA-API-KEY-ID": environment.API_KEY_ID,
+    "APCA-API-SECRET-KEY": environment.API_SECRET_KEY,
   });
 
-  apiName = 'Alpaca';
+  apiName = "Alpaca";
   v = 1;
 
   getAssets(): Observable<Asset[]> {

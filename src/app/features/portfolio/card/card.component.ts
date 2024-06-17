@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "src/app/features/models/Stock.model";
+import { Stock } from "src/app/features/board/models/Stock.model";
 import { AlpacaService } from "src/app/features/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 

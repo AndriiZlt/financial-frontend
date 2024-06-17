@@ -1,13 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { PortfolioComponent } from "./my-assets/portfolio.component";
+import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { SharedModule } from "../shared/shared.module";
-import { CardListComponent } from "./my-assets/card-list/card-list.component";
-import { CardComponent } from "./my-assets/card/card.component";
+import { CardComponent } from "./portfolio/card/card.component";
 import { FormsModule } from "@angular/forms";
+import { BoardComponent } from "./board/board.component";
+import { BoardItemComponent } from "./board/board-item/board-item.component";
 
 @NgModule({
-  declarations: [PortfolioComponent, CardListComponent, CardComponent],
+  declarations: [
+    PortfolioComponent,
+    CardComponent,
+    BoardComponent,
+    BoardItemComponent,
+  ],
   imports: [CommonModule, SharedModule, FormsModule],
 })
 export class FeaturesModule {}

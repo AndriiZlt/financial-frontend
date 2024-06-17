@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { Stock } from "../models/Stock.model";
+import { Stock } from "../board/models/Stock.model";
 import { HubConnectionService } from "src/app/core/services/hub-connection.service";
 import { StockApiService } from "../services/stock.service";
-import { StockToAdd } from "../models/StockToAdd.model";
+import { StockToAdd } from "../board/models/StockToAdd.model";
 import { BoardApiService } from "../services/board.service";
-import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
+import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
 
 @Component({
   selector: "app-portfolio",
@@ -96,10 +96,8 @@ export class PortfolioComponent implements OnInit {
   updatePage(): void {
     this.isLoading = true;
     let sub = this.stockService.getStocks().subscribe((res) => {
-      console.log("STOCKS:", res);
-      for (const item in res) {
-        this.stocks.push(res[item]);
-      }
+      this.stocks = [...res];
+      console.log("STOCKS:", this.stocks);
       this.isLoading = false;
       sub.unsubscribe();
     });

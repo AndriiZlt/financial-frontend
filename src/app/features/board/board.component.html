@@ -1,0 +1,27 @@
+<section class="content-header">
+  <h1>
+    Public Board
+    <small>list of stocks to be bought and sold</small>
+  </h1>
+  <!-- <h1>
+      Uploading Assets
+      <small>list of your stocks</small>
+    </h1> -->
+  <!-- <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Examples</a></li>
+      <li class="active">My Assets</li>
+    </ol> -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="stocks-list-container">
+    <app-board-item
+      *ngFor="let item of boardItems"
+      [item]="item"
+      [index]="boardItems.indexOf(item)"
+      (sellStock)="sellStock($event)"
+    ></app-board-item>
+  </div>
+</section>

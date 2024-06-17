@@ -1,0 +1,89 @@
+<div class="card">
+  <a href="#" class="link">
+    <div class="date-box">
+      <span class="date"
+        >{{ item.side === "sell" ? "FOR SALE" : "TO BUY" }}
+      </span>
+    </div>
+    <!-- <div class="item_bg"></div> -->
+
+    <div class="title">{{ item.symbol }} {{ item.name }}</div>
+
+    <div class="date-box">
+      QTY:
+      <span class="date"> {{ item.qty }} </span>
+    </div>
+    <div class="date-box">
+      Price:
+      <span class="date"> {{ item.cost_Basis }} </span
+      ><span>
+        <!-- <div class="col-arrow">
+          <img
+            [src]="
+              stock.cost_Basis < currentPrice
+                ? '../../../../assets/UP_trend.png'
+                : '../../../../assets/Down_trend.png'
+            "
+            alt="trend_direction"
+          /></div -->
+      </span>
+    </div>
+  </a>
+  <div class="sell-button" (click)="sendToBoard()">
+    <button class="button type1">
+      <span class="btn-txt">{{ item.side === "sell" ? "BUY" : "SELL" }}</span>
+    </button>
+  </div>
+</div>
+
+<!-- <div class="card">
+  <div class="number">{{ index + 1 }}</div>
+  <div class="symbol">{{ stock.symbol }}</div>
+
+  <div class="name" *ngIf="!nameIsLoading">{{ positionName }}</div>
+  <div class="spinner" *ngIf="nameIsLoading">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="quantity">
+    <div class="col-inner">
+      <p class="title">QTY</p>
+      <p class="figures">{{ stock.qty }}</p>
+    </div>
+  </div>
+
+  <div class="prices">
+    <div class="col-inner">
+      <p class="title">START</p>
+      <p class="figures">{{ stock.cost_Basis }}</p>
+    </div>
+    <div class="col-arrow">
+      <img
+        [src]="
+          stock.cost_Basis < currentPrice
+            ? '../../../../assets/UP_trend.png'
+            : '../../../../assets/Down_trend.png'
+        "
+        alt="trend_direction"
+      />
+    </div>
+    <div class="col-inner">
+      <p class="title">CURRENT</p>
+      <p class="figures" *ngIf="!priceIsLoading">${{ currentPrice }}</p>
+      <div
+        class="figures spinner"
+        *ngIf="priceIsLoading"
+        style="justify-content: center"
+      >
+        <app-spinner></app-spinner>
+      </div>
+    </div>
+  </div>
+
+  <div class="info__close" (click)="sellPosition()">
+    <svg height="20" viewBox="0 0 20 20" width="20">
+      <path
+        d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z "
+      ></path>
+    </svg>
+  </div>
+</div> -->

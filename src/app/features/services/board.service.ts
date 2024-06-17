@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ApiService } from "src/app/core/services/api.service";
-import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
-import { BoardItem } from "../models/BoardItem.model";
-import { Stock } from "../models/Stock.model";
+import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
+import { BoardItem } from "../board/models/BoardItem.model";
+import { Stock } from "../board/models/Stock.model";
 
 @Injectable({
   providedIn: "root",
