@@ -1,6 +1,6 @@
-// new card-------------
 .stocks-list-container {
   width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
@@ -9,124 +9,34 @@
   gap: 30px;
   padding: 50px 20px;
   > * {
-    // width: calc(33.33333% - 30px);
-    width: 31.6%;
+    width: calc(33.33333% - 30px);
     display: block;
   }
-
-  // flex-direction: row;
 }
 
 :host {
   width: 100%;
   display: block;
-  // border: 1px solid #ccc;
-  // padding: 0.25rem;
 }
-// -------------------------
 
-// .asset-card {
-//   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-//     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-//   width: 730px;
-//   padding: 8px 20px;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: flex-start;
-//   gap: 12px;
-//   background: #97e7e1;
-//   border-radius: 8px;
-//   box-shadow: 0px 0px 5px -3px #111;
-//   color: #141414;
-//   font-weight: 500;
-// }
-
-// .number {
-//   width: 4%;
-// }
-
-// .symbol {
-//   width: 8%;
-// }
-
-// .name {
-//   font-size: 16px;
-//   width: 65%;
-// }
-
-// .quantity {
-//   width: 8%;
-// }
-
-// .prices {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 30%;
-//   height: 30px;
-// }
-
-// .col-inner {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   .title {
-//     margin: 0;
-//     // color: white;
-//     font-size: 12px;
-//   }
-
-//   .figures {
-//     margin: 0;
-//     // color: white;
-//     font-size: 13px;
-//   }
-// }
-
-// .info__close {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 21px;
-//   height: 21px;
-//   cursor: pointer;
-//   margin-left: auto;
-// }
-
-// .info__close path {
-//   fill: #181717;
-// }
-
-// .spinner {
-//   display: flex;
-//   width: 100%;
-//   height: 20px;
-//   align-items: center;
-//   justify-content: flex-start;
-// }
-
-// .col-arrow {
-//   width: 10px;
-//   height: 10px;
-//   display: flex;
-// }
-
-// .col-arrow img {
-//   height: 100%;
-//   width: 100%;
-//   .container img {
-//     object-fit: contain;
-//   }
-// }
-
-@media screen and (max-width: 1487px) {
+@media screen and (max-width: 1360px) {
   .stocks-list-container {
     > * {
-      width: 45%;
+      width: calc(50% - 30px);
+    }
+  }
+}
+
+@media screen and (max-width: 1128px) {
+  .stocks-list-container {
+    > * {
+      width: calc(80%);
     }
   }
 }
