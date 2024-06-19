@@ -1,5 +1,5 @@
 <section class="content-header">
-  <h1>
+  <h1 style="display: block">
     Portfolio
     <small>list of your stocks</small>
   </h1>
@@ -7,16 +7,24 @@
     Uploading Assets
     <small>list of your stocks</small>
   </h1> -->
+
+  <!-- <button>BUY STOCKS</button> -->
+  <button class="btn">BUY STOCKS</button>
+
   <!-- <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Examples</a></li>
     <li class="active">My Assets</li>
   </ol> -->
-  <button (click)="addStock()">Add stocks</button>
+
+  <!-- <button (click)="addStock()">Add stocks</button> -->
 </section>
 
 <!-- Main content -->
 <section class="content">
+  <div class="modal-container">
+    <app-buy-modal></app-buy-modal>
+  </div>
   <div class="stocks-list-container">
     <app-card
       *ngFor="let stock of stocks"
@@ -26,6 +34,7 @@
     ></app-card>
   </div>
 </section>
+
 <!-- /.content -->
 
 <!-- <div class="box"> -->

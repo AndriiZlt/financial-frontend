@@ -6,6 +6,7 @@ import { CardComponent } from "./portfolio/card/card.component";
 import { FormsModule } from "@angular/forms";
 import { BoardComponent } from "./board/board.component";
 import { BoardItemComponent } from "./board/board-item/board-item.component";
+import { BuyModalComponent } from './portfolio/buy-modal/buy-modal.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { BoardItemComponent } from "./board/board-item/board-item.component";
     CardComponent,
     BoardComponent,
     BoardItemComponent,
+    BuyModalComponent,
   ],
   imports: [CommonModule, SharedModule, FormsModule],
 })

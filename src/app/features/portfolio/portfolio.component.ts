@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Stock } from "../board/models/Stock.model";
-import { HubConnectionService } from "src/app/core/services/hub-connection.service";
 import { StockApiService } from "../services/stock.service";
 import { StockToAdd } from "../board/models/StockToAdd.model";
 import { BoardApiService } from "../services/board.service";
-import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
 
 @Component({
   selector: "app-portfolio",

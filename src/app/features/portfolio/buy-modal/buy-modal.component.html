@@ -1,0 +1,55 @@
+<div class="backdrop">
+  <div class="modal-container">
+    <div class="modal">
+      <div class="title-section">
+        <h1 class="modal__title" style="width: 80%">Choose Stock to buy</h1>
+        <select class="form-control form-control-lg" style="width: 20%">
+          <option>Se</option>
+        </select>
+      </div>
+
+      <div class="price-section">
+        <!-- <p class="modal__text">Price</p> -->
+        <form>
+          <div class="form-group">
+            <label for="formControlRange">Price</label>
+            <input
+              type="range"
+              class="form-control-range"
+              id="formControlRange"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="qty-section">
+        <!-- <div class="form-group">
+          <label for="exampleFormControlSelect1">Quantity</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div> -->
+
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"
+            >Quantity</label
+          >
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Choose...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="modal__btn">Button &rarr;</button>
+      <button class="modal__btn">Button &rarr;</button>
+    </div>
+  </div>
+</div>
