@@ -16,19 +16,24 @@ export class BoardApiService extends ApiService {
     return this.get<BoardItem[]>("getboard");
   }
 
-  addToBoard(stockToAdd: Stock): Observable<BoardItem> {
-    let newItemToAdd: BoardItemToAdd = {
-      stock_Id: stockToAdd.id,
-      user_Id: stockToAdd.userId,
-      symbol: stockToAdd.symbol,
-      name: stockToAdd.name,
-      cost_Basis: stockToAdd.cost_Basis,
-      qty: stockToAdd.qty,
-      side: "sell",
-    };
-    console.log("New item to Add:", newItemToAdd);
-    return this.post<BoardItem>(`addboard`, newItemToAdd);
-  }
+  // addSellToBoard(stockToAdd: Stock): Observable<BoardItem> {
+  //   let newItemToAdd: BoardItemToAdd = {
+  //     stock_Id: stockToAdd.id,
+  //     user_Id: stockToAdd.userId,
+  //     symbol: stockToAdd.symbol,
+  //     name: stockToAdd.name,
+  //     cost_Basis: stockToAdd.cost_Basis,
+  //     qty: stockToAdd.qty,
+  //     status: "sell",
+  //   };
+  //   console.log("New item to Sell:", newItemToAdd);
+  //   return this.post<BoardItem>(`addboard`, newItemToAdd);
+  // }
+
+  // addBuyToBoard(stockToAdd: Stock): Observable<BoardItem> {
+  //   console.log("New item to Buy:", stockToAdd);
+  //   return this.post<BoardItem>(`addboard`, stockToAdd);
+  // }
 
   // addStock(stock: StockToAdd): Observable<Stock> {
   //   return this.post<Stock>("addstock", stock);

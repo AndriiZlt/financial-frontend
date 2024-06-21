@@ -10,7 +10,6 @@ import { BoardItem } from "./models/BoardItem.model";
 export class BoardComponent implements OnInit {
   boardItems: BoardItem[] = [];
   isLoading: boolean = true;
-
   constructor(private boardService: BoardApiService) {}
 
   ngOnInit(): void {

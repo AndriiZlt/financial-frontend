@@ -63,18 +63,62 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   position: relative;
   overflow: hidden;
 
-  .title-section {
+  .first-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    .modal__title {
-      display: block;
-      font-size: 3.2rem;
+    gap: 10px;
+    .left {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 70%;
+      height: 105px;
+      .name {
+        display: block;
+        font-size: 3.2rem;
+        margin: 0;
+      }
+    }
+    .right {
+      width: 25%;
+    }
+  }
+  .price-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    .left {
+      width: 70%;
+    }
+    .right {
+      width: 25%;
     }
   }
 
-  .price-section {
+  .qty-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    .left {
+      width: 70%;
+    }
+    .right {
+      width: 25%;
+    }
+  }
+
+  .bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
   }
 
   .modal__text {
@@ -88,7 +132,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   .modal__btn {
     margin-top: 4rem;
     padding: 1rem 1.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.726);
     border-radius: 100rem;
 
     color: inherit;
@@ -99,6 +143,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
     transition: 0.2s;
     cursor: pointer;
+
+    width: 150px;
   }
 
   .modal__btn:nth-of-type(1) {

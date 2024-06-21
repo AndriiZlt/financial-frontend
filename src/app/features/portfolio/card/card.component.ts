@@ -42,6 +42,6 @@ export class CardComponent extends SpinnerComponent implements OnInit {
   }
 
   sendToBoard() {
-    this.sellStock.emit(this.stock);
+    this.sellStock.emit(this.stock.id);
   }
 }

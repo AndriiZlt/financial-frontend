@@ -3,13 +3,9 @@
     Portfolio
     <small>list of your stocks</small>
   </h1>
-  <!-- <h1>
-    Uploading Assets
-    <small>list of your stocks</small>
-  </h1> -->
-
-  <!-- <button>BUY STOCKS</button> -->
-  <button class="btn">BUY STOCKS</button>
+  <button class="btn" (click)="openBuyModal()">
+    {{ isModalOn ? "CLOSE" : "BUY STOCKS" }}
+  </button>
 
   <!-- <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -17,12 +13,12 @@
     <li class="active">My Assets</li>
   </ol> -->
 
-  <!-- <button (click)="addStock()">Add stocks</button> -->
+  <button (click)="addStocks()">Add stocks</button>
 </section>
 
 <!-- Main content -->
 <section class="content">
-  <div class="modal-container">
+  <div class="modal-container" *ngIf="isModalOn">
     <app-buy-modal></app-buy-modal>
   </div>
   <div class="stocks-list-container">

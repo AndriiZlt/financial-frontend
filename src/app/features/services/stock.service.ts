@@ -24,9 +24,14 @@ export class StockApiService extends ApiService {
     return this.delete<Stock>(`deletetask/${stockId}`);
   }
 
-  addToBoard(stockId: number): Observable<BoardItem> {
-    return this.post<BoardItem>(`addboard/${stockId}`, stockId);
+  addToBoard(stockId: number): Observable<Stock> {
+    let newStatus = "sell";
+    return this.put<Stock>(`updatestatus/${stockId}/${newStatus}`, newStatus);
   }
+
+  // addToBoard(stock: Stock): Observable<Stock> {
+  //   return this.put<Stock>(`updatestock`, stock);
+  // }
 
   // updateStatus(taskId: number): Observable<Task> {
   //   return this.put<Task>(`updatestatus/${taskId}`, taskId);

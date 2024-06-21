@@ -10,19 +10,21 @@ import { BoardItem } from "../models/BoardItem.model";
   styleUrls: ["./board-item.component.scss"],
 })
 export class BoardItemComponent extends SpinnerComponent implements OnInit {
-  @Input() item: BoardItem;
+  @Input() item: Stock;
   @Input() index: number;
   @Output() sellStock: EventEmitter<any> = new EventEmitter<any>();
   positionName: string;
   currentPrice: string;
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
-
+  userId: number;
   constructor(private alpacaService: AlpacaService) {
     super();
   }
 
   ngOnInit(): void {
+    this.userId = Number(localStorage.getItem("User"));
+    console.log("Item", this.item, this.item.userId, this.userId);
     // console.log("Stock:", this.stock);
     // Getting full name of the order
     // let sub = this.alpacaService

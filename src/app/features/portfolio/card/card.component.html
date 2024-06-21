@@ -23,8 +23,16 @@
           /></div -->
       </span>
     </div>
+    <div class="date-box">
+      Status:
+      <span class="date"> {{ stock.status }} </span>
+    </div>
   </a>
-  <div class="sell-button" (click)="sendToBoard()">
+  <div
+    class="sell-button"
+    (click)="sendToBoard()"
+    *ngIf="stock.status === 'none'"
+  >
     <button class="button type1">
       <span class="btn-txt">Sell</span>
     </button>

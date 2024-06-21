@@ -29,7 +29,6 @@ export class HubConnectionService {
     await this.connection
       .start()
       .then(() => {
-        console.log("SignalR connection started");
         this.connection.on("status", (res) => {
           this.sendData("connected");
         });

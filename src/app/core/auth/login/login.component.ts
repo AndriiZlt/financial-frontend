@@ -42,17 +42,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    // this.submitted = true;
-
-    // if (
-    //   this.loginInput === "" ||
-    //   this.loginInput.length < 3 ||
-    //   this.passwordInput === ""
-    // ) {
-    //   console.log("Invalid input");
-    //   return;
-    // }
-    // this.valid = true;
     console.log("Logging in:" + this.loginInput, " + ", this.passwordInput);
 
     this.loginDto.username = this.loginInput;
@@ -63,8 +52,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(loginDto: Login) {
     let subscription = this.authService.login(loginDto).subscribe((jwtDto) => {
-      console.log("Token:", jwtDto.token);
+      console.log("User:", jwtDto);
       localStorage.setItem("token", jwtDto.token);
+      localStorage.setItem("User", jwtDto.id);
       this.router.navigate(["finapp"]);
       this.loginNameService.triggerEvent(loginDto.username);
       subscription.unsubscribe();

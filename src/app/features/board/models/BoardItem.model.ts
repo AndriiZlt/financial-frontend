@@ -6,5 +6,5 @@ export interface BoardItem {
   name: string;
   cost_Basis: string;
   qty: string;
-  side: string;
+  status: string;
 }

@@ -1,39 +1,112 @@
 <div class="backdrop">
   <div class="modal-container">
     <div class="modal">
-      <div class="title-section">
-        <h1 class="modal__title" style="width: 80%">Choose Stock to buy</h1>
-        <select class="form-control form-control-lg" style="width: 20%">
-          <option>Se</option>
-        </select>
+      <div class="first-row">
+        <div class="left">
+          <h1 *ngIf="!isSelected" class="name">Choose Stock to buy</h1>
+          <h1 *ngIf="isSelected" class="name">{{ selectedStock.name }}</h1>
+        </div>
+        <div class="right">
+          <select
+            class="form-control form-control-lg"
+            id="select"
+            (change)="onStockSelect($event.target.value)"
+          >
+            <option [disabled]="isSelected">Select Stock</option>
+            <option *ngFor="let stock of nasdaq100">{{ stock }}</option>
+          </select>
+        </div>
+      </div>
+      <!-- PRICE -->
+      <div class="price-row">
+        <div class="left">
+          <form>
+            <div class="form-group">
+              <label for="formControlRange">Price</label>
+              <input
+                type="range"
+                min="0"
+                [max]="currentPrice"
+                [value]="selectedValue"
+                step="0.01"
+                class="form-control-range"
+                id="formControlRange"
+                (input)="onPriceChange($event.target.value)"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="right">
+          <h1 class="name">${{ selectedValue }}</h1>
+        </div>
       </div>
 
-      <div class="price-section">
-        <!-- <p class="modal__text">Price</p> -->
-        <form>
-          <div class="form-group">
-            <label for="formControlRange">Price</label>
-            <input
-              type="range"
-              class="form-control-range"
-              id="formControlRange"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="qty-section">
-        <!-- <div class="form-group">
+      <!-- QUANTITY -->
+      <div class="qty-row">
+        <div class="left">
           <label for="exampleFormControlSelect1">Quantity</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+        </div>
+        <div class="right">
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            (change)="onQtySelect($event.target.value)"
+          >
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
           </select>
+        </div>
+      </div>
+      <div class="bottom-row">
+        <button class="modal__btn" (click)="onBuyPress()">Buy&rarr;</button>
+        <!-- <button class="modal__btn">Button &rarr;</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row"> -->
+<!-- <div class="col-md-offset-.1">
+            <h1>Completer Material</h1>
+            <p>
+              This is a demo of a custom component that uses Ng2-Completer
+              directives to create a material2 autocomplete component.
+            </p>
+            <p>
+              To use this compnent copy all completer-cmp-md files from the demo
+              code
+            </p>
+          </div> -->
+<!-- </div> -->
+<!-- <h3>Local data with image</h3> -->
+<!-- <div class="completer-wrapper">
+          <div class="col-md-offset-1">
+            <div>
+              <p>
+                Local data of countries - using image, matchClass and maxLength
+              </p>
+            </div>
+
+            <ng2-completer-md
+              [(ngModel)]="countryName"
+              [dataService]="dataService"
+              [minSearchLength]="0"
+              [maxChars]="4"
+              [placeholder]="'search country'"
+              [matchClass]="'match'"
+            >
+            </ng2-completer-md>
+
+            <div class="selected-result">
+              <label>Selected country: Label </label>
+            </div>
+          </div>
         </div> -->
 
-        <div class="col-auto my-1">
+<!-- <div class="col-auto my-1">
           <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"
             >Quantity</label
           >
@@ -45,11 +118,4 @@
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-        </div>
-      </div>
-
-      <button class="modal__btn">Button &rarr;</button>
-      <button class="modal__btn">Button &rarr;</button>
-    </div>
-  </div>
-</div>
+        </div> -->

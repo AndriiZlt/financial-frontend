@@ -5,4 +5,5 @@ export interface StockToAdd {
   cost_Basis: string;
   qty: string;
   exchange: string;
+  status: string;
 }

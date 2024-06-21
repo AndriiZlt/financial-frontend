@@ -7,4 +7,5 @@ export interface Stock {
   cost_Basis: string;
   qty: string;
   exchange: string;
+  status:string;
 }
