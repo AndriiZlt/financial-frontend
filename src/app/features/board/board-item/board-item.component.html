@@ -38,9 +38,14 @@
       <span class="date"> {{ item.userId }} </span>
     </div>
   </a>
-  <div class="sell-button" (click)="sendToBoard()">
-    <button class="button type1" *ngIf="item.userId !== userId">
-      <span class="btn-txt">{{ item.status === 1 ? "Buy" : "Sell" }}</span>
+  <div class="sell-button">
+    <button
+      class="button type1"
+      [id]="item.id"
+      *ngIf="item.userId !== userId"
+      (click)="clickOnBuy($event)"
+    >
+      <span class="btn-txt">{{ item.status === 2 ? "Buy" : "Sell" }}</span>
     </button>
     <button class="button type1" *ngIf="item.userId == userId" disabled>
       <span class="btn-txt">Yours</span>

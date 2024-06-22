@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Stock } from "../models/Stock.model";
 import { StockApiService } from "../services/stock.service";
 import { StockToAdd } from "../models/StockToAdd.model";
-import { BoardApiService } from "../services/board.service";
 import { StockStatus } from "../models/StockStatus.model";
 
 @Component({
@@ -75,8 +74,7 @@ export class PortfolioComponent implements OnInit {
   ];
 
   constructor(
-    private stockService: StockApiService,
-    private boardService: BoardApiService
+    private stockService: StockApiService
   ) {}
 
   ngOnInit() {

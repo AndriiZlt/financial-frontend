@@ -3,7 +3,6 @@ import { Observable } from "rxjs";
 import { ApiService } from "src/app/core/services/api.service";
 import { Stock } from "../models/Stock.model";
 import { StockToAdd } from "../models/StockToAdd.model";
-import { BoardItem } from "../models/BoardItem.model";
 import { StockStatus } from "../models/StockStatus.model";
 
 @Injectable({
@@ -17,16 +16,24 @@ export class StockApiService extends ApiService {
     return this.get<Stock[]>("getstocks");
   }
 
+  getBoardItems(): Observable<Stock[]> {
+    return this.get<Stock[]>("getboard");
+  }
+
   addStock(stock: StockToAdd): Observable<Stock> {
     return this.post<Stock>("addstock", stock);
   }
 
-  deleteStock(stock: number): Observable<Stock> {
-    return this.delete<Stock>(`deletetask/${stock}`);
-  }
+  // deleteStock(stock: number): Observable<Stock> {
+  //   return this.delete<Stock>(`deletetask/${stock}`);
+  // }
 
   updateStatus(stock: number, status: StockStatus): Observable<Stock> {
     return this.put<Stock>(`updatestatus/${stock}/${status}`, status);
+  }
+
+  buyStock(stock_id: number) {
+    return this.put<Stock>(`buystock/${stock_id}`, stock_id);
   }
 
   // addToBoard(stock: Stock): Observable<Stock> {

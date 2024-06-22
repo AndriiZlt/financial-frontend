@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { BoardApiService } from "../services/board.service";
 import { Stock } from "../models/Stock.model";
+import { StockApiService } from "../services/stock.service";
 
 @Component({
   selector: "app-board",
@@ -10,10 +10,10 @@ import { Stock } from "../models/Stock.model";
 export class BoardComponent implements OnInit {
   boardItems: Stock[] = [];
   isLoading: boolean = true;
-  constructor(private boardService: BoardApiService) {}
+  constructor(private stockService: StockApiService) {}
 
   ngOnInit(): void {
-    let sub = this.boardService.getBoardItems().subscribe((res) => {
+    let sub = this.stockService.getBoardItems().subscribe((res) => {
       this.boardItems = [...res];
       console.log("BOARD ITEMS:", this.boardItems);
       this.isLoading = false;
