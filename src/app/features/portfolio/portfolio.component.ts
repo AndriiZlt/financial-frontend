@@ -73,9 +73,7 @@ export class PortfolioComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private stockService: StockApiService
-  ) {}
+  constructor(private stockService: StockApiService) {}
 
   ngOnInit() {
     this.updatePage();
@@ -93,6 +91,21 @@ export class PortfolioComponent implements OnInit {
         sub.unsubscribe();
       });
     }
+
+    // let stock: StockToAdd = {
+    //   alpaca_Asset_Id: "69b15845-7c63-4586-b274-1cfdfe9df3d8",
+    //   exchange: "NASDAQ",
+    //   symbol: "GOOGL",
+    //   name: "Stock name",
+    //   cost_Basis: "171.82",
+    //   qty: "1",
+    //   status: StockStatus.Fixed,
+    // };
+
+    // let sub = this.stockService.addStock(stock).subscribe((res) => {
+    //   console.log("Added:", res);
+    //   sub.unsubscribe();
+    // });
   }
 
   updatePage(): void {

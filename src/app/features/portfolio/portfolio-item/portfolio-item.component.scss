@@ -4,6 +4,7 @@
   overflow: hidden;
   border-radius: 4px;
   width: 100%;
+  min-width: 380px;
 }
 
 .link {
@@ -86,7 +87,7 @@
   transition: all 0.5s ease;
 }
 
-@media only screen and (max-width: 979px) {
+@media only screen and (max-width: 1500px) {
   .item {
     -ms-flex-preferred-size: calc(50% - 30px);
     flex-basis: calc(50% - 30px);
