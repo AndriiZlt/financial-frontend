@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BoardApiService } from "../services/board.service";
-import { BoardItem } from "./models/BoardItem.model";
+import { Stock } from "../models/Stock.model";
 
 @Component({
   selector: "app-board",
@@ -8,7 +8,7 @@ import { BoardItem } from "./models/BoardItem.model";
   styleUrls: ["./board.component.scss"],
 })
 export class BoardComponent implements OnInit {
-  boardItems: BoardItem[] = [];
+  boardItems: Stock[] = [];
   isLoading: boolean = true;
   constructor(private boardService: BoardApiService) {}
 

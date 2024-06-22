@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Stock } from "../board/models/Stock.model";
+import { Stock } from "../models/Stock.model";
 import { StockApiService } from "../services/stock.service";
-import { StockToAdd } from "../board/models/StockToAdd.model";
+import { StockToAdd } from "../models/StockToAdd.model";
 import { BoardApiService } from "../services/board.service";
+import { StockStatus } from "../models/StockStatus.model";
 
 @Component({
   selector: "app-portfolio",
@@ -24,7 +25,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "380.4",
       qty: "2",
-      status: "none",
+      status: StockStatus.Fixed,
     },
     {
       alpaca_Asset_Id: "2ac633b5-b3a7-4ba6-975d-f0f1e12dd1e4",
@@ -33,7 +34,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "478.87",
       qty: "1",
-      status: "none",
+      status: StockStatus.Fixed,
     },
     {
       alpaca_Asset_Id: "3302e560-6d33-4ad5-a429-4d573e26962c",
@@ -42,7 +43,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "53.36",
       qty: "1",
-      status: "none",
+      status: StockStatus.Fixed,
     },
     {
       alpaca_Asset_Id: "21a5e17d-c566-4f1b-8c25-0a505ba37478",
@@ -51,7 +52,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "37.17",
       qty: "1",
-      status: "none",
+      status: StockStatus.Fixed,
     },
     {
       alpaca_Asset_Id: "69b15845-7c63-4586-b274-1cfdfe9df3d8",
@@ -60,7 +61,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "171.82",
       qty: "1",
-      status: "none",
+      status: StockStatus.Fixed,
     },
     {
       alpaca_Asset_Id: "8ccae427-5dd0-45b3-b5fe-7ba5e422c766",
@@ -69,7 +70,7 @@ export class PortfolioComponent implements OnInit {
       name: "Stock name",
       cost_Basis: "519.18",
       qty: "3",
-      status: "none",
+      status: StockStatus.Fixed,
     },
   ];
 
@@ -80,7 +81,6 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.updatePage();
-    // this.addStock();
   }
 
   // sendMessage() {
@@ -110,7 +110,8 @@ export class PortfolioComponent implements OnInit {
 
   sellStock(stock: number): void {
     console.log(stock);
-    let sub = this.stockService.addToBoard(stock).subscribe((res) => {
+    let status: StockStatus = StockStatus.For_Sale;
+    let sub = this.stockService.updateStatus(stock, status).subscribe((res) => {
       console.log("add to board res:", res);
       // setTimeout(() => {
       //   this.updatePage();
@@ -124,52 +125,3 @@ export class PortfolioComponent implements OnInit {
     this.isModalOn = this.isModalOn === true ? false : true;
   }
 }
-
-// {
-//   asset_Id: "b0b6dd9d-8b9b-48a9-ba46-b9d54906e415",
-//   exchange: "NASDAQ",
-//   symbol: "AAPL",
-//name: "Stock name",
-//   cost_Basis: "380.4",
-//   qty: "2",
-// },
-// {
-//   asset_Id: "2ac633b5-b3a7-4ba6-975d-f0f1e12dd1e4",
-//   exchange: "NASDAQ",
-//   symbol: "ADBE",
-//name: "Stock name",
-//   cost_Basis: "478.87",
-//   qty: "1",
-// },
-// {
-//   asset_Id: "3302e560-6d33-4ad5-a429-4d573e26962c",
-//   exchange: "NASDAQ",
-//   symbol: "CPRT",
-//name: "Stock name",
-//   cost_Basis: "53.36",
-//   qty: "1",
-// },
-// {
-//   asset_Id: "21a5e17d-c566-4f1b-8c25-0a505ba37478",
-//   exchange: "NASDAQ",
-//   symbol: "EXC",
-//name: "Stock name",
-//   cost_Basis: "37.17",
-//   qty: "1",
-// },
-// {
-//   asset_Id: "69b15845-7c63-4586-b274-1cfdfe9df3d8",
-//   exchange: "NASDAQ",
-//   symbol: "GOOGL",
-//name: "Stock name",
-//   cost_Basis: "171.82",
-//   qty: "1",
-// },
-// {
-//   asset_Id: "8ccae427-5dd0-45b3-b5fe-7ba5e422c766",
-//   exchange: "NASDAQ",
-//   symbol: "TSLA",
-//name: "Stock name",
-//   cost_Basis: "519.18",
-//   qty: "3",
-// },

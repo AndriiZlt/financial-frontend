@@ -1,9 +1,14 @@
-<div class="card">
+<div
+  class="card"
+  [style]="
+    status === 'For Sale'
+      ? 'background-color:#e38a31'
+      : 'background-color:#0a9a74'
+  "
+>
   <a href="#" class="link">
     <div class="date-box">
-      <span class="date"
-        >{{ item.status === "sell" ? "FOR SALE" : "TO BUY" }}
-      </span>
+      <span class="date">{{ status }} </span>
     </div>
     <!-- <div class="item_bg"></div> -->
 
@@ -35,13 +40,19 @@
   </a>
   <div class="sell-button" (click)="sendToBoard()">
     <button class="button type1" *ngIf="item.userId !== userId">
-      <span class="btn-txt">{{ item.status === "sell" ? "BUY" : "SELL" }}</span>
+      <span class="btn-txt">{{ item.status === 1 ? "Buy" : "Sell" }}</span>
     </button>
     <button class="button type1" *ngIf="item.userId == userId" disabled>
       <span class="btn-txt">Yours</span>
     </button>
   </div>
 </div>
+
+<!-- [style]="
+status === 'For Sale'
+  ? 'background-color:#EE4E4E'
+  : 'background-color:#06cc97'
+" -->
 
 <!-- <div class="card">
   <div class="number">{{ index + 1 }}</div>

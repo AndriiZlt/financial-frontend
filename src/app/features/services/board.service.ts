@@ -1,19 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ApiService } from "src/app/core/services/api.service";
-import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
-import { BoardItem } from "../board/models/BoardItem.model";
-import { Stock } from "../board/models/Stock.model";
+import { Stock } from "../models/Stock.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class BoardApiService extends ApiService {
-  apiName = "Board";
+  apiName = "Stock";
   v = 1;
 
-  getBoardItems(): Observable<BoardItem[]> {
-    return this.get<BoardItem[]>("getboard");
+  getBoardItems(): Observable<Stock[]> {
+    return this.get<Stock[]>("getboard");
   }
 
   // addSellToBoard(stockToAdd: Stock): Observable<BoardItem> {

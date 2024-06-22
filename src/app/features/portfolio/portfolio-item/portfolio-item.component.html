@@ -25,16 +25,35 @@
     </div>
     <div class="date-box">
       Status:
-      <span class="date"> {{ stock.status }} </span>
+      <span class="date"> {{ this.status }} </span>
     </div>
   </a>
-  <div
-    class="sell-button"
-    (click)="sendToBoard()"
-    *ngIf="stock.status === 'none'"
-  >
+  <!-- Status not being sold (none) button -->
+  <div class="sell-button" (click)="onSellClick()" *ngIf="stock.status === 1">
     <button class="button type1">
       <span class="btn-txt">Sell</span>
+    </button>
+  </div>
+
+  <!-- Status For Sale (sell) button -->
+  <div
+    class="sell-button"
+    (click)="onBeingSoldClick()"
+    *ngIf="stock.status === 2"
+  >
+    <button class="button type1" style="background-color: #e38a31">
+      <span class="btn-txt">For Sale</span>
+    </button>
+  </div>
+
+  <!-- Status For Purchase button -->
+  <div
+    class="sell-button"
+    (click)="onBuyOrderClick()"
+    *ngIf="stock.status === 3"
+  >
+    <button class="button type1" style="background-color: #0a9a74">
+      <span class="btn-txt">To Buy</span>
     </button>
   </div>
 </div>

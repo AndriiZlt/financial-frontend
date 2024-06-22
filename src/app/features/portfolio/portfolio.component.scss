@@ -1,6 +1,8 @@
 .content-header {
   display: flex;
   justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .stocks-list-container {
@@ -61,7 +63,7 @@
 
 //Buy button
 button {
-  width: 150px;
+  width: 180px;
   height: 60px;
   border: 3px solid #315cfd;
   border-radius: 45px;

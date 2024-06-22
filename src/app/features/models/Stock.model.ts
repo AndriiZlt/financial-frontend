@@ -1,3 +1,5 @@
+import { StockStatus } from "./StockStatus.model";
+
 export interface Stock {
   id: number;
   userId: number;
@@ -7,4 +9,5 @@ export interface Stock {
   cost_Basis: string;
   qty: string;
   exchange: string;
+  status: StockStatus;
 }

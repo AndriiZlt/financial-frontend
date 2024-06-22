@@ -1,11 +1,11 @@
-export interface Stock {
-  id: number;
-  userId: number;
+import { StockStatus } from "./StockStatus.model";
+
+export interface StockToAdd {
   alpaca_Asset_Id: string;
   symbol: string;
   name: string;
   cost_Basis: string;
   qty: string;
   exchange: string;
-  status:string;
+  status: StockStatus;
 }

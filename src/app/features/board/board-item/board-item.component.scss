@@ -4,12 +4,14 @@
   overflow: hidden;
   border-radius: 4px;
   width: 100%;
+  background-color: #3c5772;
+  background-color: #e38a31;
 }
 
 .link {
   display: block;
   padding: 30px 20px;
-  background-color: #3c5772;
+  // background-color: #3c5772;
 
   overflow: hidden;
 
@@ -133,11 +135,11 @@
     position: relative;
     background-color: transparent;
     cursor: pointer;
-    border: 2px solid #3c5772;
+    // border: 2px solid #3c5772;
     overflow: hidden;
     border-radius: 30px;
-    color: #3c5772;
-    // color: white;
+    color: #ffffff;
+
     transition: all 0.5s ease-in-out;
   }
 
@@ -163,7 +165,7 @@
   }
 
   .button:hover {
-    box-shadow: 1px 1px 200px #252525;
+    // box-shadow: 1px 1px 200px #252525;
     color: #fff;
     border: none;
   }

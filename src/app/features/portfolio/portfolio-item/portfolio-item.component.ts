@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "src/app/features/board/models/Stock.model";
+import { Stock } from "../../models/Stock.model";
 import { AlpacaService } from "src/app/features/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 
 @Component({
   selector: "app-card",
-  templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.scss"],
+  templateUrl: "./portfolio-item.component.html",
+  styleUrls: ["./portfolio-item.component.scss"],
 })
-export class CardComponent extends SpinnerComponent implements OnInit {
+export class PortfolioItemComponent extends SpinnerComponent implements OnInit {
   @Input() stock: Stock;
   @Input() index: number;
   @Output() sellStock: EventEmitter<any> = new EventEmitter<any>();
@@ -16,12 +16,27 @@ export class CardComponent extends SpinnerComponent implements OnInit {
   currentPrice: string;
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
+  status: string;
 
   constructor(private alpacaService: AlpacaService) {
     super();
   }
 
   ngOnInit(): void {
+    switch (this.stock.status) {
+      case 1:
+        this.status = "Fixed";
+        break;
+      case 2:
+        this.status = "For Sale";
+        break;
+      case 3:
+        this.status = "For Purchase";
+        break;
+      default:
+        console.log("Something wrong with the portfolio item status");
+        this.status = "";
+    }
     // console.log("Stock:", this.stock);
     // Getting full name of the order
     // let sub = this.alpacaService
@@ -41,7 +56,15 @@ export class CardComponent extends SpinnerComponent implements OnInit {
     //   });
   }
 
-  sendToBoard() {
+  onSellClick() {
     this.sellStock.emit(this.stock.id);
+  }
+
+  onBeingSoldClick() {
+    console.log("onBeingSoldClick");
+  }
+
+  onBuyOrderClick() {
+    console.log("onBuyOrderClick");
   }
 }

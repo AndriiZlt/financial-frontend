@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "src/app/features/board/models/Stock.model";
+import { Stock } from "../../models/Stock.model";
 import { AlpacaService } from "src/app/features/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
-import { BoardItem } from "../models/BoardItem.model";
 
 @Component({
   selector: "app-board-item",
@@ -18,6 +17,8 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
   userId: number;
+  status: string;
+
   constructor(private alpacaService: AlpacaService) {
     super();
   }
@@ -25,6 +26,19 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   ngOnInit(): void {
     this.userId = Number(localStorage.getItem("User"));
     console.log("Item", this.item, this.item.userId, this.userId);
+
+    switch (this.item.status) {
+      case 2:
+        this.status = "For Sale";
+        break;
+      case 3:
+        this.status = "For Purchase";
+        break;
+      default:
+        console.log("Something wrong with the board item status")
+        this.status = "";
+    }
+
     // console.log("Stock:", this.stock);
     // Getting full name of the order
     // let sub = this.alpacaService

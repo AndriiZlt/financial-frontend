@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import * as nasdaq100 from "../../../../assets/nasdaq100";
 import { AlpacaService } from "../../services/alpaca.service";
-import { Asset } from "../models/Asset.model";
-import { StockToAdd } from "../models/StockToAdd.model";
+import { Asset } from "../../models/Asset.model";
+import { StockToAdd } from "../../models/StockToAdd.model";
 import { StockApiService } from "../../services/stock.service";
 
 @Component({
@@ -71,7 +71,7 @@ export class BuyModalComponent implements OnInit {
       cost_Basis: this.selectedValue.toString(),
       qty: this.selectedQty.toString(),
       exchange: "string",
-      status: "buy",
+      status: 3,
     };
 
     this.stockService.addStock(newStockToBuy).subscribe((res) => {
