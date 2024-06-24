@@ -7,6 +7,7 @@ import { BoardComponent } from "./board/board.component";
 import { BoardItemComponent } from "./board/board-item/board-item.component";
 import { BuyModalComponent } from "./portfolio/buy-modal/buy-modal.component";
 import { PortfolioItemComponent } from "./portfolio/portfolio-item/portfolio-item.component";
+import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PortfolioItemComponent } from "./portfolio/portfolio-item/portfolio-ite
     BoardComponent,
     BoardItemComponent,
     BuyModalComponent,
+    SellModalComponent,
   ],
   imports: [CommonModule, SharedModule, FormsModule],
 })

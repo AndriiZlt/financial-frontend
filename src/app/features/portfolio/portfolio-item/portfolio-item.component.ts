@@ -56,8 +56,9 @@ export class PortfolioItemComponent extends SpinnerComponent implements OnInit {
     //   });
   }
 
-  onSellClick() {
-    this.sellStock.emit(this.stock.id);
+  onSellClick(event) {
+    this.sellStock.emit(event.currentTarget.id);
+    // this.sellStock.emit(this.stock.id);
   }
 
   onBeingSoldClick() {

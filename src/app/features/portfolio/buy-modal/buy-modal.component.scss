@@ -25,22 +25,37 @@ button::-moz-focus-inner {
   height: 100vh;
   padding: 0 4rem 2rem;
 
-  background-color: rgba(34, 37, 58, 0.9);
+  // background-color: rgba(34, 37, 58, 0.9);
+  background-color: rgba(36, 39, 43, 0.95);
   // opacity: 0.96;
-  // transition: opacity 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 /* modal */
 .modal-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 0.8rem;
   z-index: 99999999;
-  height: 80%;
+  // height: 80%;
   width: 80%;
   justify-content: center;
   align-items: center;
+  h1 {
+    text-align: center;
+    padding: 30px 10px 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    color: rgb(83, 120, 122);
+    margin-bottom: 0;
+  }
 }
 
 /* using :target */
@@ -58,8 +73,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   padding: 4rem 2rem;
   border-radius: 0.8rem;
   opacity: 1;
-  background-color: #27343e;
+  // background-color: #27343e;
   background-color: #354259;
+
   position: relative;
   overflow: hidden;
 

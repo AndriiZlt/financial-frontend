@@ -1,21 +1,12 @@
 <div class="backdrop">
   <div class="modal-container">
-    <h1>Create a buy order</h1>
+    <h1>Create sell order</h1>
     <div class="modal">
       <div class="first-row">
         <div class="left">
-          <h3 *ngIf="!isSelected" class="name">Choose Stock to buy</h3>
-          <h3 *ngIf="isSelected" class="name">{{ selectedStock.name }}</h3>
-        </div>
-        <div class="right">
-          <select
-            class="form-control form-control-lg"
-            id="select"
-            (change)="onStockSelect($event.target.value)"
-          >
-            <option [disabled]="isSelected">Select Stock</option>
-            <option *ngFor="let stock of nasdaq100">{{ stock }}</option>
-          </select>
+          <!-- <h3 *ngIf="!isSelected" class="name">Choose Stock to buy</h3> -->
+          <!-- <h3 class="name">{{ stock.name }}</h3> -->
+          <h3 class="name">{{ stock.symbol }} {{ stock.name }}</h3>
         </div>
       </div>
       <!-- PRICE -->
@@ -62,7 +53,7 @@
         </div>
       </div>
       <div class="bottom-row">
-        <button class="modal__btn" (click)="onBuyPress()">Buy&rarr;</button>
+        <button class="modal__btn" (click)="onBuyPress()">Sell&rarr;</button>
         <!-- <button class="modal__btn">Button &rarr;</button> -->
       </div>
     </div>

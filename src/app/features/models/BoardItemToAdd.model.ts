@@ -1,3 +1,5 @@
+import { StockStatus } from "./StockStatus.model";
+
 export interface BoardItemToAdd {
   stock_Id: number;
   user_Id: number;
@@ -5,5 +7,6 @@ export interface BoardItemToAdd {
   name: string;
   cost_Basis: string;
   qty: string;
-  status: string;
+  max_Qty: string;
+  status: StockStatus;
 }

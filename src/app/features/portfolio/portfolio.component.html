@@ -5,22 +5,25 @@
   </h1>
 
   <button (click)="openBuyModal()">
-    {{ isModalOn ? "Close" : "Buy Stocks" }}
+    {{ buyModalOn ? "Close" : "Buy Stocks" }}
   </button>
 </section>
 
 <!-- Main content -->
 <section class="content">
   <button *ngIf="stocks.length === 0" (click)="addStocks()">Add Stocks</button>
-  <div class="modal-container" *ngIf="isModalOn">
+  <div class="modal-container" *ngIf="buyModalOn">
     <app-buy-modal></app-buy-modal>
+  </div>
+  <div class="modal-container" *ngIf="sellModalOn">
+    <app-sell-modal [stock]="sellModalStock"></app-sell-modal>
   </div>
   <div class="stocks-list-container">
     <app-card
       *ngFor="let stock of stocks"
       [stock]="stock"
       [index]="stocks.indexOf(stock)"
-      (sellStock)="sellStock($event)"
+      (sellStock)="openSellModal($event)"
     ></app-card>
   </div>
 </section>

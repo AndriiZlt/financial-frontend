@@ -10,14 +10,15 @@
   max-width: 1600px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   padding: 50px 20px;
   > * {
     width: calc(33.33333% - 30px);
-    display: block;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -45,7 +46,7 @@
   z-index: 9999;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1200px) {
   .stocks-list-container {
     > * {
       width: calc(50% - 30px);
@@ -53,10 +54,11 @@
   }
 }
 
-@media screen and (max-width: 1128px) {
+@media screen and (max-width: 720px) {
   .stocks-list-container {
+    justify-content: center;
     > * {
-      width: calc(80%);
+      width: calc(90%);
     }
   }
 }

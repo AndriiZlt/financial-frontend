@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import * as nasdaq100 from "../../../../assets/nasdaq100";
+import { Component, Input, OnInit } from "@angular/core";
 import { AlpacaService } from "../../services/alpaca.service";
 import { Asset } from "../../models/Asset.model";
 import { StockToAdd } from "../../models/StockToAdd.model";
 import { StockApiService } from "../../services/stock.service";
+import { Stock } from "../../models/Stock.model";
 
 @Component({
-  selector: "app-buy-modal",
-  templateUrl: "./buy-modal.component.html",
-  styleUrls: ["./buy-modal.component.scss"],
+  selector: "app-sell-modal",
+  templateUrl: "./sell-modal.component.html",
+  styleUrls: ["./sell-modal.component.scss"],
 })
-export class BuyModalComponent implements OnInit {
+export class SellModalComponent implements OnInit {
+  @Input() stock: Stock;
   nasdaq100: string[];
   selectedStock: Asset;
-  isSelected: boolean = false;
   maxPrice: number = 0;
   currentPrice: number = 0;
   selectedPrice: number = 0;
@@ -24,28 +24,33 @@ export class BuyModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.nasdaq100 = [...nasdaq100.get()];
+    // this.nasdaq100 = [...nasdaq100.get()];
+    console.log("Modal Stock:", this.stock);
+    this.currentPrice = Number(this.stock.cost_Basis);
+    // this.getCurrentStock();
+    this.getCurrentPrice();
   }
 
-  onStockSelect(symbol: string): void {
-    let sub = this.alpacaService.getAssetById(symbol).subscribe((res) => {
-      console.log("res:", res);
-      if (res) {
-        this.selectedStock = res;
-        this.isSelected = true;
-        this.getCurrentPrice();
-      } else {
-        console.log("Error in fetching Asset by symbol");
-      }
+  getCurrentStock() {
+    let sub = this.alpacaService
+      .getAssetById(this.stock.symbol)
+      .subscribe((res) => {
+        console.log("res:", res);
+        if (res) {
+          this.selectedStock = res;
+          this.getCurrentPrice();
+        } else {
+          console.log("Error in fetching Asset by symbol");
+        }
 
-      sub.unsubscribe();
-    });
+        sub.unsubscribe();
+      });
   }
 
   getCurrentPrice(): void {
     // Getting current price of the asset
     let sub = this.alpacaService
-      .getLastTrades(this.selectedStock.symbol)
+      .getLastTrades(this.stock.symbol)
       .subscribe((res) => {
         console.log("getLastTrades res:", res);
         this.currentPrice = res["trade"].p;

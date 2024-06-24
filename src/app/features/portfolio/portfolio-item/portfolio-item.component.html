@@ -29,7 +29,12 @@
     </div>
   </a>
   <!-- Status not being sold (none) button -->
-  <div class="sell-button" (click)="onSellClick()" *ngIf="stock.status === 1">
+  <div
+    class="sell-button"
+    [id]="stock.id"
+    (click)="onSellClick($event)"
+    *ngIf="stock.status === 1"
+  >
     <button class="button type1">
       <span class="btn-txt">Sell</span>
     </button>

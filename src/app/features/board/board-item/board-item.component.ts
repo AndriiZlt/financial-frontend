@@ -44,7 +44,6 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   }
 
   clickOnBuy(event) {
-    console.log("currentTarget", event.currentTarget.id);
     if (event.target.innerHTML.includes("Buy")) {
       console.log("INCLUDES BUY");
       this.stockService.buyStock(event.currentTarget.id).subscribe((res) => {

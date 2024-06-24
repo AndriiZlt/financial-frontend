@@ -3,6 +3,8 @@ import { Stock } from "../models/Stock.model";
 import { StockApiService } from "../services/stock.service";
 import { StockToAdd } from "../models/StockToAdd.model";
 import { StockStatus } from "../models/StockStatus.model";
+import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
+import { BoardApiService } from "../services/board.service";
 
 @Component({
   selector: "app-portfolio",
@@ -12,10 +14,13 @@ import { StockStatus } from "../models/StockStatus.model";
 export class PortfolioComponent implements OnInit {
   stocks: Stock[] = [];
   stock: Stock;
+  sellModalStock: Stock;
   isLoading: boolean = true;
   messageInput: string = "";
   idInput: string = "";
-  isModalOn: boolean = false;
+  buyModalOn: boolean = false;
+  sellModalOn: boolean = false;
+  selectedQty: number = 1;
   stocksToAdd: StockToAdd[] = [
     {
       alpaca_Asset_Id: "b0b6dd9d-8b9b-48a9-ba46-b9d54906e415",
@@ -73,7 +78,10 @@ export class PortfolioComponent implements OnInit {
     },
   ];
 
-  constructor(private stockService: StockApiService) {}
+  constructor(
+    private stockService: StockApiService,
+    private boardService: BoardApiService
+  ) {}
 
   ngOnInit() {
     this.updatePage();
@@ -119,20 +127,46 @@ export class PortfolioComponent implements OnInit {
     });
   }
 
-  sellStock(stock: number): void {
-    console.log(stock);
-    let status: StockStatus = StockStatus.For_Sale;
-    let sub = this.stockService.updateStatus(stock, status).subscribe((res) => {
-      console.log("add to board res:", res);
-      // setTimeout(() => {
-      //   this.updatePage();
-      //   sub.unsubscribe();
-      // }, 500);
-      sub.unsubscribe();
-    });
+  // create buy modal and implement add item to board and then invoke sellStock
+
+  sellStock(stock_id: number, qty_to_sell: number): void {
+    let stock: Stock = this.stocks.filter((s) => s.id === stock_id)[0];
+    let newBoardItemToAdd: BoardItemToAdd = {
+      stock_Id: stock.id,
+      user_Id: stock.userId,
+      symbol: stock.symbol,
+      name: stock.name,
+      cost_Basis: stock.cost_Basis,
+      qty: qty_to_sell.toString(),
+      max_Qty: stock.qty,
+      status: StockStatus.For_Sale,
+    };
+    let sub = this.boardService
+      .addSellToBoard(newBoardItemToAdd)
+      .subscribe((res) => {
+        console.log("addSellToBoard res:", res);
+        // setTimeout(() => {
+        //   this.updatePage();
+        //   sub.unsubscribe();
+        // }, 500);
+        sub.unsubscribe();
+      });
   }
 
   openBuyModal() {
-    this.isModalOn = this.isModalOn === true ? false : true;
+    this.buyModalOn = this.buyModalOn === true ? false : true;
+  }
+
+  openSellModal(stock_id: string) {
+    console.log(stock_id);
+
+    console.log(
+      "filtered stock to modal:",
+      this.stocks.filter((s) => s.id.toString() === stock_id)[0]
+    );
+    this.sellModalStock = this.stocks.filter(
+      (s) => s.id.toString() === stock_id
+    )[0];
+    this.sellModalOn = true;
   }
 }
