@@ -23,26 +23,10 @@ export class BoardApiService extends ApiService {
 
   removeSellFromBoard() {}
 
-  addBuyToBoard(stockToAdd: Stock): Observable<BoardItem> {
+  addBuyToBoard(stockToAdd: BoardItemToAdd): Observable<BoardItem> {
     console.log("New item to Buy:", stockToAdd);
     return this.post<BoardItem>(`addboard`, stockToAdd);
   }
 
   removeBuyFromBoard() {}
-
-  // addStock(stock: StockToAdd): Observable<Stock> {
-  //   return this.post<Stock>("addstock", stock);
-  // }
-
-  // deleteStock(stockId: number): Observable<Stock> {
-  //   return this.delete<Stock>(`deletetask/${stockId}`);
-  // }
-
-  // updateStatus(taskId: number): Observable<Task> {
-  //   return this.put<Task>(`updatestatus/${taskId}`, taskId);
-  // }
-
-  // updateTask(task: Task): Observable<Task> {
-  //   return this.put<Task>('updatetask', task);
-  // }
 }

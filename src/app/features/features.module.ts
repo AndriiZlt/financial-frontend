@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { SharedModule } from "../shared/shared.module";
 import { FormsModule } from "@angular/forms";
@@ -19,5 +19,8 @@ import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component"
     SellModalComponent,
   ],
   imports: [CommonModule, SharedModule, FormsModule],
+  providers: [
+    DatePipe
+  ],
 })
 export class FeaturesModule {}

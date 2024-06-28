@@ -12,15 +12,15 @@
     </div>
     <!-- <div class="item_bg"></div> -->
 
-    <div class="title">{{ item.symbol }} {{ item.name }}</div>
+    <div class="title">{{ boardItem.symbol }} {{ boardItem.name }}</div>
 
     <div class="date-box">
       QTY:
-      <span class="date"> {{ item.qty }} </span>
+      <span class="date"> {{ boardItem.qty }} </span>
     </div>
     <div class="date-box">
       Price:
-      <span class="date"> {{ item.cost_Basis }} </span
+      <span class="date"> {{ boardItem.cost_Basis }} </span
       ><span>
         <!-- <div class="col-arrow">
           <img
@@ -35,19 +35,19 @@
     </div>
     <div class="date-box">
       User:
-      <span class="date"> {{ item.userId }} </span>
+      <span class="date"> {{ boardItem.user_Id }} </span>
     </div>
   </a>
   <div class="sell-button">
     <button
       class="button type1"
-      [id]="item.id"
-      *ngIf="item.userId !== userId"
-      (click)="clickOnBuy($event)"
+      [id]="boardItem.id"
+      *ngIf="boardItem.user_Id !== user_Id"
+      (click)="onBuyClick($event)"
     >
-      <span class="btn-txt">{{ item.status === 2 ? "Buy" : "Sell" }}</span>
+      <span class="btn-txt">{{ boardItem.status === 2 ? "Buy" : "Sell" }}</span>
     </button>
-    <button class="button type1" *ngIf="item.userId == userId" disabled>
+    <button class="button type1" *ngIf="boardItem.user_Id == user_Id" disabled>
       <span class="btn-txt">Yours</span>
     </button>
   </div>

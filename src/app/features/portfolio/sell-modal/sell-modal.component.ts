@@ -1,9 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output } from "@angular/core";
 import { AlpacaService } from "../../services/alpaca.service";
 import { Asset } from "../../models/Asset.model";
 import { StockToAdd } from "../../models/StockToAdd.model";
 import { StockApiService } from "../../services/stock.service";
 import { Stock } from "../../models/Stock.model";
+import { BoardItemToAdd } from "../../models/BoardItemToAdd.model";
+import { StockStatus } from "../../models/StockStatus.model";
+import { BoardApiService } from "../../services/board.service";
+import { EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-sell-modal",
@@ -12,22 +16,26 @@ import { Stock } from "../../models/Stock.model";
 })
 export class SellModalComponent implements OnInit {
   @Input() stock: Stock;
+  @Output() closeModal: EventEmitter<any> = new EventEmitter<any>();
   nasdaq100: string[];
   selectedStock: Asset;
   maxPrice: number = 0;
   currentPrice: number = 0;
   selectedPrice: number = 0;
   selectedQty: number = 1;
+  qtyArray: number[] = [];
   constructor(
     private alpacaService: AlpacaService,
-    private stockService: StockApiService
+    private stockService: StockApiService,
+    private boardService: BoardApiService
   ) {}
 
   ngOnInit(): void {
     // this.nasdaq100 = [...nasdaq100.get()];
     console.log("Modal Stock:", this.stock);
     this.currentPrice = Number(this.stock.cost_Basis);
-    // this.getCurrentStock();
+    this.selectedQty = Number(this.stock.qty);
+    this.createQtyArray();
     this.getCurrentPrice();
   }
 
@@ -42,9 +50,17 @@ export class SellModalComponent implements OnInit {
         } else {
           console.log("Error in fetching Asset by symbol");
         }
-
         sub.unsubscribe();
       });
+  }
+
+  createQtyArray() {
+    this.qtyArray = [];
+    for (let i = 1; i <= Number(this.stock.qty); i++) {
+      if (i !== this.selectedQty) {
+        this.qtyArray.push(i);
+      }
+    }
   }
 
   getCurrentPrice(): void {
@@ -52,10 +68,8 @@ export class SellModalComponent implements OnInit {
     let sub = this.alpacaService
       .getLastTrades(this.stock.symbol)
       .subscribe((res) => {
-        console.log("getLastTrades res:", res);
         this.currentPrice = res["trade"].p;
         this.selectedPrice = this.currentPrice;
-        // this.priceIsLoading = false;
         sub.unsubscribe();
       });
   }
@@ -65,22 +79,27 @@ export class SellModalComponent implements OnInit {
   }
 
   onQtySelect(value: number): void {
-    this.selectedQty = value;
+    this.selectedQty = Number(value);
+    this.createQtyArray();
   }
 
-  onBuyPress(): void {
-    let newStockToBuy: StockToAdd = {
-      alpaca_Asset_Id: "sss",
-      symbol: this.selectedStock.symbol,
-      name: this.selectedStock.name,
+  sendSellToBoard(): void {
+    let newBoardItem: BoardItemToAdd = {
+      stock_Id: this.stock.id,
+      user_Id: this.stock.user_Id,
+      symbol: this.stock.symbol,
+      name: this.stock.name,
       cost_Basis: this.selectedPrice.toString(),
       qty: this.selectedQty.toString(),
-      exchange: "string",
-      status: 3,
+      max_Qty: this.stock.qty,
+      status: StockStatus.For_Sale,
     };
 
-    this.stockService.addStock(newStockToBuy).subscribe((res) => {
-      console.log("BUY ok:", res);
+    console.log("New Board Item:", newBoardItem);
+
+    this.boardService.addSellToBoard(newBoardItem).subscribe((res) => {
+      console.log("Sell ok:", res);
+      this.closeModal.emit("close");
     });
   }
 }

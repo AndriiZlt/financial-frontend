@@ -33,7 +33,7 @@
     class="sell-button"
     [id]="stock.id"
     (click)="onSellClick($event)"
-    *ngIf="stock.status === 1"
+    *ngIf="stock.status === 1 && stock.qty !== '0'"
   >
     <button class="button type1">
       <span class="btn-txt">Sell</span>

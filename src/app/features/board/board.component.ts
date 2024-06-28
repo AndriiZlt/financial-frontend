@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Stock } from "../models/Stock.model";
 import { StockApiService } from "../services/stock.service";
+import { BoardApiService } from "../services/board.service";
+import { BoardItem } from "../models/BoardItem.model";
 
 @Component({
   selector: "app-board",
@@ -8,20 +10,23 @@ import { StockApiService } from "../services/stock.service";
   styleUrls: ["./board.component.scss"],
 })
 export class BoardComponent implements OnInit {
-  boardItems: Stock[] = [];
+  boardItems: BoardItem[] = [];
   isLoading: boolean = true;
-  constructor(private stockService: StockApiService) {}
+  constructor(
+    private boardService: BoardApiService,
+    private stockService: StockApiService
+  ) {}
 
   ngOnInit(): void {
-    let sub = this.stockService.getBoardItems().subscribe((res) => {
+    this.reloadPage();
+  }
+
+  reloadPage(): void {
+    let sub = this.boardService.getBoardItems().subscribe((res) => {
       this.boardItems = [...res];
       console.log("BOARD ITEMS:", this.boardItems);
       this.isLoading = false;
       sub.unsubscribe();
     });
-  }
-
-  sellStock(event) {
-    console.log("Sell stock:", event);
   }
 }

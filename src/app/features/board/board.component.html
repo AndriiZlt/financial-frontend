@@ -19,9 +19,9 @@
   <div class="stocks-list-container">
     <app-board-item
       *ngFor="let item of boardItems"
-      [item]="item"
+      [boardItem]="item"
       [index]="boardItems.indexOf(item)"
-      (sellStock)="sellStock($event)"
+      (reloadPage)="reloadPage()"
     ></app-board-item>
   </div>
 </section>

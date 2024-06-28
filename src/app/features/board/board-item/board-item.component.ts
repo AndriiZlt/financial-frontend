@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "../../models/Stock.model";
-import { AlpacaService } from "src/app/features/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
-import { StockApiService } from "../../services/stock.service";
+import { BoardItem } from "../../models/BoardItem.model";
+import { TransactionToAdd } from "../../models/TransactionToAdd.model";
+import { StockStatus } from "../../models/StockStatus.model";
+import { DatePipe } from "@angular/common";
+import { TransactionApiService } from "../../services/transaction.service";
 
 @Component({
   selector: "app-board-item",
@@ -10,28 +12,27 @@ import { StockApiService } from "../../services/stock.service";
   styleUrls: ["./board-item.component.scss"],
 })
 export class BoardItemComponent extends SpinnerComponent implements OnInit {
-  @Input() item: Stock;
+  @Input() boardItem: BoardItem;
   @Input() index: number;
-  @Output() sellStock: EventEmitter<any> = new EventEmitter<any>();
+  @Output() reloadPage: EventEmitter<any> = new EventEmitter<any>();
   positionName: string;
   currentPrice: string;
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
-  userId: number;
+  user_Id: number;
   status: string = "";
 
   constructor(
-    private alpacaService: AlpacaService,
-    private stockService: StockApiService
+    private transactionService: TransactionApiService,
+    private datePipe: DatePipe
   ) {
     super();
   }
 
   ngOnInit(): void {
-    this.userId = Number(localStorage.getItem("User"));
-    console.log("Item", this.item, this.item.userId, this.userId);
+    this.user_Id = Number(localStorage.getItem("User"));
 
-    switch (this.item.status) {
+    switch (this.boardItem.status) {
       case 2:
         this.status = "For Sale";
         break;
@@ -39,15 +40,38 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
         this.status = "For Purchase";
         break;
       default:
-        console.log("Something wrong with the board item status");
+        console.log(
+          "Something wrong with the board item status",
+          this.boardItem.status
+        );
     }
   }
 
-  clickOnBuy(event) {
-    if (event.target.innerHTML.includes("Buy")) {
-      console.log("INCLUDES BUY");
-      this.stockService.buyStock(event.currentTarget.id).subscribe((res) => {
-        console.log("After Buy response:", res);
+  onBuyClick(event: any): void {
+    if (
+      event.target.innerHTML.includes("Buy") ||
+      event.target.innerHTML.includes("Sell")
+    ) {
+      let currentUserId: string = localStorage.getItem("User");
+      let transaction: TransactionToAdd = {
+        stock_Id: this.boardItem.stock_Id,
+        symbol: this.boardItem.symbol,
+        qty: this.boardItem.qty,
+        price: this.boardItem.cost_Basis,
+        seller_User_Id:
+          this.boardItem.status === StockStatus.For_Sale
+            ? this.boardItem.user_Id
+            : Number(currentUserId),
+        buyer_User_Id:
+          this.boardItem.status === StockStatus.For_Purchase
+            ? this.boardItem.user_Id
+            : Number(currentUserId),
+        name: this.boardItem.name,
+      };
+
+      this.transactionService.addTransaction(transaction).subscribe((res) => {
+        console.log("Ok - addTransaction response:", res);
+        this.reloadPage.emit();
       });
     }
   }

@@ -17,8 +17,8 @@
               <label for="formControlRange">Price</label>
               <input
                 type="range"
-                min="0"
-                [max]="currentPrice"
+                [min]="currentPrice"
+                [max]="currentPrice + 100"
                 [value]="selectedPrice"
                 step="0.01"
                 class="form-control-range"
@@ -44,16 +44,13 @@
             id="exampleFormControlSelect1"
             (change)="onQtySelect($event.target.value)"
           >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option selected>{{ selectedQty }}</option>
+            <option *ngFor="let qty of qtyArray">{{ qty }}</option>
           </select>
         </div>
       </div>
       <div class="bottom-row">
-        <button class="modal__btn" (click)="onBuyPress()">Sell&rarr;</button>
+        <button class="sell_btn" (click)="sendSellToBoard()">Sell&rarr;</button>
         <!-- <button class="modal__btn">Button &rarr;</button> -->
       </div>
     </div>

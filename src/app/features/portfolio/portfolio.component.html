@@ -4,8 +4,8 @@
     <small>list of your stocks</small>
   </h1>
 
-  <button (click)="openBuyModal()">
-    {{ buyModalOn ? "Close" : "Buy Stocks" }}
+  <button (click)="openBuyModal($event)">
+    {{ buyModalOn || sellModalOn ? "Close" : "Buy Stocks" }}
   </button>
 </section>
 
@@ -16,9 +16,15 @@
     <app-buy-modal></app-buy-modal>
   </div>
   <div class="modal-container" *ngIf="sellModalOn">
-    <app-sell-modal [stock]="sellModalStock"></app-sell-modal>
+    <app-sell-modal
+      [stock]="sellModalStock"
+      (closeModal)="closeModal()"
+    ></app-sell-modal>
   </div>
   <div class="stocks-list-container">
+    <div class="spinner" *ngIf="isLoading">
+      <app-spinner></app-spinner>
+    </div>
     <app-card
       *ngFor="let stock of stocks"
       [stock]="stock"

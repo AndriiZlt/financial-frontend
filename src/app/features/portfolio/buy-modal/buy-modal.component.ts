@@ -4,6 +4,9 @@ import { AlpacaService } from "../../services/alpaca.service";
 import { Asset } from "../../models/Asset.model";
 import { StockToAdd } from "../../models/StockToAdd.model";
 import { StockApiService } from "../../services/stock.service";
+import { StockStatus } from "../../models/StockStatus.model";
+import { BoardApiService } from "../../services/board.service";
+import { BoardItemToAdd } from "../../models/BoardItemToAdd.model";
 
 @Component({
   selector: "app-buy-modal",
@@ -20,7 +23,8 @@ export class BuyModalComponent implements OnInit {
   selectedQty: number = 1;
   constructor(
     private alpacaService: AlpacaService,
-    private stockService: StockApiService
+    private stockService: StockApiService,
+    private boardService: BoardApiService
   ) {}
 
   ngOnInit(): void {
@@ -63,19 +67,31 @@ export class BuyModalComponent implements OnInit {
     this.selectedQty = value;
   }
 
-  onBuyPress(): void {
+  addBuyToBoard(): void {
     let newStockToBuy: StockToAdd = {
-      alpaca_Asset_Id: "sss",
       symbol: this.selectedStock.symbol,
       name: this.selectedStock.name,
       cost_Basis: this.selectedPrice.toString(),
       qty: this.selectedQty.toString(),
-      exchange: "string",
-      status: 3,
+      status: StockStatus.For_Purchase,
     };
 
-    this.stockService.addStock(newStockToBuy).subscribe((res) => {
-      console.log("BUY ok:", res);
+    this.stockService.addStock(newStockToBuy).subscribe((addedStock) => {
+      console.log("Ok - New Stock created:", addedStock);
+
+      let boardItemToAdd: BoardItemToAdd = {
+        stock_Id: addedStock.id,
+        user_Id: addedStock.user_Id,
+        symbol: addedStock.symbol,
+        name: addedStock.name,
+        cost_Basis: addedStock.cost_Basis,
+        qty: addedStock.qty,
+        max_Qty: addedStock.qty,
+        status: StockStatus.For_Purchase,
+      };
+      this.boardService.addBuyToBoard(boardItemToAdd).subscribe((res) => {
+        console.log("Ok - New Buy item added to Board:", res);
+      });
     });
   }
 }

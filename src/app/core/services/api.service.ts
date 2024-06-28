@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ApiService {
   apiName: string;
   v: number;
@@ -13,13 +13,14 @@ export class ApiService {
     url: string,
     options?: {
       headers?: HttpHeaders | { [header: string]: string | string[] };
-      observe?: 'body';
+      observe?: "body";
       params?: HttpParams | { [param: string]: string | string[] };
       reportProgress?: boolean;
-      responseType?: 'json';
+      responseType?: "json";
       withCredentials?: boolean;
     }
   ): Observable<T> {
+    // console.log(`${environment.apiUrl}/api/v${this.v}/${this.apiName}/${url}`);
     return this.http.get<T>(
       `${environment.apiUrl}/api/v${this.v}/${this.apiName}/${url}`,
       options
@@ -31,10 +32,10 @@ export class ApiService {
     body: any,
     options?: {
       headers?: HttpHeaders | { [header: string]: string | string[] };
-      observe?: 'body';
+      observe?: "body";
       params?: HttpParams | { [param: string]: string | string[] };
       reportProgress?: boolean;
-      responseType?: 'json';
+      responseType?: "json";
       withCredentials?: boolean;
     }
   ): Observable<T> {
@@ -49,10 +50,10 @@ export class ApiService {
     url: string,
     options?: {
       headers?: HttpHeaders | { [header: string]: string | string[] };
-      observe?: 'body';
+      observe?: "body";
       params?: HttpParams | { [param: string]: string | string[] };
       reportProgress?: boolean;
-      responseType?: 'json';
+      responseType?: "json";
       withCredentials?: boolean;
     }
   ): Observable<T> {
@@ -67,10 +68,10 @@ export class ApiService {
     body: any,
     options?: {
       headers?: HttpHeaders | { [header: string]: string | string[] };
-      observe?: 'body';
+      observe?: "body";
       params?: HttpParams | { [param: string]: string | string[] };
       reportProgress?: boolean;
-      responseType?: 'json';
+      responseType?: "json";
       withCredentials?: boolean;
     }
   ): Observable<T> {
