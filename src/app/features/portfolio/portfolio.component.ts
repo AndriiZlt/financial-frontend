@@ -16,7 +16,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
   stocks: Stock[] = [];
   stock: Stock;
   sellModalStock: Stock;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   messageInput: string = "";
   idInput: string = "";
   buyModalOn: boolean = false;
@@ -64,6 +64,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
         sub.unsubscribe();
       });
     }
+    setTimeout(() => this.updatePage(), 1000);
   }
 
   updatePage(): void {

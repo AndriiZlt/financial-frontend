@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import * as nasdaq100 from "../../../../assets/nasdaq100";
 import { AlpacaService } from "../../services/alpaca.service";
 import { Asset } from "../../models/Asset.model";
@@ -14,6 +14,7 @@ import { BoardItemToAdd } from "../../models/BoardItemToAdd.model";
   styleUrls: ["./buy-modal.component.scss"],
 })
 export class BuyModalComponent implements OnInit {
+  @Output() closeModal: EventEmitter<any> = new EventEmitter<any>();
   nasdaq100: string[];
   selectedStock: Asset;
   isSelected: boolean = false;
@@ -90,7 +91,8 @@ export class BuyModalComponent implements OnInit {
         status: StockStatus.For_Purchase,
       };
       this.boardService.addBuyToBoard(boardItemToAdd).subscribe((res) => {
-        console.log("Ok - New Buy item added to Board:", res);
+        console.log("Ok - New BuyItem added to Board:", res);
+        this.closeModal.emit("close");
       });
     });
   }

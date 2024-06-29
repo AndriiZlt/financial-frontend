@@ -17,14 +17,12 @@ export class BoardApiService extends ApiService {
   }
 
   addSellToBoard(itemToAdd: BoardItemToAdd): Observable<BoardItem> {
-    console.log("New item to Sell:", itemToAdd);
     return this.post<BoardItem>(`addboard`, itemToAdd);
   }
 
   removeSellFromBoard() {}
 
   addBuyToBoard(stockToAdd: BoardItemToAdd): Observable<BoardItem> {
-    console.log("New item to Buy:", stockToAdd);
     return this.post<BoardItem>(`addboard`, stockToAdd);
   }
 

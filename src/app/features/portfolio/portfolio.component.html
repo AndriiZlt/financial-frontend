@@ -11,9 +11,14 @@
 
 <!-- Main content -->
 <section class="content">
-  <button *ngIf="stocks.length === 0" (click)="addStocks()">Add Stocks</button>
+  <button
+    *ngIf="stocks.length === 0 && isLoading == false"
+    (click)="addStocks()"
+  >
+    Add Stocks
+  </button>
   <div class="modal-container" *ngIf="buyModalOn">
-    <app-buy-modal></app-buy-modal>
+    <app-buy-modal (closeModal)="closeModal()"></app-buy-modal>
   </div>
   <div class="modal-container" *ngIf="sellModalOn">
     <app-sell-modal

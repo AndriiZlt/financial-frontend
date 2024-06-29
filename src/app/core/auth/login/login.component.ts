@@ -1,12 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Login } from "../models/login.model";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
 import { UserService } from "../services/user.service";
-
-declare var $;
 
 @Component({
   selector: "app-login",
@@ -28,20 +25,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private userService: UserService
   ) {}
 
-  ngOnInit() {
-    // $("body").addClass("hold-transition login-page");
-    // $(() => {
-    //   $("input").iCheck({
-    //     checkboxClass: "icheckbox_square-blue",
-    //     radioClass: "iradio_square-blue",
-    //     increaseArea: "20%" /* optional */,
-    //   });
-    // });
-  }
+  ngOnInit() {}
 
-  ngOnDestroy(): void {
-    // $("body").removeClass("hold-transition login-page");
-  }
+  ngOnDestroy(): void {}
 
   onSubmit(): void {
     console.log("Logging with:" + this.loginInput, " + ", this.passwordInput);
@@ -53,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(loginDto: Login) {
     let subscription = this.authService.login(loginDto).subscribe((user) => {
       this.user = user;
-      console.log("User:", this.user);
+      console.log("User:", user);
       localStorage.setItem("token", user.token);
       localStorage.setItem("User", user.id);
       localStorage.setItem("Username", `${user.name} ${user.userName}`);
