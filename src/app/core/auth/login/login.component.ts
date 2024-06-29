@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Login } from "../models/login.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
-import { LoginNameService } from "../services/loginName.service";
 import { Router } from "@angular/router";
+import { User } from "../models/user.model";
+import { UserService } from "../services/user.service";
 
 declare var $;
 
@@ -19,54 +20,46 @@ export class LoginComponent implements OnInit, OnDestroy {
   isDisabled: boolean = true;
   loginInput: string = "";
   passwordInput: string = "";
+  user: User = new User();
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private loginNameService: LoginNameService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-    $("body").addClass("hold-transition login-page");
-    $(() => {
-      $("input").iCheck({
-        checkboxClass: "icheckbox_square-blue",
-        radioClass: "iradio_square-blue",
-        increaseArea: "20%" /* optional */,
-      });
-    });
+    // $("body").addClass("hold-transition login-page");
+    // $(() => {
+    //   $("input").iCheck({
+    //     checkboxClass: "icheckbox_square-blue",
+    //     radioClass: "iradio_square-blue",
+    //     increaseArea: "20%" /* optional */,
+    //   });
+    // });
   }
 
   ngOnDestroy(): void {
-    $("body").removeClass("hold-transition login-page");
+    // $("body").removeClass("hold-transition login-page");
   }
 
   onSubmit(): void {
-    console.log("Logging in:" + this.loginInput, " + ", this.passwordInput);
-
+    console.log("Logging with:" + this.loginInput, " + ", this.passwordInput);
     this.loginDto.username = this.loginInput;
     this.loginDto.password = this.passwordInput;
-
     this.login(this.loginDto);
   }
 
   login(loginDto: Login) {
-    let subscription = this.authService.login(loginDto).subscribe((jwtDto) => {
-      console.log("User:", jwtDto);
-      localStorage.setItem("token", jwtDto.token);
-      localStorage.setItem("User", jwtDto.id);
+    let subscription = this.authService.login(loginDto).subscribe((user) => {
+      this.user = user;
+      console.log("User:", this.user);
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("User", user.id);
+      localStorage.setItem("Username", `${user.name} ${user.userName}`);
       this.router.navigate(["finapp"]);
-      this.loginNameService.triggerEvent(loginDto.username);
+      this.userService.saveData(this.user);
       subscription.unsubscribe();
     });
   }
-
-  // onFormChange(): void {
-  //   this.submitted = true;
-  //   if (this.loginInput) {
-  //     this.isDisabled = true;
-  //   } else {
-  //     this.isDisabled = false;
-  //   }
-  // }
 }
