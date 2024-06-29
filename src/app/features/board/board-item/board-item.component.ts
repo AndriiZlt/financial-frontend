@@ -3,8 +3,9 @@ import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.comp
 import { BoardItem } from "../../models/BoardItem.model";
 import { TransactionToAdd } from "../../models/TransactionToAdd.model";
 import { StockStatus } from "../../models/StockStatus.model";
-import { DatePipe } from "@angular/common";
 import { TransactionApiService } from "../../services/transaction.service";
+import { StockApiService } from "../../services/stock.service";
+import { UserService } from "src/app/core/auth/services/user.service";
 
 @Component({
   selector: "app-board-item",
@@ -24,7 +25,8 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionApiService,
-    private datePipe: DatePipe
+    private stockService: StockApiService,
+    private userService: UserService
   ) {
     super();
   }
@@ -47,32 +49,81 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
     }
   }
 
-  onBuyClick(event: any): void {
-    if (
-      event.target.innerHTML.includes("Buy") ||
-      event.target.innerHTML.includes("Sell")
-    ) {
-      let currentUserId: string = localStorage.getItem("User");
-      let transaction: TransactionToAdd = {
-        stock_Id: this.boardItem.stock_Id,
-        symbol: this.boardItem.symbol,
-        qty: this.boardItem.qty,
-        price: this.boardItem.cost_Basis,
-        seller_User_Id:
-          this.boardItem.status === StockStatus.For_Sale
-            ? this.boardItem.user_Id
-            : Number(currentUserId),
-        buyer_User_Id:
-          this.boardItem.status === StockStatus.For_Purchase
-            ? this.boardItem.user_Id
-            : Number(currentUserId),
-        name: this.boardItem.name,
-      };
+  onBtnClick(event: any): void {
+    let currentUserId: string = localStorage.getItem("User");
 
-      this.transactionService.addTransaction(transaction).subscribe((res) => {
+    // Sell=>Buy transaction
+    if (event.target.innerHTML.includes("Buy")) {
+      //Check ballance
+      let ballance: number;
+      let sub = this.userService.getCurrentUser().subscribe((res) => {
+        console.log("Ok - Current user ballance:", res.ballance);
+        ballance = res.ballance;
+
+        if (ballance >= Number(this.boardItem.cost_Basis)) {
+          // Perform transaction if the ballance is ok
+          this.createTransaction(0);
+        } else {
+          console.log("Insufficient ballance!");
+        }
+        sub.unsubscribe();
+      });
+    } else if (event.target.innerHTML.includes("Sell")) {
+      // Buy=>Sell transaction
+      // Checking if there're any stocks to sell
+      let sub = this.stockService.getStocks().subscribe((res) => {
+        let stockToSell = res.filter((s) => s.symbol === this.boardItem.symbol);
+        if (stockToSell.length > 0) {
+          if (stockToSell[0].qty >= this.boardItem.qty) {
+            // If ok - perform transaction
+            this.createTransaction(stockToSell[0].id);
+          }
+        } else {
+          console.log(
+            `You don't have any ${this.boardItem.symbol} stock to sell!`
+          );
+        }
+        sub.unsubscribe();
+      });
+    } else {
+      console.log(
+        "No transaction was created. Something wrong with button name"
+      );
+    }
+  }
+
+  createTransaction(stockId: number) {
+    let currentUserId: string = localStorage.getItem("User");
+
+    let transaction: TransactionToAdd = {
+      symbol: this.boardItem.symbol,
+      qty: this.boardItem.qty,
+      price: this.boardItem.cost_Basis,
+      seller_User_Id:
+        this.boardItem.status === StockStatus.For_Sale
+          ? this.boardItem.user_Id
+          : Number(currentUserId),
+      seller_Stock_Id:
+        this.boardItem.status === StockStatus.For_Sale
+          ? this.boardItem.stock_Id
+          : stockId,
+      buyer_User_Id:
+        this.boardItem.status === StockStatus.For_Purchase
+          ? this.boardItem.user_Id
+          : Number(currentUserId),
+      buyer_Stock_Id:
+        this.boardItem.status === StockStatus.For_Purchase
+          ? this.boardItem.stock_Id
+          : stockId,
+      name: this.boardItem.name,
+      board_Item_Id: this.boardItem.id,
+    };
+    let sub2 = this.transactionService
+      .addTransaction(transaction)
+      .subscribe((res) => {
         console.log("Ok - addTransaction response:", res);
         this.reloadPage.emit();
+        sub2.unsubscribe();
       });
-    }
   }
 }

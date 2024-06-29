@@ -43,7 +43,7 @@
       class="button type1"
       [id]="boardItem.id"
       *ngIf="boardItem.user_Id !== user_Id"
-      (click)="onBuyClick($event)"
+      (click)="onBtnClick($event)"
     >
       <span class="btn-txt">{{ boardItem.status === 2 ? "Buy" : "Sell" }}</span>
     </button>

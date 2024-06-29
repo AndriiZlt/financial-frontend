@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../models/user.model";
+import { ApiService } from "../../services/api.service";
 
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
-  constructor() {}
+export class UserService extends ApiService {
+  apiName = "User";
+  v = 1;
 
   private userData = new BehaviorSubject<User>(new User());
 
@@ -16,5 +18,9 @@ export class UserService {
 
   getData(): BehaviorSubject<any> {
     return this.userData;
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.get<User>("getuser");
   }
 }
