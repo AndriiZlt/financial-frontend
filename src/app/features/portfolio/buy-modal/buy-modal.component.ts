@@ -89,6 +89,9 @@ export class BuyModalComponent implements OnInit {
         qty: addedStock.qty,
         max_Qty: addedStock.qty,
         status: StockStatus.For_Purchase,
+        total_Price: (
+          Number(addedStock.cost_Basis) * Number(addedStock.qty)
+        ).toString(),
       };
       this.boardService.addBuyToBoard(boardItemToAdd).subscribe((res) => {
         console.log("Ok - New BuyItem added to Board:", res);

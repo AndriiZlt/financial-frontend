@@ -23,25 +23,14 @@
   // color: #fff;
   color: #f9b234;
 }
-.link:hover .item_bg {
-  // -webkit-transform: scale(10);
-  // -ms-transform: scale(10);
-  // transform: scale(10);
-}
 
 .sell-button:hover .date {
   text-decoration: none;
   color: #fff;
 }
 
-// .sell-button:hover .date.item_bg {
-//   -webkit-transform: scale(10);
-//   -ms-transform: scale(10);
-//   transform: scale(10);
-// }
-
 .title {
-  height: 90px;
+  height: 70px;
   min-width: 300px;
   margin: 0 0 25px;
   overflow: hidden;
@@ -186,101 +175,22 @@
   border: none;
 }
 
-// old css
-// .box {
-//   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-//     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+//  ----  Price card
 
-//   width: 730px;
-//   padding: 8px 20px;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: flex-start;
-//   gap: 12px;
-//   background: #97e7e1;
-//   border-radius: 2px;
-//   box-shadow: 0px 0px 0px -8px #111;
-//   color: #141414;
-//   font-weight: 500;
-// }
+.total-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .plan-cost {
+    padding: 0px 10px 20px;
+  }
+  .plan-price {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.4em;
+    color: #34495e;
+  }
+}
 
-// .number {
-//   width: 4%;
-// }
-
-// .symbol {
-//   width: 8%;
-// }
-
-// .name {
-//   font-size: 16px;
-//   width: 65%;
-// }
-
-// .quantity {
-//   width: 8%;
-// }
-
-// .prices {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 30%;
-//   height: 30px;
-// }
-
-// .col-inner {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   .title {
-//     margin: 0;
-//     // color: white;
-//     font-size: 12px;
-//   }
-
-//   .figures {
-//     margin: 0;
-//     // color: white;
-//     font-size: 13px;
-//   }
-// }
-
-// .info__close {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 21px;
-//   height: 21px;
-//   cursor: pointer;
-//   margin-left: auto;
-// }
-
-// .info__close path {
-//   fill: #181717;
-// }
-
-// .spinner {
-//   display: flex;
-//   width: 100%;
-//   height: 20px;
-//   align-items: center;
-//   justify-content: flex-start;
-// }
-
-// .col-arrow {
-//   width: 10px;
-//   height: 10px;
-//   display: flex;
-// }
-
-// .col-arrow img {
-//   height: 100%;
-//   width: 100%;
-//   .container img {
-//     object-fit: contain;
-//   }
-// }
+//  ----  End Price card

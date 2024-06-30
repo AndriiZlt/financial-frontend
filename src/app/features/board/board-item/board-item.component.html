@@ -13,6 +13,14 @@
     <!-- <div class="item_bg"></div> -->
 
     <div class="title">{{ boardItem.symbol }} {{ boardItem.name }}</div>
+    <div class="total-price">
+      <div class="plan-cost">
+        <span class="plan-price"
+          >${{ boardItem.total_Price | number : "1.2-2" }}</span
+        >
+        <!-- <span class="plan-type">/ Monthly</span> -->
+      </div>
+    </div>
 
     <div class="date-box">
       QTY:

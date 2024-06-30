@@ -1,8 +1,17 @@
 <section class="content-header">
-  <h1 style="display: block">
-    Portfolio
-    <small>list of your stocks</small>
-  </h1>
+  <div class="title">
+    <h1 style="display: block">
+      Portfolio
+      <small>list of your assets</small>
+    </h1>
+  </div>
+
+  <div class="ballance">
+    <h1 style="display: block">
+      <small>Ballance</small> ${{ user.ballance | number : "1.0-0" }}
+      <small>+ ${{ stockBallance | number : "1.0-0" }} in stocks</small>
+    </h1>
+  </div>
 
   <button (click)="openBuyModal($event)">
     {{ buyModalOn || sellModalOn ? "Close" : "Buy Stocks" }}
