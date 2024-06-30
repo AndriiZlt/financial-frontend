@@ -9,5 +9,6 @@ export interface BoardItem {
   cost_Basis: string;
   qty: string;
   max_Qty: string;
+  total_Price: string;
   status: StockStatus;
 }

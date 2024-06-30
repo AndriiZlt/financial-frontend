@@ -6,6 +6,7 @@ import { StockStatus } from "../models/StockStatus.model";
 import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
 import { BoardApiService } from "../services/board.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
+import { User } from "src/app/core/auth/models/user.model";
 
 @Component({
   selector: "app-portfolio",
@@ -13,6 +14,8 @@ import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.comp
   styleUrls: ["./portfolio.component.scss"],
 })
 export class PortfolioComponent extends SpinnerComponent implements OnInit {
+  user: User;
+  stockBallance: number;
   stocks: Stock[] = [];
   stock: Stock;
   sellModalStock: Stock;
@@ -25,21 +28,21 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
   stocksToAdd: StockToAdd[] = [
     {
       symbol: "AAPL",
-      name: "Stock name",
+      name: "Apple Inc. Common Stock",
       cost_Basis: "380.4",
       qty: "5",
       status: StockStatus.Fixed,
     },
     {
       symbol: "GOOGL",
-      name: "Stock name",
+      name: "Alphabet Inc. Class A Common Stock",
       cost_Basis: "171.82",
       qty: "4",
       status: StockStatus.Fixed,
     },
     {
       symbol: "TSLA",
-      name: "Stock name",
+      name: "Tesla, Inc. Common Stock",
       cost_Basis: "519.18",
       qty: "3",
       status: StockStatus.Fixed,
@@ -57,7 +60,15 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     this.updatePage();
   }
 
-  addStocks() {
+  calcBallance(): void {
+    let ballance = 0;
+    this.stocks.map((s) => {
+      ballance += Number(s.cost_Basis) * Number(s.qty);
+    });
+    this.stockBallance = ballance;
+  }
+
+  addStocks(): void {
     for (var stock of this.stocksToAdd) {
       let sub = this.stockService.addStock(stock).subscribe((res) => {
         console.log("Added:", res);
@@ -69,16 +80,15 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
   updatePage(): void {
     this.isLoading = true;
+    this.user = JSON.parse(localStorage.getItem("UserObject"));
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = [...res];
-
       console.log("STOCKS:", this.stocks);
+      this.calcBallance();
       this.isLoading = false;
       sub.unsubscribe();
     });
   }
-
-  // create buy modal and implement add item to board and then invoke sellStock
 
   sellStock(stock_id: number, qty_to_sell: number): void {
     let stock: Stock = this.stocks.filter((s) => s.id === stock_id)[0];
@@ -90,22 +100,20 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
       cost_Basis: stock.cost_Basis,
       qty: qty_to_sell.toString(),
       max_Qty: stock.qty,
+      total_Price: (Number(stock.cost_Basis) * qty_to_sell)
+        .toString()
+        .substring(0, 8),
       status: StockStatus.For_Sale,
     };
     let sub = this.boardService
       .addSellToBoard(newBoardItemToAdd)
       .subscribe((res) => {
-        console.log("addSellToBoard res:", res);
-        // setTimeout(() => {
-        //   this.updatePage();
-        //   sub.unsubscribe();
-        // }, 500);
         sub.unsubscribe();
         this.updatePage();
       });
   }
 
-  openBuyModal(event) {
+  openBuyModal(event: any): void {
     if (event.target.innerHTML.includes("Close")) {
       this.buyModalOn = false;
       this.sellModalOn = false;
@@ -121,7 +129,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     this.sellModalOn = true;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.sellModalOn = false;
     this.buyModalOn = false;
     this.updatePage();

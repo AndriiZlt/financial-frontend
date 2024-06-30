@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { LayoutService } from './layout.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class UrlService {
-  constructor(private router: Router, private layoutService: LayoutService) {}
+  constructor(private router: Router,) {}
 
   navigateToLast(): void {
     let lastUrl = localStorage.getItem('lastUrl');
@@ -20,7 +20,6 @@ export class UrlService {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         localStorage.setItem('lastUrl', val.url);
-        this.layoutService.triggerLayoutChange();
       }
     });
   }

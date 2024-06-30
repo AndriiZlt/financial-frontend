@@ -93,6 +93,9 @@ export class SellModalComponent implements OnInit {
       qty: this.selectedQty.toString(),
       max_Qty: this.stock.qty,
       status: StockStatus.For_Sale,
+      total_Price: (
+        Number(this.selectedPrice) * Number(this.selectedQty)
+      ).toString(),
     };
 
     console.log("New Board Item:", newBoardItem);
