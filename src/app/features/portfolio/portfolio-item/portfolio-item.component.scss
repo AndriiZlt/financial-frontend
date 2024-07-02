@@ -13,21 +13,14 @@
   display: block;
   padding: 30px 20px;
   background-color: #3c5772;
-
   overflow: hidden;
-
   position: relative;
 }
+
 .link:hover,
 .link:hover .date {
   text-decoration: none;
-  // color: #fff;
   color: #f9b234;
-}
-.link:hover .item_bg {
-  // -webkit-transform: scale(10);
-  // -ms-transform: scale(10);
-  // transform: scale(10);
 }
 
 .sell-button:hover .date {
@@ -35,55 +28,42 @@
   color: #fff;
 }
 
-// .sell-button:hover .date.item_bg {
-//   -webkit-transform: scale(10);
-//   -ms-transform: scale(10);
-//   transform: scale(10);
-// }
-
 .title {
   height: 90px;
   margin: 0 0 25px;
-
   overflow: hidden;
-  // white-space: wrap;
   text-overflow: ellipsis;
-
   font-weight: bold;
   font-size: 20px;
   color: #fff;
-
   z-index: 2;
   position: relative;
 }
+
 .date-box {
   font-size: 14px;
   color: #fff;
-
   z-index: 2;
   position: relative;
 }
+
 .date {
   font-weight: bold;
-  // color: #f9b234;
   color: #fff;
-
   -webkit-transition: color 0.5s ease;
   -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
+
 .item_bg {
   height: 128px;
   width: 128px;
   background-color: #344c64;
-
   z-index: 1;
   position: absolute;
   top: -75px;
   right: -75px;
-
   border-radius: 50%;
-
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -99,11 +79,16 @@
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 950px) {
+  .stock-list-container {
+    width: 96%;
+  }
+}
+
+@media only screen and (max-width: 639px) {
   .item {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
-    // flex-basis: calc(100%-30px);
   }
   .title {
     min-height: 72px;
@@ -180,4 +165,3 @@
   color: #fff;
   border: none;
 }
-

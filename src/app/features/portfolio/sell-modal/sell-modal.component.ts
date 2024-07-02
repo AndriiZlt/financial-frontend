@@ -100,7 +100,7 @@ export class SellModalComponent implements OnInit {
 
     console.log("New Board Item:", newBoardItem);
 
-    this.boardService.addSellToBoard(newBoardItem).subscribe((res) => {
+    this.boardService.addItemToBoard(newBoardItem).subscribe((res) => {
       console.log("Sell ok:", res);
       this.closeModal.emit("close");
     });

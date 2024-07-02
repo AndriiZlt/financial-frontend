@@ -19,9 +19,10 @@ export class BuyModalComponent implements OnInit {
   selectedStock: Asset;
   isSelected: boolean = false;
   maxPrice: number = 0;
-  currentPrice: number = 0;
-  selectedPrice: number = 0;
+  currentPrice: number;
+  selectedPrice: number;
   selectedQty: number = 1;
+  isLoaded: boolean = false;
   constructor(
     private alpacaService: AlpacaService,
     private stockService: StockApiService,
@@ -33,6 +34,7 @@ export class BuyModalComponent implements OnInit {
   }
 
   onStockSelect(symbol: string): void {
+    this.isLoaded = false;
     let sub = this.alpacaService.getAssetById(symbol).subscribe((res) => {
       console.log("res:", res);
       if (res) {
@@ -56,6 +58,7 @@ export class BuyModalComponent implements OnInit {
         this.currentPrice = res["trade"].p;
         this.selectedPrice = this.currentPrice;
         // this.priceIsLoading = false;
+        this.isLoaded = true;
         sub.unsubscribe();
       });
   }
@@ -72,29 +75,27 @@ export class BuyModalComponent implements OnInit {
     let newStockToBuy: StockToAdd = {
       symbol: this.selectedStock.symbol,
       name: this.selectedStock.name,
-      cost_Basis: this.selectedPrice.toString(),
-      qty: this.selectedQty.toString(),
+      cost_Basis: "0",
+      qty: "0",
       status: StockStatus.For_Purchase,
     };
 
-    this.stockService.addStock(newStockToBuy).subscribe((addedStock) => {
-      console.log("Ok - New Stock created:", addedStock);
+    this.stockService.addEmptyStock(newStockToBuy).subscribe((addedStock) => {
+      console.log("Ok Stock created:", addedStock);
 
       let boardItemToAdd: BoardItemToAdd = {
         stock_Id: addedStock.id,
         user_Id: addedStock.user_Id,
         symbol: addedStock.symbol,
         name: addedStock.name,
-        cost_Basis: addedStock.cost_Basis,
-        qty: addedStock.qty,
+        cost_Basis: this.selectedPrice.toString(),
+        qty: this.selectedQty.toString(),
         max_Qty: addedStock.qty,
         status: StockStatus.For_Purchase,
-        total_Price: (
-          Number(addedStock.cost_Basis) * Number(addedStock.qty)
-        ).toString(),
+        total_Price: (this.selectedPrice * this.selectedQty).toString(),
       };
-      this.boardService.addBuyToBoard(boardItemToAdd).subscribe((res) => {
-        console.log("Ok - New BuyItem added to Board:", res);
+      this.boardService.addItemToBoard(boardItemToAdd).subscribe((res) => {
+        console.log("Ok BuyItem added to Board:", res);
         this.closeModal.emit("close");
       });
     });

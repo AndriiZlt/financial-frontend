@@ -23,4 +23,8 @@ export class UserService extends ApiService {
   getCurrentUser(): Observable<User> {
     return this.get<User>("getuser");
   }
+
+  getUserBallance(): Observable<string> {
+    return this.get<string>("getballance");
+  }
 }

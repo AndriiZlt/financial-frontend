@@ -5,7 +5,6 @@ import { Stock } from "../models/Stock.model";
 import { StockToAdd } from "../models/StockToAdd.model";
 import { StockStatus } from "../models/StockStatus.model";
 
-
 @Injectable({
   providedIn: "root",
 })
@@ -21,8 +20,11 @@ export class StockApiService extends ApiService {
     return this.post<Stock>("addstock", stock);
   }
 
+  addEmptyStock(stock: StockToAdd): Observable<Stock> {
+    return this.post<Stock>("createstock", stock);
+  }
+
   updateStatus(stock: number, status: StockStatus): Observable<Stock> {
     return this.put<Stock>(`updatestatus/${stock}/${status}`, status);
   }
-
 }

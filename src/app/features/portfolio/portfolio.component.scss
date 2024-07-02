@@ -6,25 +6,6 @@
   padding-left: 35px;
 }
 
-.stocks-list-container {
-  display: flex;
-  flex-basis: auto;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  // max-width: 1100px;
-  margin: 0 auto;
-
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 50px 20px;
-  > * {
-    // width: calc(33.33333% - 30px);
-    display: flex;
-    justify-content: center;
-  }
-}
-
 :host {
   width: 100%;
   height: 100%;
@@ -34,11 +15,50 @@
 .content {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   min-height: 803px;
   width: 100%;
-  // height: 100vh;
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    .spinner {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .empty-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // width: 100%;
+    height: 400px;
+    .img {
+      width: 180px;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .stocks-list-container {
+    display: flex;
+    flex-basis: auto;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px 20px;
+  }
 }
 
 .modal-container {
@@ -62,13 +82,13 @@
   .stocks-list-container {
     justify-content: center;
     > * {
-      width: calc(90%);
+      // width: calc(90%);
     }
   }
 }
 
 //Buy button
-button {
+.add-button {
   width: 180px;
   height: 60px;
   border: 3px solid #315cfd;
@@ -80,7 +100,6 @@ button {
   font-weight: 550;
   font-family: "Montserrat", sans-serif;
   color: #24272b;
-  margin-right: 30px;
 }
 
 button:hover {

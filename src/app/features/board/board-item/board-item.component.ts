@@ -98,7 +98,10 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
     let transaction: TransactionToAdd = {
       symbol: this.boardItem.symbol,
       qty: this.boardItem.qty,
-      price: this.boardItem.cost_Basis,
+      cost_Basis: this.boardItem.cost_Basis,
+      total_Price: (
+        Number(this.boardItem.qty) * Number(this.boardItem.cost_Basis)
+      ).toString(),
       seller_User_Id:
         this.boardItem.status === StockStatus.For_Sale
           ? this.boardItem.user_Id

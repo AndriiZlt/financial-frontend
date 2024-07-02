@@ -7,6 +7,7 @@ export interface Transaction {
   board_Item_Id: number;
   symbol: string;
   qty: string;
-  price: string;
+  cost_Basis: string;
+  total_Price: string;
   name: string;
 }

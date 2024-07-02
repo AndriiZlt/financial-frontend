@@ -8,24 +8,18 @@
 
   <div class="ballance">
     <h1 style="display: block">
-      <small>Ballance</small> ${{ user.ballance | number : "1.0-0" }}
+      <small>Ballance</small> ${{ userBallance | number : "1.0-0" }}
       <small>+ ${{ stockBallance | number : "1.0-0" }} in stocks</small>
     </h1>
   </div>
 
-  <button (click)="openBuyModal($event)">
+  <button class="add-button" (click)="openBuyModal($event)">
     {{ buyModalOn || sellModalOn ? "Close" : "Buy Stocks" }}
   </button>
 </section>
 
 <!-- Main content -->
 <section class="content">
-  <button
-    *ngIf="stocks.length === 0 && isLoading == false"
-    (click)="addStocks()"
-  >
-    Add Stocks
-  </button>
   <div class="modal-container" *ngIf="buyModalOn">
     <app-buy-modal (closeModal)="closeModal()"></app-buy-modal>
   </div>
@@ -35,10 +29,25 @@
       (closeModal)="closeModal()"
     ></app-sell-modal>
   </div>
-  <div class="stocks-list-container">
-    <div class="spinner" *ngIf="isLoading">
+
+  <div class="empty-icon" *ngIf="stocks.length === 0 && !isLoading">
+    <div class="img">
+      <img src="../../../assets/no_products_found.png" alt="empty" />
+    </div>
+    <button
+      class="add-button"
+      *ngIf="stocks.length === 0 && !isLoading"
+      (click)="addStocks()"
+    >
+      Add Stocks
+    </button>
+  </div>
+  <div class="spinner-container" *ngIf="isLoading">
+    <div class="spinner">
       <app-spinner></app-spinner>
     </div>
+  </div>
+  <div class="stocks-list-container">
     <app-card
       *ngFor="let stock of stocks"
       [stock]="stock"
