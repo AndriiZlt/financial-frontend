@@ -7,6 +7,7 @@ import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
 import { BoardApiService } from "../services/board.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 import { User } from "src/app/core/auth/models/user.model";
+import { UserService } from "src/app/core/auth/services/user.service";
 
 @Component({
   selector: "app-portfolio",
@@ -16,6 +17,7 @@ import { User } from "src/app/core/auth/models/user.model";
 export class PortfolioComponent extends SpinnerComponent implements OnInit {
   user: User;
   stockBallance: number;
+  userBallance: string;
   stocks: Stock[] = [];
   stock: Stock;
   sellModalStock: Stock;
@@ -51,7 +53,8 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
   constructor(
     private stockService: StockApiService,
-    private boardService: BoardApiService
+    private boardService: BoardApiService,
+    private userService: UserService
   ) {
     super();
   }
@@ -60,34 +63,43 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     this.updatePage();
   }
 
-  calcBallance(): void {
-    let ballance = 0;
-    this.stocks.map((s) => {
-      ballance += Number(s.cost_Basis) * Number(s.qty);
-    });
-    this.stockBallance = ballance;
-  }
-
   addStocks(): void {
     for (var stock of this.stocksToAdd) {
       let sub = this.stockService.addStock(stock).subscribe((res) => {
-        console.log("Added:", res);
         sub.unsubscribe();
       });
     }
+
+    console.log("Stocks were added successfully");
     setTimeout(() => this.updatePage(), 1000);
   }
 
   updatePage(): void {
     this.isLoading = true;
     this.user = JSON.parse(localStorage.getItem("UserObject"));
+
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = [...res];
       console.log("STOCKS:", this.stocks);
-      this.calcBallance();
+      this.updateBallance();
       this.isLoading = false;
       sub.unsubscribe();
     });
+  }
+
+  updateBallance(): void {
+    // Get user ballance
+    this.userService.getUserBallance().subscribe((res) => {
+      console.log("Updated ballance=", res);
+      this.userBallance = res;
+    });
+
+    // Stock ballance
+    let ballance = 0;
+    this.stocks.map((s) => {
+      ballance += Number(s.cost_Basis) * Number(s.qty);
+    });
+    this.stockBallance = ballance;
   }
 
   sellStock(stock_id: number, qty_to_sell: number): void {
@@ -106,7 +118,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
       status: StockStatus.For_Sale,
     };
     let sub = this.boardService
-      .addSellToBoard(newBoardItemToAdd)
+      .addItemToBoard(newBoardItemToAdd)
       .subscribe((res) => {
         sub.unsubscribe();
         this.updatePage();

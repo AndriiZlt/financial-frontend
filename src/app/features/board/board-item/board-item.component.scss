@@ -5,23 +5,23 @@
   border-radius: 4px;
   width: 100%;
   background-color: #3c5772;
-  background-color: #e38a31;
+  min-width: 300px;
+  align-self: center;
+  max-width: 375px;
 }
 
 .link {
   display: block;
   padding: 30px 20px;
   // background-color: #3c5772;
-
   overflow: hidden;
-
   position: relative;
 }
 .link:hover,
 .link:hover .date {
   text-decoration: none;
-  // color: #fff;
-  color: #f9b234;
+  color: #3c5772;
+  font-weight: 600;
 }
 
 .sell-button:hover .date {
@@ -34,49 +34,44 @@
   min-width: 300px;
   margin: 0 0 25px;
   overflow: hidden;
-  // white-space: wrap;
   text-overflow: ellipsis;
   font-weight: bold;
   font-size: 20px;
   color: #fff;
-
   z-index: 2;
   position: relative;
 }
+
 .date-box {
   font-size: 14px;
   color: #fff;
-
   z-index: 2;
   position: relative;
 }
+
 .date {
   font-weight: bold;
-  // color: #f9b234;
   color: #fff;
-
   -webkit-transition: color 0.5s ease;
   -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
+
 .item_bg {
   height: 128px;
   width: 128px;
   background-color: #344c64;
-
   z-index: 1;
   position: absolute;
   top: -75px;
   right: -75px;
-
   border-radius: 50%;
-
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
-@media only screen and (max-width: 979px) {
+@media only screen and (max-width: 1500px)  {
   .item {
     -ms-flex-preferred-size: calc(50% - 30px);
     flex-basis: calc(50% - 30px);
@@ -91,6 +86,7 @@
     width: 96%;
   }
 }
+
 @media only screen and (max-width: 639px) {
   .item {
     -ms-flex-preferred-size: 100%;

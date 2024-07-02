@@ -16,15 +16,15 @@ export class BoardApiService extends ApiService {
     return this.get<BoardItem[]>("getboard");
   }
 
-  addSellToBoard(itemToAdd: BoardItemToAdd): Observable<BoardItem> {
+  addItemToBoard(itemToAdd: BoardItemToAdd): Observable<BoardItem> {
     return this.post<BoardItem>(`addboard`, itemToAdd);
   }
 
   removeSellFromBoard() {}
 
-  addBuyToBoard(stockToAdd: BoardItemToAdd): Observable<BoardItem> {
-    return this.post<BoardItem>(`addboard`, stockToAdd);
-  }
+  // addBuyToBoard(stockToAdd: BoardItemToAdd): Observable<BoardItem> {
+  //   return this.post<BoardItem>(`addboard`, stockToAdd);
+  // }
 
   removeBuyFromBoard() {}
 }
