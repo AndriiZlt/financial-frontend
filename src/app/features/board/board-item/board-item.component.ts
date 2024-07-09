@@ -20,7 +20,7 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   currentPrice: string;
   nameIsLoading: boolean = true;
   priceIsLoading: boolean = true;
-  user_Id: number;
+  user_id: number;
   status: string = "";
 
   constructor(
@@ -32,7 +32,10 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user_Id = Number(localStorage.getItem("User"));
+    let user = localStorage.getItem("UserObject");
+    if (user) {
+      this.user_id = Number(JSON.parse(user).id);
+    }
 
     switch (this.boardItem.status) {
       case 2:
@@ -50,8 +53,6 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   }
 
   onBtnClick(event: any): void {
-    let currentUserId: string = localStorage.getItem("User");
-
     // Sell=>Buy transaction
     if (event.target.innerHTML.includes("Buy")) {
       //Check ballance
@@ -93,8 +94,6 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   }
 
   createTransaction(stockId: number) {
-    let currentUserId: string = localStorage.getItem("User");
-
     let transaction: TransactionToAdd = {
       symbol: this.boardItem.symbol,
       qty: this.boardItem.qty,
@@ -105,7 +104,7 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
       seller_User_Id:
         this.boardItem.status === StockStatus.For_Sale
           ? this.boardItem.user_Id
-          : Number(currentUserId),
+          : this.user_id,
       seller_Stock_Id:
         this.boardItem.status === StockStatus.For_Sale
           ? this.boardItem.stock_Id
@@ -113,7 +112,7 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
       buyer_User_Id:
         this.boardItem.status === StockStatus.For_Purchase
           ? this.boardItem.user_Id
-          : Number(currentUserId),
+          : this.user_id,
       buyer_Stock_Id:
         this.boardItem.status === StockStatus.For_Purchase
           ? this.boardItem.stock_Id

@@ -50,12 +50,12 @@
     <button
       class="button type1"
       [id]="boardItem.id"
-      *ngIf="boardItem.user_Id !== user_Id"
+      *ngIf="boardItem.user_Id !== user_id"
       (click)="onBtnClick($event)"
     >
       <span class="btn-txt">{{ boardItem.status === 2 ? "Buy" : "Sell" }}</span>
     </button>
-    <button class="button type1" *ngIf="boardItem.user_Id == user_Id" disabled>
+    <button class="button type1" *ngIf="boardItem.user_Id == user_id" disabled>
       <span class="btn-txt">Yours</span>
     </button>
   </div>

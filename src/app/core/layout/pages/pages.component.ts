@@ -1,5 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { HubConnectionService } from "../../services/hub-connection.service";
+import {
+  Notification,
+  NotificationStatus,
+} from "../../models/Notification.model";
+import { NotificationApiService } from "../../services/notification.service";
+import { UserService } from "../../auth/services/user.service";
+import { User } from "../../auth/models/user.model";
+import { StateService } from "../../services/state.service";
 
 declare var $;
 
@@ -10,18 +18,22 @@ declare var $;
 })
 export class PagesComponent implements OnInit {
   signalRStatus: string = "";
-  constructor(private signalrService: HubConnectionService) {}
+  user: User;
+
+  constructor(
+    private signalrService: HubConnectionService,
+    private userService: UserService,
+    private stateService: StateService
+  ) {}
 
   ngOnInit() {
-    this.signalrService.startConnection();
-    this.signalrService.getData().subscribe((param: any) => {
-      this.signalRStatus = param.text;
-
-      this.signalrService.saveId(Number(Date.now().toString().slice(6, 12)));
-
-      console.log("signalRStatus", this.signalRStatus);
-    });
     window.dispatchEvent(new Event("resize"));
     $("body").addClass("hold-transition skin-blue sidebar-mini");
+
+    this.signalrService.startConnection();
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.stateService.setUser(<User>user);
+      this.user = user;
+    });
   }
 }

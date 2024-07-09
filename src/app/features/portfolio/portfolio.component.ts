@@ -76,7 +76,10 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
   updatePage(): void {
     this.isLoading = true;
-    this.user = JSON.parse(localStorage.getItem("UserObject"));
+    let user = localStorage.getItem("UserObject");
+    if (user) {
+      this.user = JSON.parse(user);
+    }
 
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = [...res];

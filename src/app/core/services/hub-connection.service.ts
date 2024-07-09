@@ -9,13 +9,16 @@ import { environment } from "src/environments/environment";
 })
 export class HubConnectionService {
   connection: signalR.HubConnection;
-  message$?: Observable<string>;
-  private signalStatus = new Subject<any>();
-  private updateData!: () => void;
-  private _apiUrl;
+  private notificationChange = new Subject<string>();
+  user_id: string;
+  private _apiUrl: string;
 
   constructor(private http: HttpClient) {
     this._apiUrl = environment.apiUrl;
+    let user = localStorage.getItem("UserObject");
+    if (user) {
+      this.user_id = JSON.parse(user).id;
+    }
   }
 
   startConnection = async () => {
@@ -30,41 +33,26 @@ export class HubConnectionService {
       .start()
       .then(() => {
         this.connection.on("status", (res) => {
-          this.sendData("connected");
+          console.log(`SignalR status:${res}`);
+          this.registerUserId(this.user_id);
+          this.notificationChangeListenerOn();
         });
-        this.serverListenerOn();
       })
       .catch((err) => console.log("Error while starting connection:", err));
   };
 
-  onDataUpdate(fn: () => void) {
-    this.updateData = fn;
-  }
-
-  saveId(userId: number) {
+  registerUserId(userId: string) {
     this.connection.invoke("Register", userId).catch((e) => console.log(e));
   }
 
-  serverListenerOn() {
-    this.connection.on("recieveMessage", (res) => {
-      console.log("Signal message:", res);
-      this.message$ = res;
-      // this.updateData();
+  notificationChangeListenerOn() {
+    this.connection.on("NewNotification", (res) => {
+      console.log("SignalR New Notification:", res);
+      this.notificationChange.next(res);
     });
   }
 
-  sendMessage(targetUserId: string, message: string) {
-    this.connection
-      .invoke("SendMessage", targetUserId, message)
-      .catch((e) => console.log(e));
-  }
-
-  // Observable service
-  sendData(data: any) {
-    this.signalStatus.next({ text: data });
-  }
-
-  getData(): Observable<any> {
-    return this.signalStatus.asObservable();
+  getNotificationObservable(): Observable<string> {
+    return this.notificationChange.asObservable();
   }
 }

@@ -1,20 +1,20 @@
 export interface Notification {
   id: number;
   user_id: number;
-  type: notificationType;
+  type: NotificationType;
   text: string;
   date_created: string;
-  status: notificationStatus;
+  status: NotificationStatus;
 }
 
-export enum notificationType {
+export enum NotificationType {
   General = 1,
   Sell_Transaction = 2,
   Buy_Transaction = 3,
   Message = 4,
 }
 
-export enum notificationStatus {
+export enum NotificationStatus {
   Unread = 1,
   Read = 2,
 }
