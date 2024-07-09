@@ -4,6 +4,7 @@ import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
 import { UserService } from "../services/user.service";
+import { StateService } from "../../services/state.service";
 
 @Component({
   selector: "app-login",
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private stateService: StateService
   ) {}
 
   ngOnInit() {}
@@ -39,11 +41,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(loginDto: Login) {
     let subscription = this.authService.login(loginDto).subscribe((user) => {
       this.user = user;
+      this.stateService.setUser(<User>user);
       console.log("User:", user);
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("User", user.id);
       localStorage.setItem("UserObject", JSON.stringify(this.user));
-      localStorage.setItem("Username", `${user.name} ${user.userName}`);
       this.router.navigate(["finapp"]);
       this.userService.saveData(this.user);
       subscription.unsubscribe();

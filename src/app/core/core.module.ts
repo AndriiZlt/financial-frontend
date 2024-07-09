@@ -7,6 +7,7 @@ import { SettingsComponent } from "./components/settings/settings.component";
 import { AuthModule } from "./auth/auth.module";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
+import { NotificationPipe } from "./pipes/sort.pipe";
 
 @NgModule({
   declarations: [
@@ -14,13 +15,9 @@ import { RouterModule } from "@angular/router";
     FooterComponent,
     SideNavComponent,
     SettingsComponent,
+    NotificationPipe,
   ],
-  imports: [
-    CommonModule,
-    AuthModule,
-    HttpClientModule,
-    RouterModule
-  ],
+  imports: [CommonModule, AuthModule, HttpClientModule, RouterModule],
   exports: [
     HeaderComponent,
     FooterComponent,
