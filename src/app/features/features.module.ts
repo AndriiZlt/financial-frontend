@@ -8,6 +8,8 @@ import { BoardItemComponent } from "./board/board-item/board-item.component";
 import { BuyModalComponent } from "./portfolio/buy-modal/buy-modal.component";
 import { PortfolioItemComponent } from "./portfolio/portfolio-item/portfolio-item.component";
 import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component";
+import { AlpacaTradingComponent } from "./alpaca/alpaca-trading.component";
+import { MaterialModule } from "../shared/modules/material-module";
 
 @NgModule({
   declarations: [
@@ -17,10 +19,9 @@ import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component"
     BoardItemComponent,
     BuyModalComponent,
     SellModalComponent,
+    AlpacaTradingComponent,
   ],
-  imports: [CommonModule, SharedModule, FormsModule],
-  providers: [
-    DatePipe
-  ],
+  imports: [CommonModule, FormsModule, SharedModule],
+  providers: [DatePipe],
 })
 export class FeaturesModule {}

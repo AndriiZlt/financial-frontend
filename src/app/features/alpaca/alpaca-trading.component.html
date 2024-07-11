@@ -1,0 +1,117 @@
+
+ <div class="alpaca-trading-container">
+//Top
+    <div class="top-row">
+      <div class="top-column column-1">
+        <h4 *ngIf="assets.length === 0">Updating assets...</h4>
+        <h4 *ngIf="assets.length != 0">Select Asset</h4>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              [placeholder]="assets.length === 0 ? 'Please wait...' : 'Pick one'"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+              style="width: 100"
+              [value]="inputValue"
+              (ngModelChange)="onInputChange($event)"
+            />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="onSelectionChange($event)"
+            >
+              <mat-option *ngFor="let asset of filteredAssets" [value]="asset">
+                {{ asset }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+        <div class="clear-btn-div" (click)="clearSelect()">
+          <button class="delete-button">
+            <svg viewBox="0 0 448 512" class="svgIcon">
+              <path
+                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="top-column column-2">
+        <h4>Price</h4>
+        <div class="inputGroup">
+          <input
+            type="number"
+            required=""
+            autocomplete="off"
+            [(ngModel)]="selectedPrice"
+            [style]="
+              selectedPrice > 0 ? 'border-color:#006bb3' : 'border-color:#c8c8c8'
+            "
+          />
+          <label for="">$</label>
+        </div>
+      </div>
+      <div class="top-column column-3">
+        <h4>Quantity</h4>
+        <div class="number-control">
+          <div
+            class="number-left"
+            (click)="quantity > 1 && (quantity = quantity - 1)"
+          ></div>
+          <input
+            type="number"
+            name="number"
+            class="number-quantity"
+            [(value)]="quantity"
+          />
+          <div class="number-right" (click)="quantity = quantity + 1"></div>
+        </div>
+      </div>
+      <div class="top-column column-4">
+        <button
+          class="button"
+          [disabled]="buttonDisabled"
+          [style]="
+            buttonDisabled
+              ? 'background-color:grey'
+              : 'background-color:rgb(0 107 179)'
+          "
+          (click)="buyAsset()"
+        >
+          Buy Now
+          <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
+            <path
+              clip-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  //Bottom
+    <div class="bottom">
+      <div class="left">
+        <h5>Transactions history</h5>
+        <div class="my-assets-list">
+          <app-transaction-card
+            *ngFor="let transaction of transactions"
+            [transaction]="transaction"
+          ></app-transaction-card>
+        </div>
+      </div>
+      <div class="right">
+        <h5>Pending orders</h5>
+        <div class="my-assets-list">
+          <app-order-card
+            *ngFor="let order of orders"
+            [order]="order"
+            (closeOrder)="closeOrder($event)"
+          ></app-order-card>
+        </div>
+      </div>
+    </div>
+  </div> 

@@ -87,8 +87,6 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
     // MatTooltipModule,
     // MatTreeModule,
     PortalModule,
