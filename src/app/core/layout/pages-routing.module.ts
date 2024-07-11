@@ -4,6 +4,7 @@ import { PagesComponent } from "./pages/pages.component";
 import { PortfolioComponent } from "src/app/features/portfolio/portfolio.component";
 import { BoardComponent } from "src/app/features/board/board.component";
 import { BuyModalComponent } from "src/app/features/portfolio/buy-modal/buy-modal.component";
+import { AlpacaTradingComponent } from "src/app/features/alpaca/alpaca-trading.component";
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: "alpaca",
-    component: PortfolioComponent,
+    component: AlpacaTradingComponent,
   },
   {
     path: "buy-modal",

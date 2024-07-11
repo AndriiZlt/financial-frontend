@@ -15,7 +15,7 @@ import { AuthInterceptor } from "./core/auth/services/auth.interceptor";
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    FeaturesModule,
+    FeaturesModule
   ],
   providers: [
     {

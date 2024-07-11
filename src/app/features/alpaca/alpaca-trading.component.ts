@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { AlpacaService } from "../services/alpaca.service";
@@ -42,7 +42,9 @@ export class AlpacaTradingComponent implements OnInit {
           this.assets.push(data[item]);
         }
       }
+
       this.filteredAssets = this.assets.map((asset) => asset.name);
+      console.log("filteredAssets:", this.filteredAssets);
       subscription.unsubscribe();
     });
 
@@ -54,7 +56,6 @@ export class AlpacaTradingComponent implements OnInit {
 
   updatePage() {
     this.orders = [];
-    this.transactions = [];
     let subscription = this.alpacaService.getOrders().subscribe((res) => {
       for (const item in res) {
         this.orders.push(res[item]);
@@ -62,6 +63,7 @@ export class AlpacaTradingComponent implements OnInit {
       subscription.unsubscribe();
     });
 
+    this.transactions = [];
     let subscription2 = this.alpacaService.getActivity().subscribe((res) => {
       for (const item in res) {
         if (res[item].activity_type === "FILL") {
