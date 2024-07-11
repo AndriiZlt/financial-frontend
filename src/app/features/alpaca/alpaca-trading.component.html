@@ -12,20 +12,28 @@
             aria-label="Number"
             matInput
             [formControl]="myControl"
-            [matAutocomplete]="auto"
             style="width: 100"
             [value]="inputValue"
             (ngModelChange)="onInputChange($event)"
+            (focus)="inputFocusHandler()"
+            (focusout)="inputFocusHandler()"
           />
-          <mat-autocomplete
+          <!-- <mat-autocomplete
             #auto="matAutocomplete"
             (optionSelected)="onSelectionChange($event)"
-          >
-            <mat-option *ngFor="let asset of assets" [value]="asset">
-              {{ asset }}
-            </mat-option>
-          </mat-autocomplete>
+          > -->
+
+          <!-- </mat-autocomplete> -->
         </mat-form-field>
+        <div class="options" *ngIf="isFocused && assets.length > 0">
+          <option
+            class="option"
+            *ngFor="let asset of filteredAssets"
+            [value]="asset"
+          >
+            {{ asset }}
+          </option>
+        </div>
       </form>
       <div class="clear-btn-div" (click)="clearSelect()">
         <button class="delete-button">

@@ -7,6 +7,7 @@ import { SharedModule } from "./shared/shared.module";
 import { FeaturesModule } from "./features/features.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./core/auth/services/auth.interceptor";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,13 +16,17 @@ import { AuthInterceptor } from "./core/auth/services/auth.interceptor";
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    FeaturesModule
+    FeaturesModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: "fill" },
     },
   ],
   bootstrap: [AppComponent],

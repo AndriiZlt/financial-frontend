@@ -11,6 +11,7 @@ import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component"
 import { AlpacaTradingComponent } from "./alpaca/alpaca-trading.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../shared/modules/material-module";
+import { TestComponent } from "./test/test.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MaterialModule } from "../shared/modules/material-module";
     BuyModalComponent,
     SellModalComponent,
     AlpacaTradingComponent,
+    TestComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { MaterialModule } from "../shared/modules/material-module";
     ReactiveFormsModule,
     SharedModule,
     BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [DatePipe],
 })

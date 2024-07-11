@@ -28,6 +28,7 @@ export class AlpacaTradingComponent implements OnInit {
   myControl = new FormControl();
   buttonDisabled: boolean = true;
   inputDisabled: boolean = true;
+  isFocused: boolean = false;
 
   constructor(private alpacaService: AlpacaService, private http: HttpClient) {
     this.nasdaq100 = nasdaq100.get();
@@ -44,7 +45,7 @@ export class AlpacaTradingComponent implements OnInit {
       }
 
       this.filteredAssets = this.assets.map((asset) => asset.name);
-      console.log("filteredAssets:", this.filteredAssets);
+      // console.log("filteredAssets:", this.filteredAssets);
       subscription.unsubscribe();
     });
 
@@ -75,6 +76,7 @@ export class AlpacaTradingComponent implements OnInit {
   }
 
   onSelectionChange(event: any): void {
+    console.log(event);
     this.selectedAsset = this.assets.filter(
       (a) => a.name == event.option.value
     )[0];
@@ -100,6 +102,10 @@ export class AlpacaTradingComponent implements OnInit {
       .map((asset) => asset.name);
   }
 
+  inputFocusHandler(): void {
+    this.isFocused = this.isFocused === true ? false : true;
+  }
+
   clearSelect(): void {
     this.inputValue = "";
     this.selectedPrice = null;
@@ -108,7 +114,7 @@ export class AlpacaTradingComponent implements OnInit {
     this.filteredAssets = this.assets.map((asset) => asset.name);
   }
 
-  buyAsset() {
+  buyAsset(): void {
     let orderToCreate: AssetToBuy = {
       symbol: this.selectedAsset["symbol"],
       qty: this.quantity.toString(),
@@ -127,7 +133,7 @@ export class AlpacaTradingComponent implements OnInit {
       });
   }
 
-  closeOrder(order_id: any) {
+  closeOrder(order_id: any): void {
     let subscription = this.alpacaService
       .closeOrder(order_id)
       .subscribe((res) => {

@@ -19,7 +19,7 @@
     width: 100%;
     max-width: 1800px;
     padding: 15px;
-    background-color: rgba(242, 251, 253, 1);
+    background-color: #304463;
     border-radius: 7px;
 
     .top-column {
@@ -46,9 +46,43 @@
       width: 60%;
 
       .example-form {
+        position: relative;
         min-width: 150px;
         // max-width: 500px;
         width: 100%;
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+          border-radius: 8px;
+          background-color: #e7e7e7;
+          border: 1px solid #cacaca;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          background-color: #304463;
+        }
+        .options {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 80px;
+          display: block;
+          padding: 20px 20px;
+          background-color: #233248;
+          border-radius: 5px;
+          height: 100vw;
+          max-height: 300px;
+          overflow-y: scroll;
+          .option {
+            display: block;
+            height: 25px;
+            margin-bottom: 5px;
+            font-size: 12px;
+          }
+        }
       }
 
       .example-full-width {
