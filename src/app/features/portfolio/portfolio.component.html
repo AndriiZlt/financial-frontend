@@ -48,12 +48,17 @@
     </div>
   </div>
   <div class="stocks-list-container">
-    <app-card
+    <app-stock-card
       *ngFor="let stock of stocks"
       [stock]="stock"
       [index]="stocks.indexOf(stock)"
       (sellStock)="openSellModal($event)"
-    ></app-card>
+    ></app-stock-card>
+    <app-alpaca-stock
+      *ngFor="let position of positions"
+      [position]="position"
+      [index]="positions.indexOf(position)"
+    ></app-alpaca-stock>
   </div>
 </section>
 

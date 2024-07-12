@@ -20,8 +20,8 @@ export class AlpacaTradingComponent implements OnInit {
   transactions: AlpacaTransaction[] = [];
   assets: Asset[] = [];
   nasdaq100: string[];
-  filteredAssets: string[];
-  selectedAsset = new Object();
+  filteredAssets: Asset[];
+  selectedAsset: Asset;
   selectedPrice: number;
   quantity: number = 1;
   inputValue: string;
@@ -44,8 +44,8 @@ export class AlpacaTradingComponent implements OnInit {
         }
       }
 
-      this.filteredAssets = this.assets.map((asset) => asset.name);
-      // console.log("filteredAssets:", this.filteredAssets);
+      this.filteredAssets = this.assets;
+      console.log("filteredAssets:", this.filteredAssets);
       subscription.unsubscribe();
     });
 
@@ -58,6 +58,7 @@ export class AlpacaTradingComponent implements OnInit {
   updatePage() {
     this.orders = [];
     let subscription = this.alpacaService.getOrders().subscribe((res) => {
+      console.log("Orders:", res);
       for (const item in res) {
         this.orders.push(res[item]);
       }
@@ -75,31 +76,28 @@ export class AlpacaTradingComponent implements OnInit {
     });
   }
 
-  onSelectionChange(event: any): void {
-    console.log(event);
-    this.selectedAsset = this.assets.filter(
-      (a) => a.name == event.option.value
-    )[0];
-
+  onSelectionChange(asset_id: string): void {
+    console.log(asset_id);
+    this.selectedAsset = this.assets.filter((a) => a.id === asset_id)[0];
+    this.inputValue =
+      this.selectedAsset.symbol + " - " + this.selectedAsset.name;
     this.buttonDisabled = false;
 
-    let subscriprion = this.alpacaService
+    let subscription = this.alpacaService
       .getLastTrades(this.selectedAsset["symbol"])
       .subscribe((res) => {
         this.selectedPrice = Number(parseFloat(res["trade"].p).toFixed(2));
-        subscriprion.unsubscribe();
+        subscription.unsubscribe();
       });
   }
 
   onInputChange(event: string): void {
     this.inputValue = event;
-    this.filteredAssets = this.assets
-      .filter(
-        (a) =>
-          a.name.toLowerCase().includes(event.toLowerCase()) ||
-          a.symbol.toLowerCase().includes(event.toLowerCase())
-      )
-      .map((asset) => asset.name);
+    this.filteredAssets = this.assets.filter(
+      (a) =>
+        a.name.toLowerCase().includes(event.toLowerCase()) ||
+        a.symbol.toLowerCase().includes(event.toLowerCase())
+    );
   }
 
   inputFocusHandler(): void {
@@ -111,7 +109,7 @@ export class AlpacaTradingComponent implements OnInit {
     this.selectedPrice = null;
     this.selectedAsset = null;
     this.buttonDisabled = true;
-    this.filteredAssets = this.assets.map((asset) => asset.name);
+    this.filteredAssets = this.assets;
   }
 
   buyAsset(): void {

@@ -1,0 +1,34 @@
+<div class="order-card">
+  <div class="side">{{ order.side }}</div>
+  <div class="col-info">
+    <div class="symbol">{{ order.symbol }}</div>
+    <div class="name">{{ orderName }}</div>
+  </div>
+
+  <div class="quantity">
+    <div class="col-inner">
+      <p class="title">QTY</p>
+      <p class="figures">{{ order.qty }}</p>
+    </div>
+  </div>
+
+  <div class="prices">
+    <div class="col-inner">
+      <p class="title">BUY AT</p>
+      <p class="figures">${{ order["limit_price"] }}</p>
+    </div>
+    <div class="col-arrow"></div>
+    <div class="col-inner">
+      <p class="title">CURRENT</p>
+      <p class="figures">${{ currentPrice }}</p>
+    </div>
+  </div>
+
+  <div class="info__close" (click)="cancelOrder()">
+    <svg height="20" viewBox="0 0 20 20" width="20">
+      <path
+        d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z "
+      ></path>
+    </svg>
+  </div>
+</div>

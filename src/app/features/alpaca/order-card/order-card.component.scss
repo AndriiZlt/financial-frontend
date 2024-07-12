@@ -1,0 +1,89 @@
+.order-card {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 58px;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  background: #a0e9ff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px -3px #111;
+  color: #141414;
+  font-weight: 400;
+
+  .side {
+    width: 8%;
+  }
+
+  .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+
+  .col-info {
+    width: 60%;
+    .asset_info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 7px;
+      font-size: 14px;
+    }
+  }
+
+  .symbol {
+    font-size: 14px;
+  }
+
+  .quantity {
+    width: 6%;
+  }
+
+  .prices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 27%;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+.col-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    margin: 0;
+    font-size: 10px;
+  }
+
+  .figures {
+    margin: 0;
+    font-size: 10px;
+  }
+}
+
+.info__close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.info__close path {
+  fill: #181717;
+}

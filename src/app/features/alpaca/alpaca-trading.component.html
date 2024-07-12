@@ -12,27 +12,20 @@
             aria-label="Number"
             matInput
             [formControl]="myControl"
-            style="width: 100"
             [value]="inputValue"
             (ngModelChange)="onInputChange($event)"
             (focus)="inputFocusHandler()"
             (focusout)="inputFocusHandler()"
           />
-          <!-- <mat-autocomplete
-            #auto="matAutocomplete"
-            (optionSelected)="onSelectionChange($event)"
-          > -->
-
-          <!-- </mat-autocomplete> -->
         </mat-form-field>
         <div class="options" *ngIf="isFocused && assets.length > 0">
-          <option
+          <p
             class="option"
             *ngFor="let asset of filteredAssets"
-            [value]="asset"
+            (mousedown)="onSelectionChange(asset.id)"
           >
-            {{ asset }}
-          </option>
+            {{ asset.symbol }} - {{ asset.name }}
+          </p>
         </div>
       </form>
       <div class="clear-btn-div" (click)="clearSelect()">
@@ -104,20 +97,20 @@
     <div class="left">
       <h5>Transactions history</h5>
       <div class="my-assets-list">
-        <!-- <app-transaction-card
-            *ngFor="let transaction of transactions"
-            [transaction]="transaction"
-          ></app-transaction-card> -->
+        <app-transaction-card
+          *ngFor="let transaction of transactions"
+          [transaction]="transaction"
+        ></app-transaction-card>
       </div>
     </div>
     <div class="right">
       <h5>Pending orders</h5>
       <div class="my-assets-list">
-        <!-- <app-order-card
+        <app-order-card
           *ngFor="let order of orders"
           [order]="order"
           (closeOrder)="closeOrder($event)"
-        ></app-order-card> -->
+        ></app-order-card>
       </div>
     </div>
   </div>

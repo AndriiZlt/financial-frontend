@@ -67,7 +67,6 @@
         .options {
           position: absolute;
           left: 0;
-          right: 0;
           top: 80px;
           display: block;
           padding: 20px 20px;
@@ -76,6 +75,7 @@
           height: 100vw;
           max-height: 300px;
           overflow-y: scroll;
+          cursor: pointer;
           .option {
             display: block;
             height: 25px;
@@ -162,7 +162,6 @@
         margin: 4px 0 0 0;
         max-width: 110px;
         position: relative;
-        // height: 45.33px;
       }
 
       .inputGroup input {
@@ -187,7 +186,6 @@
         transition: all 0.3s ease;
         color: rgb(100, 100, 100);
         // transform: translateY(-50%) scale(0.9);
-        background-color: rgba(242, 251, 253, 1);
         width: 20px;
       }
 
@@ -340,8 +338,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      width: 49%;
-      height: 100%;
+      // width: 49%;
+      // height: 100%;
     }
 
     .right {
@@ -349,8 +347,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 100%;
-      width: 51%;
+      // height: 100%;
+      // width: 51%;
     }
     h5 {
       font-family: "Roboto", sans-serif;
@@ -367,6 +365,9 @@
       align-items: center;
       justify-content: flex-start;
       gap: 8px;
+      > * {
+        width: 100%;
+      }
     }
 
     @media screen and (max-width: 1000px) {

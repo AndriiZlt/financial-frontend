@@ -10,6 +10,7 @@ import { Transaction } from "../models/Transaction.model";
 import { Bar } from "../models/Bar.model";
 import { Account } from "../models/Account.model";
 import { Order } from "../models/Order.model";
+import { Position } from "../models/Positions.model";
 
 @Injectable({
   providedIn: "root",
@@ -35,8 +36,8 @@ export class AlpacaService extends ApiService {
     });
   }
 
-  getPositions(): Observable<Stock[]> {
-    return this.get<Stock[]>(`positions`, {
+  getPositions(): Observable<Position[]> {
+    return this.get<Position[]>(`positions`, {
       headers: this.headers,
     });
   }
