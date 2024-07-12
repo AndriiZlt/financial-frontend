@@ -1,0 +1,33 @@
+<div
+  class="transaction-card"
+  [style]="
+    transaction.side === 'buy'
+      ? 'background-color:#e1f0da'
+      : 'background-color:#ed9ec9'
+  "
+>
+  <div class="side">{{ transaction.side }}</div>
+
+  <div class="col-info">
+    <p class="date">{{ date }}</p>
+    <div class="asset_info">
+      <div class="symbol">{{ transaction.symbol }}</div>
+      <div class="name" *ngIf="!isLoading">{{ name }}</div>
+      <div class="spinner" *ngIf="isLoading"><app-spinner></app-spinner></div>
+    </div>
+  </div>
+
+  <div class="quantity">
+    <div class="col-inner">
+      <p class="title">QTY</p>
+      <p class="figures">{{ transaction.qty }}</p>
+    </div>
+  </div>
+
+  <div class="prices">
+    <div class="col-inner">
+      <p class="title">PRICE</p>
+      <p class="figures">${{ transaction.price }}</p>
+    </div>
+  </div>
+</div>

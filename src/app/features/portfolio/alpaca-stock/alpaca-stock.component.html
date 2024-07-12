@@ -1,0 +1,28 @@
+<div class="card">
+  <a href="#" class="link">
+    <!-- <div class="item_bg"></div> -->
+
+    <div class="title">{{ position.symbol }} {{ position.name }}</div>
+
+    <div class="date-box">
+      QTY:
+      <span class="date"> {{ position.qty }} </span>
+    </div>
+    <div class="date-box">
+      Price:
+      <span class="date"> {{ position.cost_Basis }} </span><span> </span>
+    </div>
+    <div class="date-box">
+      Status:
+      <span class="date"> {{ this.status }} </span>
+    </div>
+  </a>
+
+  <div
+    class="alpaca-icon"
+    [id]="position.asset_Id"
+    (click)="onSellClick($event)"
+  >
+    <img src="../../../../assets/alpaca-icon.png" alt="alpaca-icon" />
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { BoardApiService } from "../services/board.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 import { User } from "src/app/core/auth/models/user.model";
 import { UserService } from "src/app/core/auth/services/user.service";
+import { Position } from "../models/Positions.model";
+import { AlpacaService } from "../services/alpaca.service";
 
 @Component({
   selector: "app-portfolio",
@@ -50,11 +52,13 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
       status: StockStatus.Fixed,
     },
   ];
+  positions: Position[];
 
   constructor(
     private stockService: StockApiService,
     private boardService: BoardApiService,
-    private userService: UserService
+    private userService: UserService,
+    private alpacaService: AlpacaService
   ) {
     super();
   }
@@ -82,10 +86,16 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     }
 
     let sub = this.stockService.getStocks().subscribe((res) => {
-      this.stocks = [...res];
+      this.stocks = <Stock[]>res;
       console.log("STOCKS:", this.stocks);
       this.updateBallance();
-      this.isLoading = false;
+
+      let sub2 = this.alpacaService.getPositions().subscribe((res) => {
+        this.positions = <Position[]>res;
+        console.log("POSITIONS:", this.positions);
+        this.isLoading = false;
+        sub2.unsubscribe();
+      });
       sub.unsubscribe();
     });
   }

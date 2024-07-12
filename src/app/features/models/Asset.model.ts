@@ -1,7 +1,7 @@
 export interface Asset {
-  exchange: string;
-  symbol: string;
   id: string;
+  symbol: string;
   name: string;
+  exchange: string;
   tradable: boolean;
 }
