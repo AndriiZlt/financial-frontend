@@ -24,6 +24,12 @@ export class AlpacaStockComponent extends SpinnerComponent implements OnInit {
 
   ngOnInit(): void {
     this.status = "Alpaca";
+    let sub = this.alpacaService
+      .getAssetById(this.position.asset_Id)
+      .subscribe((res) => {
+        this.position.name = res.name;
+        sub.unsubscribe();
+      });
   }
 
   onSellClick(event: any): void {

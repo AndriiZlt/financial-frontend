@@ -17,7 +17,7 @@ export class AlpacaTradingComponent implements OnInit {
   mainUserId: string = "d986b6ed-afda-464b-afb7-07e6fa9d7227";
   clientId: string = "d6a7ad49-7d27-47f8-99de-b87f61b6b024";
   orders: Order[] = [];
-  transactions: AlpacaTransaction[] = [];
+  alpacaTransactions: AlpacaTransaction[] = [];
   assets: Asset[] = [];
   nasdaq100: string[];
   filteredAssets: Asset[];
@@ -45,7 +45,6 @@ export class AlpacaTradingComponent implements OnInit {
       }
 
       this.filteredAssets = this.assets;
-      console.log("filteredAssets:", this.filteredAssets);
       subscription.unsubscribe();
     });
 
@@ -55,7 +54,7 @@ export class AlpacaTradingComponent implements OnInit {
     });
   }
 
-  updatePage() {
+  updatePage(): void {
     this.orders = [];
     let subscription = this.alpacaService.getOrders().subscribe((res) => {
       console.log("Orders:", res);
@@ -65,13 +64,14 @@ export class AlpacaTradingComponent implements OnInit {
       subscription.unsubscribe();
     });
 
-    this.transactions = [];
     let subscription2 = this.alpacaService.getActivity().subscribe((res) => {
+      // this.alpacaTransactions=<AlpacaTransaction[]>res);
       for (const item in res) {
         if (res[item].activity_type === "FILL") {
-          this.transactions.push(res[item]);
+          this.alpacaTransactions.push(res[item]);
         }
       }
+      console.log("AlpacaTransactions:", this.alpacaTransactions);
       subscription2.unsubscribe();
     });
   }
