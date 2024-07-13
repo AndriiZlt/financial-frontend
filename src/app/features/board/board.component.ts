@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Stock } from "../models/Stock.model";
 import { StockApiService } from "../services/stock.service";
-import { BoardApiService } from "../services/board.service";
-import { BoardItem } from "../models/BoardItem.model";
+import { BoardApiService } from "./services/board.service";
+import { BoardItem } from "./models/BoardItem.model";
 
 @Component({
   selector: "app-board",
@@ -12,10 +11,7 @@ import { BoardItem } from "../models/BoardItem.model";
 export class BoardComponent implements OnInit {
   boardItems: BoardItem[] = [];
   isLoading: boolean = true;
-  constructor(
-    private boardService: BoardApiService,
-    private stockService: StockApiService
-  ) {}
+  constructor(private boardService: BoardApiService) {}
 
   ngOnInit(): void {
     this.reloadPage();

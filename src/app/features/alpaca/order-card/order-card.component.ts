@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AlpacaService } from '../../services/alpaca.service';
-import { Order } from '../../models/Order.model';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { AlpacaService } from "../services/alpaca.service";
+import { Order } from "../models/Order.model";
 
 @Component({
-  selector: 'app-order-card',
-  templateUrl: './order-card.component.html',
-  styleUrls: ['./order-card.component.scss'],
+  selector: "app-order-card",
+  templateUrl: "./order-card.component.html",
+  styleUrls: ["./order-card.component.scss"],
 })
 export class OrderCardComponent implements OnInit {
   @Input() order: Order;
@@ -20,7 +20,7 @@ export class OrderCardComponent implements OnInit {
     let sub = this.alpacaService
       .getAssetById(this.order.symbol)
       .subscribe((res) => {
-        this.orderName = res['name'];
+        this.orderName = res["name"];
         sub.unsubscribe();
       });
 
@@ -28,7 +28,7 @@ export class OrderCardComponent implements OnInit {
     let sub2 = this.alpacaService
       .getLastTrades(this.order.symbol)
       .subscribe((res) => {
-        this.currentPrice = res['trade'].p;
+        this.currentPrice = res["trade"].p;
         sub2.unsubscribe();
       });
   }

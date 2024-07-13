@@ -11,7 +11,6 @@ import { SellModalComponent } from "./portfolio/sell-modal/sell-modal.component"
 import { AlpacaTradingComponent } from "./alpaca/alpaca-trading.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../shared/modules/material-module";
-import { TestComponent } from "./test/test.component";
 import { OrderCardComponent } from "./alpaca/order-card/order-card.component";
 import { TransactionComponent } from "./alpaca/transaction-card/transaction-card.component";
 import { AlpacaStockComponent } from "./portfolio/alpaca-stock/alpaca-stock.component";
@@ -25,7 +24,6 @@ import { AlpacaStockComponent } from "./portfolio/alpaca-stock/alpaca-stock.comp
     BuyModalComponent,
     SellModalComponent,
     AlpacaTradingComponent,
-    TestComponent,
     OrderCardComponent,
     TransactionComponent,
     AlpacaStockComponent,

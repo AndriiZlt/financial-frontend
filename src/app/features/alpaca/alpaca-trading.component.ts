@@ -1,12 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { AlpacaService } from "../services/alpaca.service";
+import { AlpacaService } from "./services/alpaca.service";
 import * as nasdaq100 from "./assets/nasdaq100";
-import { AssetToBuy } from "../models/AssetToBuy.model";
-import { Asset } from "../models/Asset.model";
-import { AlpacaTransaction } from "../models/AlpacaTransaction.model";
-import { Order } from "../models/Order.model";
+import { AssetToBuy } from "./models/AssetToBuy.model";
+import { Asset } from "./models/Asset.model";
+import { AlpacaTransaction } from "./models/AlpacaTransaction.model";
+import { Order } from "./models/Order.model";
 
 @Component({
   selector: "app-alpaca-trading",

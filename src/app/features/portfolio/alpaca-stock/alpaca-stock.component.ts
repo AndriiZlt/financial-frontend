@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "../../models/Stock.model";
-import { AlpacaService } from "src/app/features/services/alpaca.service";
+import { AlpacaService } from "../../alpaca/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
-import { Position } from "../../models/Positions.model";
+import { Position } from "../../alpaca/models/Positions.model";
 
 @Component({
   selector: "app-alpaca-stock",
