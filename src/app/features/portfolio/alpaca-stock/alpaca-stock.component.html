@@ -13,16 +13,21 @@
       <span class="date"> {{ position.cost_Basis }} </span><span> </span>
     </div>
     <div class="date-box">
-      Status:
-      <span class="date"> {{ this.status }} </span>
+      <span class="date">
+        {{ this.status }}
+        <img
+          id="alpaca-icon"
+          src="../../../../assets/alpaca-icon.png"
+          alt="alpaca-icon"
+      /></span>
     </div>
   </a>
 
-  <div
+  <!-- <div
     class="alpaca-icon"
     [id]="position.asset_Id"
     (click)="onSellClick($event)"
   >
     <img src="../../../../assets/alpaca-icon.png" alt="alpaca-icon" />
-  </div>
+  </div> -->
 </div>
