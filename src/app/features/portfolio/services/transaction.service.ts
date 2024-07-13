@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ApiService } from "src/app/core/services/api.service";
-import { Transaction } from "../models/Transaction.model";
-import { TransactionToAdd } from "../models/TransactionToAdd.model";
+import { Transaction } from "../portfolio/models/Transaction.model";
+import { TransactionToAdd } from "../portfolio/models/TransactionToAdd.model";
 
 @Injectable({
   providedIn: "root",

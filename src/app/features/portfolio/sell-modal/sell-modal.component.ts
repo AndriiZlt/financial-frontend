@@ -1,12 +1,11 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
-import { AlpacaService } from "../../services/alpaca.service";
-import { Asset } from "../../models/Asset.model";
-import { StockToAdd } from "../../models/StockToAdd.model";
-import { StockApiService } from "../../services/stock.service";
-import { Stock } from "../../models/Stock.model";
-import { BoardItemToAdd } from "../../models/BoardItemToAdd.model";
-import { StockStatus } from "../../models/StockStatus.model";
-import { BoardApiService } from "../../services/board.service";
+import { AlpacaService } from "../../alpaca/services/alpaca.service";
+import { Asset } from "../../alpaca/models/Asset.model";
+import { StockApiService } from "../services/stock.service";
+import { Stock } from "../models/Stock.model";
+import { BoardItemToAdd } from "../../board/models/BoardItemToAdd.model";
+import { StockStatus } from "../models/StockStatus.model";
+import { BoardApiService } from "../../board/services/board.service";
 import { EventEmitter } from "@angular/core";
 
 @Component({
@@ -39,7 +38,7 @@ export class SellModalComponent implements OnInit {
     this.getCurrentPrice();
   }
 
-  getCurrentStock() {
+  getCurrentStock(): void {
     let sub = this.alpacaService
       .getAssetById(this.stock.symbol)
       .subscribe((res) => {
@@ -54,7 +53,7 @@ export class SellModalComponent implements OnInit {
       });
   }
 
-  createQtyArray() {
+  createQtyArray(): void {
     this.qtyArray = [];
     for (let i = 1; i <= Number(this.stock.qty); i++) {
       if (i !== this.selectedQty) {

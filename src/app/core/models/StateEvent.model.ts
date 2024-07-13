@@ -1,4 +1,4 @@
-import { Stock } from "src/app/features/models/Stock.model";
+import { Stock } from "src/app/features/portfolio/models/Stock.model";
 import { Notification } from "./Notification.model";
 
 export interface StateChangeEvent {

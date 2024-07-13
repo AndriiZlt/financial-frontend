@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { Stock } from "../models/Stock.model";
-import { StockApiService } from "../services/stock.service";
-import { StockToAdd } from "../models/StockToAdd.model";
-import { StockStatus } from "../models/StockStatus.model";
-import { BoardItemToAdd } from "../models/BoardItemToAdd.model";
-import { BoardApiService } from "../services/board.service";
+import { Stock } from "./models/Stock.model";
+import { StockApiService } from "./services/stock.service";
+import { StockToAdd } from "./models/StockToAdd.model";
+import { StockStatus } from "./models/StockStatus.model";
+import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
+import { BoardApiService } from "../board/services/board.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 import { User } from "src/app/core/auth/models/user.model";
 import { UserService } from "src/app/core/auth/services/user.service";
-import { Position } from "../models/Positions.model";
-import { AlpacaService } from "../services/alpaca.service";
+import { Position } from "../alpaca/models/Positions.model";
+import { AlpacaService } from "../alpaca/services/alpaca.service";
 
 @Component({
   selector: "app-portfolio",
