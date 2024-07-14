@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { PagesComponent } from "./core/layout/layout.component";
+import { MainLayoutComponent } from "./core/main-layout/main-layout.component";
 
 const routes: Routes = [
   // { path: "", redirectTo: "login", pathMatch: "full" },
@@ -11,9 +11,9 @@ const routes: Routes = [
   },
   {
     path: "finapp",
-    component: PagesComponent,
+    component: MainLayoutComponent,
     loadChildren: () =>
-      import("./core/layout/layout.module").then((m) => m.PagesModule),
+      import("./core/main-layout/layout.module").then((m) => m.PagesModule),
   },
   { path: "**", redirectTo: "finapp" },
   { path: "", pathMatch: "full", redirectTo: "finapp" },

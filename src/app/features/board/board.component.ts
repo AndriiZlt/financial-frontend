@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { StockApiService } from "../services/stock.service";
 import { BoardApiService } from "./services/board.service";
 import { BoardItem } from "./models/BoardItem.model";
 

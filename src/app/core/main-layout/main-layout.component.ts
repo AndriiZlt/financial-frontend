@@ -8,10 +8,10 @@ declare var $;
 
 @Component({
   selector: "app-main-layout",
-  templateUrl: "./layout.component.html",
-  styleUrls: ["./layout.component.scss"],
+  templateUrl: "./main-layout.component.html",
+  styleUrls: ["./main-layout.component.scss"],
 })
-export class PagesComponent implements OnInit {
+export class MainLayoutComponent implements OnInit {
   signalRStatus: string = "";
   user: User;
 
