@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let token: string = "";
+    let token: string;
     let user = localStorage.getItem("UserObject");
     if (user) {
       token = JSON.parse(user).token;
