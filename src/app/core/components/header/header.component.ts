@@ -6,6 +6,7 @@ import {
 } from "../../models/Notification.model";
 import { HubConnectionService } from "../../services/hub-connection.service";
 import { DatePipe } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private notificationService: NotificationApiService,
     private hubConnectionService: HubConnectionService,
-    private datePipe: DatePipe
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -69,5 +70,10 @@ export class HeaderComponent implements OnInit {
           .subscribe((res) => console.log(res));
       }
     }
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(["login"]);
   }
 }
