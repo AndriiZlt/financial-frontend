@@ -36,7 +36,6 @@ export class BuyModalComponent implements OnInit {
   onStockSelect(symbol: string): void {
     this.isLoaded = false;
     let sub = this.alpacaService.getAssetById(symbol).subscribe((res) => {
-      console.log("res:", res);
       if (res) {
         this.selectedStock = res;
         this.isSelected = true;
@@ -54,10 +53,8 @@ export class BuyModalComponent implements OnInit {
     let sub = this.alpacaService
       .getLastTrades(this.selectedStock.symbol)
       .subscribe((res) => {
-        console.log("getLastTrades res:", res);
         this.currentPrice = res["trade"].p;
         this.selectedPrice = this.currentPrice;
-        // this.priceIsLoading = false;
         this.isLoaded = true;
         sub.unsubscribe();
       });
@@ -81,8 +78,6 @@ export class BuyModalComponent implements OnInit {
     };
 
     this.stockService.addEmptyStock(newStockToBuy).subscribe((addedStock) => {
-      console.log("Ok Stock created:", addedStock);
-
       let boardItemToAdd: BoardItemToAdd = {
         stock_Id: addedStock.id,
         user_Id: addedStock.user_Id,
@@ -95,7 +90,6 @@ export class BuyModalComponent implements OnInit {
         total_Price: (this.selectedPrice * this.selectedQty).toString(),
       };
       this.boardService.addItemToBoard(boardItemToAdd).subscribe((res) => {
-        console.log("Ok BuyItem added to Board:", res);
         this.closeModal.emit("close");
       });
     });

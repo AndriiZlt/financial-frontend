@@ -23,13 +23,9 @@ export class ContentGuard implements CanActivate {
       token = JSON.parse(user).token;
     }
 
-    console.log("Content state.url:", state.url);
-
     if (token) {
-      console.log("Authorized + return true");
       return true;
     } else {
-      console.log("Unauthorized + navigate to login page");
       localStorage.clear();
       this.router.navigate(["login"]);
       return false;

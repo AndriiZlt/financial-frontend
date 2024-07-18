@@ -41,22 +41,14 @@
   </div>
 
   <!-- Status For Sale (sell) button -->
-  <div
-    class="sell-button"
-    (click)="onBeingSoldClick()"
-    *ngIf="stock.status === 2"
-  >
+  <div class="sell-button" *ngIf="stock.status === 2">
     <button class="button type1" style="background-color: #e38a31">
       <span class="btn-txt">For Sale</span>
     </button>
   </div>
 
   <!-- Status For Purchase button -->
-  <div
-    class="sell-button"
-    (click)="onBuyOrderClick()"
-    *ngIf="stock.status === 3"
-  >
+  <div class="sell-button" *ngIf="stock.status === 3">
     <button class="button type1" style="background-color: #0a9a74">
       <span class="btn-txt">To Buy</span>
     </button>

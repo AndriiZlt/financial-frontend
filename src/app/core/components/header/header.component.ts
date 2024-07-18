@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit {
       this.newNotifications = this.notifications.filter(
         (n) => n.status === NotificationStatus.Unread
       ).length;
-      console.log("NOTIFICATIONS:", this.notifications);
     });
   }
 
@@ -57,7 +56,7 @@ export class HeaderComponent implements OnInit {
           .readNotification(id)
           .subscribe((res) => console.log(res));
       } else {
-        console.log("The notification is already read");
+        console.log("The notification has already been read");
       }
     }
   }

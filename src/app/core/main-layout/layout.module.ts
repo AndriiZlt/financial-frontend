@@ -8,4 +8,4 @@ import { CoreModule } from "src/app/core/core.module";
   declarations: [MainLayoutComponent],
   imports: [CommonModule, PagesRoutingModule, CoreModule],
 })
-export class PagesModule {}
+export class MainLayoutModule {}
