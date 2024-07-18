@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
           .readNotification(id)
           .subscribe((res) => console.log(res));
       } else {
-        console.log("The notification is already read");
+        console.log("The notification has already been read");
       }
     }
   }

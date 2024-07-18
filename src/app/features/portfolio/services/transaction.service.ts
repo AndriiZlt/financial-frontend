@@ -16,7 +16,6 @@ export class TransactionApiService extends ApiService {
   }
 
   addTransaction(transactionToAdd: TransactionToAdd): Observable<Transaction> {
-    console.log("New transaction:", transactionToAdd);
     return this.post<Transaction>(`addtransaction`, transactionToAdd);
   }
 }

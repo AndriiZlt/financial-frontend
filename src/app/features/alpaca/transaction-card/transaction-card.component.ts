@@ -28,8 +28,8 @@ export class TransactionComponent extends SpinnerComponent implements OnInit {
     let sub = this.alpacaService
       .getAssetById(this.transaction.symbol)
       .subscribe((res) => {
-        this.isLoading = false;
         this.name = res["name"];
+        this.isLoading = false;
         sub.unsubscribe();
       });
 

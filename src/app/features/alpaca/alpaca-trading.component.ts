@@ -7,13 +7,14 @@ import { AssetToBuy } from "./models/AssetToBuy.model";
 import { Asset } from "./models/Asset.model";
 import { AlpacaTransaction } from "./models/AlpacaTransaction.model";
 import { Order } from "./models/Order.model";
+import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 
 @Component({
   selector: "app-alpaca-trading",
   templateUrl: "./alpaca-trading.component.html",
   styleUrls: ["./alpaca-trading.component.scss"],
 })
-export class AlpacaTradingComponent implements OnInit {
+export class AlpacaTradingComponent extends SpinnerComponent implements OnInit {
   mainUserId: string = "d986b6ed-afda-464b-afb7-07e6fa9d7227";
   clientId: string = "d6a7ad49-7d27-47f8-99de-b87f61b6b024";
   orders: Order[] = [];
@@ -29,8 +30,10 @@ export class AlpacaTradingComponent implements OnInit {
   buttonDisabled: boolean = true;
   inputDisabled: boolean = true;
   isFocused: boolean = false;
+  isLoading: boolean = true;
 
   constructor(private alpacaService: AlpacaService, private http: HttpClient) {
+    super();
     this.nasdaq100 = nasdaq100.get();
   }
 
@@ -57,7 +60,6 @@ export class AlpacaTradingComponent implements OnInit {
   updatePage(): void {
     this.orders = [];
     let subscription = this.alpacaService.getOrders().subscribe((res) => {
-      console.log("Orders:", res);
       for (const item in res) {
         this.orders.push(res[item]);
       }
@@ -71,7 +73,6 @@ export class AlpacaTradingComponent implements OnInit {
           this.alpacaTransactions.push(res[item]);
         }
       }
-      console.log("AlpacaTransactions:", this.alpacaTransactions);
       subscription2.unsubscribe();
     });
   }

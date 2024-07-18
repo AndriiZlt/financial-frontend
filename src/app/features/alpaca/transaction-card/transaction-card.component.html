@@ -7,13 +7,12 @@
   "
 >
   <div class="side">{{ transaction.side }}</div>
-
   <div class="col-info">
     <p class="date">{{ date }}</p>
     <div class="asset_info">
       <div class="symbol">{{ transaction.symbol }}</div>
-      <div class="name" *ngIf="!isLoading">{{ name }}</div>
       <div class="spinner" *ngIf="isLoading"><app-spinner></app-spinner></div>
+      <div class="name" *ngIf="!isLoading">{{ name }}</div>
     </div>
   </div>
 

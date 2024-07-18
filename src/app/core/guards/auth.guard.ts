@@ -25,11 +25,9 @@ export class AuthGuard implements CanActivate {
     let lastUrl = localStorage.getItem("lastUrl");
 
     if (token) {
-      console.log("AuthGuard Autorized + navigate to Portfilo + return false");
       this.router.navigate(["finapp/portfolio"]);
       return false;
     } else {
-      console.log("AuthGuard Unautorized + return true");
       return true;
     }
   }

@@ -46,11 +46,4 @@ export class PortfolioStockComponent
     this.sellStock.emit(event.currentTarget.id);
   }
 
-  onBeingSoldClick(): void {
-    console.log("onBeingSoldClick");
-  }
-
-  onBuyOrderClick(): void {
-    console.log("onBuyOrderClick");
-  }
 }

@@ -10,6 +10,7 @@ import { User } from "src/app/core/auth/models/user.model";
 import { UserService } from "src/app/core/auth/services/user.service";
 import { Position } from "../alpaca/models/Positions.model";
 import { AlpacaService } from "../alpaca/services/alpaca.service";
+import { StocksService } from "src/app/core/components/side-nav/services/stocks.service";
 
 @Component({
   selector: "app-portfolio",
@@ -21,6 +22,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
   stockBallance: number;
   userBallance: string;
   stocks: Stock[] = [];
+  filteredeStocks: Stock[] = [];
   stock: Stock;
   sellModalStock: Stock;
   isLoading: boolean = true;
@@ -58,24 +60,14 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     private stockService: StockApiService,
     private boardService: BoardApiService,
     private userService: UserService,
-    private alpacaService: AlpacaService
+    private alpacaService: AlpacaService,
+    private stocksService: StocksService
   ) {
     super();
   }
 
   ngOnInit() {
     this.updatePage();
-  }
-
-  addStocks(): void {
-    for (var stock of this.stocksToAdd) {
-      let sub = this.stockService.addStock(stock).subscribe((res) => {
-        sub.unsubscribe();
-      });
-    }
-
-    console.log("Stocks were added successfully");
-    setTimeout(() => this.updatePage(), 1000);
   }
 
   updatePage(): void {
@@ -88,14 +80,28 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = <Stock[]>res;
       this.updateBallance();
+      this.filteredeStocks = this.stocks.filter((s) => Number(s.qty) > 0);
 
       let sub2 = this.alpacaService.getPositions().subscribe((res) => {
         this.positions = <Position[]>res;
         this.isLoading = false;
+        this.updateBallance();
+        this.stocksService.triggerEvent(
+          this.filteredeStocks.length + this.positions.length
+        );
         sub2.unsubscribe();
       });
       sub.unsubscribe();
     });
+  }
+
+  addStocks(): void {
+    for (var stock of this.stocksToAdd) {
+      let sub = this.stockService.addStock(stock).subscribe((res) => {
+        sub.unsubscribe();
+      });
+    }
+    setTimeout(() => this.updatePage(), 1000);
   }
 
   updateBallance(): void {
@@ -105,11 +111,15 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     });
 
     // Stock ballance
-    let ballance = 0;
-    this.stocks.map((s) => {
-      ballance += Number(s.cost_Basis) * Number(s.qty);
-    });
-    this.stockBallance = ballance;
+    let newStockBallance = 0;
+    this.stocks.map(
+      (s) => (newStockBallance += Number(s.cost_Basis) * Number(s.qty))
+    );
+    this.positions.map(
+      (pos) => (newStockBallance += Number(pos.cost_Basis) * Number(pos.qty))
+    );
+
+    this.stockBallance = newStockBallance;
   }
 
   sellStock(stock_id: number, qty_to_sell: number): void {
