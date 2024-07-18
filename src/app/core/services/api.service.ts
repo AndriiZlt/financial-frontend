@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
+import { catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class ApiService {
   apiName: string;
   v: number;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   get<T>(
     url: string,
@@ -20,11 +22,12 @@ export class ApiService {
       withCredentials?: boolean;
     }
   ): Observable<T> {
-    // console.log(`${environment.apiUrl}/api/v${this.v}/${this.apiName}/${url}`);
-    return this.http.get<T>(
-      `${environment.apiUrl}/api/v${this.v}/${this.apiName}/${url}`,
-      options
-    );
+    return this.http
+      .get<T>(
+        `${environment.apiUrl}/api/v${this.v}/${this.apiName}/${url}`,
+        options
+      )
+      .pipe(catchError(this.handleError));
   }
 
   post<T>(
@@ -82,5 +85,13 @@ export class ApiService {
     );
   }
 
-  handleError() {}
+  handleError(error) {
+    switch (error.status) {
+      case 401:
+        localStorage.clear();
+        this.router.navigate(["login"]);
+    }
+
+    return throwError(error.status + error.message || "Server Error");
+  }
 }

@@ -79,6 +79,7 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = <Stock[]>res;
+      this.updateBallance();
       this.filteredeStocks = this.stocks.filter((s) => Number(s.qty) > 0);
 
       let sub2 = this.alpacaService.getPositions().subscribe((res) => {
