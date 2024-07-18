@@ -58,7 +58,6 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
       //Check ballance
       let ballance: number;
       let sub = this.userService.getCurrentUser().subscribe((res) => {
-        console.log("Ok - Current user ballance:", res.ballance);
         ballance = res.ballance;
 
         if (ballance >= Number(this.boardItem.cost_Basis)) {
@@ -123,7 +122,6 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
     let sub2 = this.transactionService
       .addTransaction(transaction)
       .subscribe((res) => {
-        console.log("Ok - addTransaction response:", res);
         this.reloadPage.emit();
         sub2.unsubscribe();
       });

@@ -30,16 +30,4 @@ export class AlpacaStockComponent extends SpinnerComponent implements OnInit {
         sub.unsubscribe();
       });
   }
-
-  onSellClick(event: any): void {
-    console.log("Sell position empty event:", event);
-  }
-
-  onBeingSoldClick(): void {
-    console.log("onBeingSoldClick");
-  }
-
-  onBuyOrderClick(): void {
-    console.log("onBuyOrderClick");
-  }
 }

@@ -49,7 +49,7 @@
   </div>
   <div class="stocks-list-container">
     <app-stock-card
-      *ngFor="let stock of stocks"
+      *ngFor="let stock of filteredeStocks"
       [stock]="stock"
       [index]="stocks.indexOf(stock)"
       (sellStock)="openSellModal($event)"

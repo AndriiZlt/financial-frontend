@@ -30,8 +30,6 @@ export class SellModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.nasdaq100 = [...nasdaq100.get()];
-    console.log("Modal Stock:", this.stock);
     this.currentPrice = Number(this.stock.cost_Basis);
     this.selectedQty = Number(this.stock.qty);
     this.createQtyArray();
@@ -42,7 +40,6 @@ export class SellModalComponent implements OnInit {
     let sub = this.alpacaService
       .getAssetById(this.stock.symbol)
       .subscribe((res) => {
-        console.log("res:", res);
         if (res) {
           this.selectedStock = res;
           this.getCurrentPrice();
@@ -97,10 +94,7 @@ export class SellModalComponent implements OnInit {
       ).toString(),
     };
 
-    console.log("New Board Item:", newBoardItem);
-
     this.boardService.addItemToBoard(newBoardItem).subscribe((res) => {
-      console.log("Sell ok:", res);
       this.closeModal.emit("close");
     });
   }
