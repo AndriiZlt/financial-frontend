@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { NotificationApiService } from "../../services/notification.service";
+import { NotificationApiService } from "@core/services/notification.service";
 import {
   Notification,
   NotificationStatus,
-} from "../../models/Notification.model";
-import { HubConnectionService } from "../../services/hub-connection.service";
+} from "@core/models/Notification.model";
+import { HubConnectionService } from "@core/services/hub-connection.service";
 import { DatePipe } from "@angular/common";
 import { Router } from "@angular/router";
 

@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 export class ApiService {
   apiName: string;
   v: number;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http?: HttpClient, private router?: Router) {}
 
   get<T>(
     url: string,

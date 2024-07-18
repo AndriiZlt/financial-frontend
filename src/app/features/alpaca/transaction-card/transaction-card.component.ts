@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { AlpacaService } from "../services/alpaca.service";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 
-import { AlpacaTransaction } from "../models/AlpacaTransaction.model";
+import { AlpacaTransaction } from "@alpaca/models/AlpacaTransaction.model";
 
 @Component({
   selector: "app-transaction-card",

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Stock } from "../models/Stock.model";
-import { AlpacaService } from "../../alpaca/services/alpaca.service";
+import { Stock } from "@portfolio/models/Stock.model";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 
 @Component({
@@ -45,5 +45,4 @@ export class PortfolioStockComponent
   onSellClick(event: any): void {
     this.sellStock.emit(event.currentTarget.id);
   }
-
 }

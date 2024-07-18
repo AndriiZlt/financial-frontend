@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { AlpacaService } from "../services/alpaca.service";
-import { Order } from "../models/Order.model";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
+import { Order } from "@alpaca/models/Order.model";
 
 @Component({
   selector: "app-order-card",

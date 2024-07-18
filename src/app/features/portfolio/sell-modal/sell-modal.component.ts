@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
-import { AlpacaService } from "../../alpaca/services/alpaca.service";
-import { Asset } from "../../alpaca/models/Asset.model";
-import { StockApiService } from "../services/stock.service";
-import { Stock } from "../models/Stock.model";
-import { BoardItemToAdd } from "../../board/models/BoardItemToAdd.model";
-import { StockStatus } from "../models/StockStatus.model";
-import { BoardApiService } from "../../board/services/board.service";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
+import { Asset } from "@alpaca/models/Asset.model";
+import { StockApiService } from "@portfolio/services/stock.service";
+import { Stock } from "@portfolio/models/Stock.model";
+import { BoardItemToAdd } from "@board/models/BoardItemToAdd.model";
+import { StockStatus } from "@portfolio/models/StockStatus.model";
+import { BoardApiService } from "@board/services/board.service";
 import { EventEmitter } from "@angular/core";
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
-import { BoardItem } from "../models/BoardItem.model";
-import { TransactionToAdd } from "../../portfolio/models/TransactionToAdd.model";
-import { StockStatus } from "../../portfolio/models/StockStatus.model";
-import { TransactionApiService } from "../../portfolio/services/transaction.service";
-import { StockApiService } from "../../portfolio/services/stock.service";
+import { BoardItem } from "@board/models/BoardItem.model";
+import { TransactionToAdd } from "@portfolio/models/TransactionToAdd.model";
+import { StockStatus } from "@portfolio/models/StockStatus.model";
+import { TransactionApiService } from "@portfolio/services/transaction.service";
+import { StockApiService } from "@portfolio/services/stock.service";
 import { UserService } from "src/app/core/auth/services/user.service";
 
 @Component({

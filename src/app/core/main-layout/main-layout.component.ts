@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { HubConnectionService } from "../services/hub-connection.service";
-import { UserService } from "../auth/services/user.service";
-import { User } from "../auth/models/user.model";
-import { StateService } from "../services/state.service";
+import { HubConnectionService } from "@core/services/hub-connection.service";
+import { UserService } from "@core/auth/services/user.service";
+import { User } from "@core/auth/models/user.model";
 
 declare var $;
 
@@ -17,8 +16,7 @@ export class MainLayoutComponent implements OnInit {
 
   constructor(
     private signalrService: HubConnectionService,
-    private userService: UserService,
-    private stateService: StateService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -27,8 +25,8 @@ export class MainLayoutComponent implements OnInit {
 
     this.signalrService.startConnection();
     this.userService.getCurrentUser().subscribe((user) => {
-      this.stateService.setUser(<User>user);
       this.user = user;
+      console.log("User:", this.user);
     });
   }
 }

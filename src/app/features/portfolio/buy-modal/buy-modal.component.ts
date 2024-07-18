@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import * as nasdaq100 from "../../../../assets/nasdaq100";
-import { AlpacaService } from "../../alpaca/services/alpaca.service";
-import { Asset } from "../../alpaca/models/Asset.model";
-import { StockToAdd } from "../models/StockToAdd.model";
-import { StockApiService } from "../services/stock.service";
-import { StockStatus } from "../models/StockStatus.model";
-import { BoardApiService } from "../../board/services/board.service";
-import { BoardItemToAdd } from "../../board/models/BoardItemToAdd.model";
+import * as nasdaq100 from "src/assets/nasdaq100";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
+import { Asset } from "@alpaca/models/Asset.model";
+import { StockToAdd } from "@portfolio/models/StockToAdd.model";
+import { StockApiService } from "@portfolio/services/stock.service";
+import { StockStatus } from "@portfolio/models/StockStatus.model";
+import { BoardApiService } from "@board/services/board.service";
+import { BoardItemToAdd } from "@board/models/BoardItemToAdd.model";
 
 @Component({
   selector: "app-buy-modal",

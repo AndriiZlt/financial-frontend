@@ -15,7 +15,9 @@ const routes: Routes = [
     path: "finapp",
     component: MainLayoutComponent,
     loadChildren: () =>
-      import("./core/main-layout/layout.module").then((m) => m.MainLayoutModule),
+      import("./core/main-layout/layout.module").then(
+        (m) => m.MainLayoutModule
+      ),
     canActivate: [ContentGuard],
   },
   { path: "**", redirectTo: "finapp" },
