@@ -1,4 +1,4 @@
-import { StockStatus } from "../../portfolio/models/StockStatus.model";
+import { StockStatus } from "@portfolio/models/StockStatus.model";
 
 export interface BoardItemToAdd {
   stock_Id: number;

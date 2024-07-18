@@ -1,16 +1,16 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AssetToBuy } from "../models/AssetToBuy.model";
+import { AssetToBuy } from "@alpaca/models/AssetToBuy.model";
 import { Observable } from "rxjs";
-import { Asset } from "../models/Asset.model";
+import { Asset } from "@alpaca/models/Asset.model";
 import { ApiService } from "src/app/core/services/api.service";
 import { environment } from "src/environments/environment";
-import { Stock } from "../../portfolio/models/Stock.model";
-import { Transaction } from "../../portfolio/models/Transaction.model";
-import { Bar } from "../models/Bar.model";
-import { Account } from "../models/Account.model";
-import { Order } from "../models/Order.model";
-import { Position } from "../models/Positions.model";
+import { Stock } from "@portfolio/models/Stock.model";
+import { Transaction } from "@portfolio/models/Transaction.model";
+import { Bar } from "@alpaca/models/Bar.model";
+import { Account } from "@alpaca/models/Account.model";
+import { Order } from "@alpaca/models/Order.model";
+import { Position } from "@alpaca/models/Positions.model";
 
 @Injectable({
   providedIn: "root",

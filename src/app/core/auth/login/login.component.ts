@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Login } from "../models/login.model";
-import { AuthService } from "../services/auth.service";
+import { Login } from "@core/auth/models/login.model";
+import { AuthService } from "@core/auth/services/auth.service";
 import { Router } from "@angular/router";
-import { User } from "../models/user.model";
-import { UserService } from "../services/user.service";
-import { StateService } from "../../services/state.service";
+import { User } from "@core/auth/models/user.model";
+import { UserService } from "@core/auth/services/user.service";
 
 @Component({
   selector: "app-login",
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
-    private stateService: StateService
   ) {}
 
   ngOnInit() {}
@@ -41,7 +39,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(loginDto: Login) {
     let subscription = this.authService.login(loginDto).subscribe((user) => {
       this.user = user;
-      this.stateService.setUser(<User>user);
       console.log("User:", user);
       localStorage.setItem("UserObject", JSON.stringify(this.user));
       this.router.navigate(["finapp"]);

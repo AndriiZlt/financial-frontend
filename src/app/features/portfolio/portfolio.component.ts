@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { Stock } from "./models/Stock.model";
-import { StockApiService } from "./services/stock.service";
-import { StockToAdd } from "./models/StockToAdd.model";
-import { StockStatus } from "./models/StockStatus.model";
-import { BoardItemToAdd } from "../board/models/BoardItemToAdd.model";
-import { BoardApiService } from "../board/services/board.service";
+import { Stock } from "@portfolio/models/Stock.model";
+import { StockApiService } from "@portfolio/services/stock.service";
+import { StockToAdd } from "@portfolio/models/StockToAdd.model";
+import { StockStatus } from "@portfolio/models/StockStatus.model";
+import { BoardItemToAdd } from "@board/models/BoardItemToAdd.model";
+import { BoardApiService } from "@board/services/board.service";
 import { SpinnerComponent } from "src/app/shared/components/spinner/spinner.component";
 import { User } from "src/app/core/auth/models/user.model";
 import { UserService } from "src/app/core/auth/services/user.service";
-import { Position } from "../alpaca/models/Positions.model";
-import { AlpacaService } from "../alpaca/services/alpaca.service";
+import { Position } from "@alpaca/models/Positions.model";
+import { AlpacaService } from "@alpaca/services/alpaca.service";
 import { StocksService } from "src/app/core/components/side-nav/services/stocks.service";
 
 @Component({
@@ -79,7 +79,6 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = <Stock[]>res;
-      this.updateBallance();
       this.filteredeStocks = this.stocks.filter((s) => Number(s.qty) > 0);
 
       let sub2 = this.alpacaService.getPositions().subscribe((res) => {
