@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../models/user.model";
 import { ApiService } from "../../services/api.service";
+import { catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -25,6 +26,16 @@ export class UserService extends ApiService {
   }
 
   getUserBallance(): Observable<string> {
-    return this.get<string>("getballance");
+    return this.get<string>("getballance").pipe(catchError(this.handleError));;
+  }
+
+  handleError(error) {
+    switch (error.status) {
+      case 401:
+        localStorage.clear();
+        this.router.navigate(["login"]);
+    }
+
+    return throwError(error.status + error.message || "Server Error");
   }
 }

@@ -87,12 +87,10 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
 
     let sub = this.stockService.getStocks().subscribe((res) => {
       this.stocks = <Stock[]>res;
-      console.log("STOCKS:", this.stocks);
       this.updateBallance();
 
       let sub2 = this.alpacaService.getPositions().subscribe((res) => {
         this.positions = <Position[]>res;
-        console.log("POSITIONS:", this.positions);
         this.isLoading = false;
         sub2.unsubscribe();
       });
@@ -103,7 +101,6 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
   updateBallance(): void {
     // Get user ballance
     this.userService.getUserBallance().subscribe((res) => {
-      console.log("Updated ballance=", res);
       this.userBallance = res;
     });
 

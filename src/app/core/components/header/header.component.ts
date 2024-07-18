@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit {
       this.newNotifications = this.notifications.filter(
         (n) => n.status === NotificationStatus.Unread
       ).length;
-      console.log("NOTIFICATIONS:", this.notifications);
     });
   }
 

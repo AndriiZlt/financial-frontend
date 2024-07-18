@@ -13,20 +13,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../shared/modules/material-module";
 import { OrderCardComponent } from "./alpaca/order-card/order-card.component";
 import { TransactionComponent } from "./alpaca/transaction-card/transaction-card.component";
-import { AlpacaStockComponent } from "./portfolio/alpaca-stock/alpaca-stock.component";
+import { PortfolioModule } from "./portfolio/portfolio.module";
 
 @NgModule({
   declarations: [
-    PortfolioComponent,
-    PortfolioStockComponent,
     BoardComponent,
     BoardItemComponent,
-    BuyModalComponent,
-    SellModalComponent,
     AlpacaTradingComponent,
     OrderCardComponent,
     TransactionComponent,
-    AlpacaStockComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +30,7 @@ import { AlpacaStockComponent } from "./portfolio/alpaca-stock/alpaca-stock.comp
     SharedModule,
     BrowserAnimationsModule,
     MaterialModule,
+    PortfolioModule,
   ],
   providers: [DatePipe],
 })

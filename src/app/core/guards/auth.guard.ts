@@ -23,7 +23,6 @@ export class AuthGuard implements CanActivate {
       token = JSON.parse(user).token;
     }
     let lastUrl = localStorage.getItem("lastUrl");
-    console.log("state.url:", state.url, "lastUrl:", lastUrl);
 
     if (token) {
       console.log("AuthGuard Autorized + navigate to Portfilo + return false");
