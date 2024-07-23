@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
 import { AlpacaService } from "@alpaca/services/alpaca.service";
 import { Asset } from "@alpaca/models/Asset.model";
-import { StockApiService } from "@portfolio/services/stock.service";
 import { Stock } from "@portfolio/models/Stock.model";
 import { BoardItemToAdd } from "@board/models/BoardItemToAdd.model";
 import { StockStatus } from "@portfolio/models/StockStatus.model";
@@ -15,7 +14,7 @@ import { EventEmitter } from "@angular/core";
 })
 export class SellModalComponent implements OnInit {
   @Input() stock: Stock;
-  @Output() closeModal: EventEmitter<any> = new EventEmitter<any>();
+  @Output() closeModal: EventEmitter<string> = new EventEmitter<string>();
   nasdaq100: string[];
   selectedStock: Asset;
   maxPrice: number = 0;
@@ -23,9 +22,9 @@ export class SellModalComponent implements OnInit {
   selectedPrice: number = 0;
   selectedQty: number = 1;
   qtyArray: number[] = [];
+  isDisabled: boolean = true;
   constructor(
     private alpacaService: AlpacaService,
-    private stockService: StockApiService,
     private boardService: BoardApiService
   ) {}
 
@@ -66,6 +65,7 @@ export class SellModalComponent implements OnInit {
       .subscribe((res) => {
         this.currentPrice = res["trade"].p;
         this.selectedPrice = this.currentPrice;
+        this.isDisabled = false;
         sub.unsubscribe();
       });
   }
@@ -95,7 +95,13 @@ export class SellModalComponent implements OnInit {
     };
 
     this.boardService.addItemToBoard(newBoardItem).subscribe((res) => {
-      this.closeModal.emit("close");
+      this.closeModal.emit("update");
     });
+  }
+
+  clickOnBackdrop(event: any): void {
+    if (event.target.id === "backdrop") {
+      this.closeModal.emit("backdrop");
+    }
   }
 }

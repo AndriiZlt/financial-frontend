@@ -21,12 +21,12 @@
 <!-- Main content -->
 <section class="content">
   <div class="modal-container" *ngIf="buyModalOn">
-    <app-buy-modal (closeModal)="closeModal()"></app-buy-modal>
+    <app-buy-modal (closeModal)="closeModal($event)"></app-buy-modal>
   </div>
   <div class="modal-container" *ngIf="sellModalOn">
     <app-sell-modal
       [stock]="sellModalStock"
-      (closeModal)="closeModal()"
+      (closeModal)="closeModal($event)"
     ></app-sell-modal>
   </div>
 

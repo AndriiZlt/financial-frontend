@@ -3,7 +3,43 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   font-family: "Lato", sans-serif;
+}
+
+$content_backgroundColor_light: #deeaee;
+$content_backgroundColor_dark: #1a2226;
+
+$content_textColor_light: black;
+$content_textColor_dark: rgb(239, 232, 232);
+
+$sidenav_backgroundColor_light: #b3c8cf;
+$sidenav_backgroundColor_dark: #222d32;
+
+$sidenav_textColor_light: #08212d;
+$sidenav_textColor_dark: #b8c7ce;
+
+$borderColor_light: black;
+$borderColor_dark: white;
+
+// mixin that enables css variables in light mode
+@mixin lighten() {
+  --bgColor: #{$content_backgroundColor_light};
+  --textColor: #{$content_textColor_light};
+  --borderColor: #{$borderColor_light};
+  --bgSidenav: #{$sidenav_backgroundColor_light};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darken() {
+  --bgColor: #{$content_backgroundColor_dark};
+  --textColor: #{$content_textColor_dark};
+  --borderColor: #{$borderColor_dark};
+  --bgSidenav: #{$sidenav_backgroundColor_dark};
+}
+
+body.dark {
+  @include darken();
+}
+body.light {
+  @include lighten();
 }

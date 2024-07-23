@@ -8,6 +8,7 @@ import { AuthModule } from "./auth/auth.module";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { NotificationPipe } from "./pipes/sort.pipe";
+import { ToggleModeComponent } from "./components/header/toggle-mode/toggle-mode.component";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NotificationPipe } from "./pipes/sort.pipe";
     SideNavComponent,
     SettingsComponent,
     NotificationPipe,
+    ToggleModeComponent,
   ],
   imports: [CommonModule, AuthModule, HttpClientModule, RouterModule],
   exports: [

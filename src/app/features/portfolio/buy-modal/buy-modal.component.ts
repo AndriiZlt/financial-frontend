@@ -94,4 +94,10 @@ export class BuyModalComponent implements OnInit {
       });
     });
   }
+
+  clickOnBackdrop(event: any): void {
+    if (event.target.id === "backdrop") {
+      this.closeModal.emit("backdrop");
+    }
+  }
 }

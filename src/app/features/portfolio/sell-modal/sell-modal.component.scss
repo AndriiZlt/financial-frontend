@@ -8,7 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
   padding: 0 4rem 2rem;
   background-color: rgba(36, 39, 43, 0.95);
   transition: all 0.5s ease;
@@ -20,12 +19,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0.8rem;
-  z-index: 99999999;
-  // height: 80%;
   width: 60%;
-  justify-content: center;
-  align-items: center;
+  border-radius: 0.8rem;
+  z-index: 9999;
+
   h1 {
     text-align: center;
     padding: 30px 10px 10px;
@@ -47,7 +44,7 @@
     padding: 6rem 4rem;
     border-radius: 0.8rem;
     opacity: 1;
-    // background-color: #27343e;
+    color: #efe8e8;
     background-color: #354259;
 
     position: relative;

@@ -3,6 +3,13 @@
 
   .navbar-custom-menu {
     height: 50px;
+
+    .toggle-menu {
+      > * {
+        height: 100%;
+        width: 100%;
+      }
+    }
   }
 
   #dropdown-menu {

@@ -10,8 +10,8 @@ declare var $;
   styleUrls: ["./side-nav.component.scss"],
 })
 export class SideNavComponent implements OnInit {
-  stocks: number = 0;
-  boardItems: number = 0;
+  stocks: number;
+  boardItems: number;
   constructor(
     private stocksService: StocksService,
     private boardItemsService: BoardItemsService
@@ -22,6 +22,24 @@ export class SideNavComponent implements OnInit {
       $(".sidebar-menu").tree();
     });
 
+    this.updateLabelsFromLocalStorage();
+
+    this.subscribeForChanges();
+  }
+
+  updateLabelsFromLocalStorage(): void {
+    let stocksLocalStorage = localStorage.getItem("stock-label");
+    if (stocksLocalStorage) {
+      this.stocks = Number(stocksLocalStorage);
+    }
+
+    let boardTiemsLocalStorage = localStorage.getItem("board-label");
+    if (boardTiemsLocalStorage) {
+      this.boardItems = Number(boardTiemsLocalStorage);
+    }
+  }
+
+  subscribeForChanges(): void {
     this.stocksService
       .changeEventListenner()
       .subscribe((stocks) => (this.stocks = stocks));

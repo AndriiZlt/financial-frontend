@@ -17,7 +17,6 @@
         <span class="plan-price"
           >${{ boardItem.total_Price | number : "1.2-2" }}</span
         >
-
       </div>
     </div>
 
@@ -27,9 +26,7 @@
     </div>
     <div class="date-box">
       Price:
-      <span class="date"> {{ boardItem.cost_Basis }} </span
-      ><span>
-      </span>
+      <span class="date"> {{ boardItem.cost_Basis }} </span><span> </span>
     </div>
     <div class="date-box">
       User:
@@ -45,8 +42,8 @@
     >
       <span class="btn-txt">{{ boardItem.status === 2 ? "Buy" : "Sell" }}</span>
     </button>
-    <button class="button type1" *ngIf="boardItem.user_Id == user_id" disabled>
-      <span class="btn-txt">Yours</span>
+    <button class="button type1" *ngIf="boardItem.user_Id == user_id" (click)="cancelOrder(this.boardItem.id)">
+      <span class="btn-txt">Cancel</span>
     </button>
   </div>
 </div>

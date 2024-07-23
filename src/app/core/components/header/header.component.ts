@@ -47,8 +47,6 @@ export class HeaderComponent implements OnInit {
   }
 
   readNotification(id): void {
-    console.log(id);
-
     if (this.notifications.filter((n) => n.id).length > 0) {
       let notification = this.notifications.filter((n) => n.id)[0];
       if (notification.status !== 2) {

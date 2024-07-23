@@ -6,6 +6,7 @@ import { StockStatus } from "@portfolio/models/StockStatus.model";
 import { TransactionApiService } from "@portfolio/services/transaction.service";
 import { StockApiService } from "@portfolio/services/stock.service";
 import { UserService } from "src/app/core/auth/services/user.service";
+import { BoardApiService } from "../services/board.service";
 
 @Component({
   selector: "app-board-item",
@@ -15,7 +16,7 @@ import { UserService } from "src/app/core/auth/services/user.service";
 export class BoardItemComponent extends SpinnerComponent implements OnInit {
   @Input() boardItem: BoardItem;
   @Input() index: number;
-  @Output() reloadPage: EventEmitter<any> = new EventEmitter<any>();
+  @Output() updatePage: EventEmitter<any> = new EventEmitter<any>();
   positionName: string;
   currentPrice: string;
   nameIsLoading: boolean = true;
@@ -26,7 +27,8 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
   constructor(
     private transactionService: TransactionApiService,
     private stockService: StockApiService,
-    private userService: UserService
+    private userService: UserService,
+    private boardService: BoardApiService
   ) {
     super();
   }
@@ -122,8 +124,14 @@ export class BoardItemComponent extends SpinnerComponent implements OnInit {
     let sub2 = this.transactionService
       .addTransaction(transaction)
       .subscribe((res) => {
-        this.reloadPage.emit();
+        this.updatePage.emit();
         sub2.unsubscribe();
       });
+  }
+
+  cancelOrder(id: number): void {
+    this.boardService.deleteBoardItem(id).subscribe((res) => {
+      console.log("Board item deleted: ", id);
+    });
   }
 }

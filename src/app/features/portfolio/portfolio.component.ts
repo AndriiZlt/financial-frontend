@@ -160,9 +160,14 @@ export class PortfolioComponent extends SpinnerComponent implements OnInit {
     this.sellModalOn = true;
   }
 
-  closeModal(): void {
-    this.sellModalOn = false;
-    this.buyModalOn = false;
-    this.updatePage();
+  closeModal(event: any): void {
+    if (event === "backdrop") {
+      this.sellModalOn = false;
+      this.buyModalOn = false;
+    } else {
+      this.sellModalOn = false;
+      this.buyModalOn = false;
+      this.updatePage();
+    }
   }
 }
