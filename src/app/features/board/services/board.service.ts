@@ -18,4 +18,8 @@ export class BoardApiService extends ApiService {
   addItemToBoard(itemToAdd: BoardItemToAdd): Observable<BoardItem> {
     return this.post<BoardItem>(`addboard`, itemToAdd);
   }
+
+  deleteBoardItem(itemId: number): Observable<number> {
+    return this.delete<number>(`deleteboard/${itemId}`);
+  }
 }

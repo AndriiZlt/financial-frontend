@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject} from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 // transfer number of stocks to the side-nav component
 @Injectable({
@@ -10,6 +10,7 @@ export class StocksService {
 
   triggerEvent(param: any): void {
     this.subject.next(param);
+    localStorage.setItem("stock-label", param);
   }
 
   changeEventListenner(): BehaviorSubject<any> {

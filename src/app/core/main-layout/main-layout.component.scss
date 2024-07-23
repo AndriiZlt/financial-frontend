@@ -1,6 +1,7 @@
+@import "../../../styles.scss";
+
 .content-wrapper {
   max-width: 1870px;
-  // background-color: #24272b;
-  background-color: #1a2226;
-  color: rgb(239, 232, 232);
+  background-color: var(--bgColor);
+  color: var(--textColor);
 }

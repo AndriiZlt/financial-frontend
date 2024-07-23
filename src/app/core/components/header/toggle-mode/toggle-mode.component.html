@@ -1,0 +1,8 @@
+<label class="switch">
+  <input
+    type="checkbox"
+    [checked]="currentMode === 'dark' ? true : false"
+    (click)="toggleMode()"
+  />
+  <span class="slider"></span>
+</label>

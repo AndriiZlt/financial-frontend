@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BoardApiService } from "./services/board.service";
 import { BoardItem } from "./models/BoardItem.model";
 import { BoardItemsService } from "src/app/core/components/side-nav/services/board-items.service";
+import { HubConnectionService } from "@core/services/hub-connection.service";
 
 @Component({
   selector: "app-board",
@@ -13,14 +14,18 @@ export class BoardComponent implements OnInit {
   isLoading: boolean = true;
   constructor(
     private boardService: BoardApiService,
-    private boardItemsService: BoardItemsService
+    private boardItemsService: BoardItemsService,
+    private hubConnectionService: HubConnectionService
   ) {}
 
   ngOnInit(): void {
-    this.reloadPage();
+    this.updatePage();
+    this.hubConnectionService
+      .getPublicBoardObservable()
+      .subscribe((res) => this.updatePage());
   }
 
-  reloadPage(): void {
+  updatePage(): void {
     let sub = this.boardService.getBoardItems().subscribe((res) => {
       this.boardItems = [...(<BoardItem[]>res)];
       this.boardItemsService.triggerEvent(this.boardItems.length);

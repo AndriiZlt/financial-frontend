@@ -10,6 +10,7 @@ export class BoardItemsService {
 
   triggerEvent(param: any): void {
     this.subject.next(param);
+    localStorage.setItem("board-label", param);
   }
 
   changeEventListenner(): BehaviorSubject<any> {

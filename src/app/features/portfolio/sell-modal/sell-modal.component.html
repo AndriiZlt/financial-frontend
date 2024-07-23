@@ -1,4 +1,4 @@
-<div class="backdrop">
+<div class="backdrop" id="backdrop" (click)="clickOnBackdrop($event)">
   <div class="modal-container">
     <h1>Create sell order</h1>
     <div class="modal">
@@ -50,61 +50,14 @@
         </div>
       </div>
       <div class="bottom-row">
-        <button class="sell_btn" (click)="sendSellToBoard()">Sell&rarr;</button>
-        <!-- <button class="modal__btn">Button &rarr;</button> -->
+        <button
+          class="sell_btn"
+          (click)="sendSellToBoard()"
+          [disabled]="isDisabled"
+        >
+          Sell&rarr;
+        </button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="row"> -->
-<!-- <div class="col-md-offset-.1">
-            <h1>Completer Material</h1>
-            <p>
-              This is a demo of a custom component that uses Ng2-Completer
-              directives to create a material2 autocomplete component.
-            </p>
-            <p>
-              To use this compnent copy all completer-cmp-md files from the demo
-              code
-            </p>
-          </div> -->
-<!-- </div> -->
-<!-- <h3>Local data with image</h3> -->
-<!-- <div class="completer-wrapper">
-          <div class="col-md-offset-1">
-            <div>
-              <p>
-                Local data of countries - using image, matchClass and maxLength
-              </p>
-            </div>
-
-            <ng2-completer-md
-              [(ngModel)]="countryName"
-              [dataService]="dataService"
-              [minSearchLength]="0"
-              [maxChars]="4"
-              [placeholder]="'search country'"
-              [matchClass]="'match'"
-            >
-            </ng2-completer-md>
-
-            <div class="selected-result">
-              <label>Selected country: Label </label>
-            </div>
-          </div>
-        </div> -->
-
-<!-- <div class="col-auto my-1">
-          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"
-            >Quantity</label
-          >
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div> -->

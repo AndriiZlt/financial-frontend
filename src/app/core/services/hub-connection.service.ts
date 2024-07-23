@@ -10,6 +10,7 @@ import { environment } from "src/environments/environment";
 export class HubConnectionService {
   connection: signalR.HubConnection;
   private notificationChange = new Subject<string>();
+  private publicBoardChange = new Subject<string>();
   user_id: string;
   private _apiUrl: string;
 
@@ -50,9 +51,18 @@ export class HubConnectionService {
       console.log("SignalR New Notification:", res);
       this.notificationChange.next(res);
     });
+
+    this.connection.on("PublicBoard", (res) => {
+      console.log("SignalR:", res);
+      this.publicBoardChange.next(res);
+    });
   }
 
   getNotificationObservable(): Observable<string> {
     return this.notificationChange.asObservable();
+  }
+
+  getPublicBoardObservable(): Observable<string> {
+    return this.publicBoardChange.asObservable();
   }
 }

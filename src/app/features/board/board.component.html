@@ -17,7 +17,7 @@
       *ngFor="let item of boardItems"
       [boardItem]="item"
       [index]="boardItems.indexOf(item)"
-      (reloadPage)="reloadPage()"
+      (updatePage)="updatePage()"
     ></app-board-item>
   </div>
 </section>
